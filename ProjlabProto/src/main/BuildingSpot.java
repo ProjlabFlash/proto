@@ -22,7 +22,6 @@ public class BuildingSpot extends Railway {
 	 * @param thatNewNeighbour Másik szomszéd
 	 */
 	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour) {
-		//logger enter
 		ArrayList<Object> paramlist=new ArrayList<Object>();	
 		paramlist.add(thisNewNeighbour);
 		paramlist.add(thatNewNeighbour);
@@ -48,7 +47,5 @@ public class BuildingSpot extends Railway {
 			ThatNeighbour = new ArrayList<Railway>();
 			ThisNeighbour.add(OldThisNeighbour);
 		}
-		
-		//logger exit
 	}
 }
