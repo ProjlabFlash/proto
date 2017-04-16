@@ -7,10 +7,10 @@ public abstract class MovingObject extends MetaData {
 	protected Cart Pulls;
 	
 	/**
-	 * Konstruktor. Be�ll�tja a kezdeti �rt�keket.
-	 * @param railwaySegment Jelenlegi s�n, ahol �ll.
-	 * @param previousRailwaySegment El�z� s�n, ahol �llt.
-	 * @param nextCart �ltala h�zott kocsi.
+	 * Konstruktor. Beallitja a kezdeti ertekeket.
+	 * @param railwaySegment Jelenlegi sin, ahol all.
+	 * @param previousRailwaySegment Elozo sin, ahol allt.
+	 * @param nextCart altala huzott kocsi.
 	 */
 	public MovingObject(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart) {
 		railwaySegment.setOnMe(this);
@@ -20,10 +20,10 @@ public abstract class MovingObject extends MetaData {
 	}
 	
 	/**
-	 * Egyet l�p a vonatelem. A met�dus �t�ll�tja a CurrentRailwaySegment
-	 * �s a PreviousRailwaySegment �rt�k�t, illetve gondoskodik, hogy a Railway-ek tudjanak r�la,
-	 * hogy ez az elem elhagyta, illetve r�l�pett az adott Railwayre.
-	 * @param toHere Az a s�n, ahova l�pnie kell a vonatelemnek.
+	 * Egyet lep a vonatelem. A metodus atallitja a CurrentRailwaySegment
+	 * es a PreviousRailwaySegment erteket, illetve gondoskodik, hogy a Railway-ek tudjanak rola,
+	 * hogy ez az elem elhagyta, illetve ralepett az adott Railwayre.
+	 * @param toHere Az a sin, ahova lepnie kell a vonatelemnek.
 	 */
 	public void step(Railway toHere) {
 		
@@ -35,7 +35,7 @@ public abstract class MovingObject extends MetaData {
 	}
 	
 	/**
-	 * Jelzi az Application-nek, hogy a vonatelem �tk�z�tt egy m�sik vonatelemmel.
+	 * Jelzi az Application-nek, hogy a vonatelem utkozott egy masik vonatelemmel.
 	 */
 	public void crash() {
 		
