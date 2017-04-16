@@ -28,9 +28,15 @@ public class Cart extends MovingObject {
 	public void leaveTheTrain(Station station) {
 		this.Passengers = false;	
 	}
-	public boolean getPassengers(){
+
+	/**
+	 * Vissyaadja, hogy vannak-e utasok a vagonban
+	 * @return Vannak-e utasok
+	 */
+	public boolean getPassengers() {
 		return Passengers;
 	}
+	
 	/**
 	 * Felszallitja az utasokat a vagonra.
 	 */
