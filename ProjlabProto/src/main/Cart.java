@@ -6,13 +6,13 @@ public class Cart extends MovingObject {
 	private boolean Passengers;
 	
 	/**
-	 * Konstruktor. A paraméterül kapott értékeket állítja be rendre:
-	 * a sínt ahol a vagon tartózkodik, az elõzõ tartózkodási helyét a vagonnak,
-	 * a vagont amit húz, a színét, és hogy vannak-e rajta utasok.
-	 * @param railwaySegment Sín, ahol a vagon tartózkodik
-	 * @param previousRailwaySegment Elõzõ tartózkodási hely
-	 * @param nextCart Vagont amit húz
-	 * @param color A vagon színe
+	 * Konstruktor. A parameterul kapott ertekeket allitja be rendre:
+	 * a sint ahol a vagon tartozkodik, az elozo tartozkodasi helyet a vagonnak,
+	 * a vagont amit huz, a szinet, es hogy vannak-e rajta utasok.
+	 * @param railwaySegment Sin, ahol a vagon tartozkodik
+	 * @param previousRailwaySegment Elozo tartozkodasi hely
+	 * @param nextCart Vagont amit huz
+	 * @param color A vagon szine
 	 * @param passengers Vannak-e rajta utasok
 	 */
 	public Cart(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart, Color color, boolean passengers) {
@@ -22,8 +22,8 @@ public class Cart extends MovingObject {
 	}
 	
 	/**
-	 * Leszállítja az utasokat a kocsiról.
-	 * @param station Az állomás színe, aminél leszállnak.
+	 * Leszallitja az utasokat a kocsirol.
+	 * @param station Az allomos szine, aminal leszallnak.
 	 */
 	private void leaveTheTrain(Station station) {
 		
@@ -32,9 +32,9 @@ public class Cart extends MovingObject {
 	}
 	
 	/**
-	 * Ellenõrzi, hogy a leszállási feltételek teljesülnek-e.
-	 * @param station Az állomás, ahol a leszállás történik
-	 * @return A leszállási feltételek megvannak-e
+	 * Ellenorzi, hogy a leszallasi feltetelek teljesulnek-e.
+	 * @param station Az allomos, ahol a leszallas tortenik
+	 * @return A leszallasi feltetelek megvannak-e
 	 */
 	public boolean colorCheck(Station station) {
 				

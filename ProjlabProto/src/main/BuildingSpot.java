@@ -8,8 +8,8 @@ public class BuildingSpot extends Railway {
 	private Railway OldThatNeighbour;
 	
 	/**
-	 * Konstruktor. Beállítja a paraméterül kapott Railway-t a szomszédjának,
-	 * és beállítja magát annak a szomszédjaként.
+	 * Konstruktor. Beallitja a parameterul kapott Railway-t a szomszedjanak,
+	 * es beallitja magat annak a szomszedjakent.
 	 * @param previousRailway A kapott railway
 	 */
 	public BuildingSpot(Railway previousRailway) {
@@ -17,9 +17,9 @@ public class BuildingSpot extends Railway {
 	}
 	
 	/**
-	 * A paraméterül kapott Railway-eket beállítja a saját szomszédjának.
-	 * @param thisNewNeighbour Egyik szomszéd
-	 * @param thatNewNeighbour Másik szomszéd
+	 * A parameterul kapott Railway-eket beellitja a sajat szomszedjanak.
+	 * @param thisNewNeighbour Egyik szomszed
+	 * @param thatNewNeighbour Masik szomszed
 	 */
 	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour) {
 		ArrayList<Object> paramlist=new ArrayList<Object>();	
