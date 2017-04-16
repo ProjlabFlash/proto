@@ -8,11 +8,11 @@ public class Locomotive extends MovingObject {
 	private int Speed;
 	
 	/**
-	 * Konstruktor. Létrehozza a mozdonyt.
-	 * @param railwaySegment Jelenlegi sín, ahol a mozdony áll.
-	 * @param previousRailwaySegment Elõzõ sín, ahonnal a mozdony jött.
-	 * @param nextCart Mozdony által közvetlenül húzott kocsi.
-	 * @param speed Mozdony sebessége
+	 * Konstruktor. Letrehozza a mozdonyt.
+	 * @param railwaySegment Jelenlegi sin, ahol a mozdony all.
+	 * @param previousRailwaySegment Elozo sin, ahonnal a mozdony jott.
+	 * @param nextCart Mozdony altal kozvetlenul huzott kocsi.
+	 * @param speed Mozdony sebessege
 	 */
 	public Locomotive(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart, int speed) {
 		super(railwaySegment, previousRailwaySegment, nextCart);
@@ -20,7 +20,7 @@ public class Locomotive extends MovingObject {
 	}
 	
 	/**
-	 * Meghívásakor a mozdony lép egyet elõre.
+	 * Meghivasakor a mozdony lep egyet elore.
 	 */
 	public void move() {
 		
@@ -32,8 +32,8 @@ public class Locomotive extends MovingObject {
 	}
 	
 	/**
-	 * Állomáshoz érkezéskor hívódik. Jelzi a mögé kötött vagonnak, hogy állomáshoz érkezett a vonat.
-	 * @param station Az az állomás, ahova megérkezett a mozdony.
+	 * Allomashoz erkezeskor hivodik. Jelzi az utana kotott vagonnak, hogy allomashoz erkezett a vonat.
+	 * @param station Az az allomas, ahova megerkezett a mozdony.
 	 */
 	public void ArrivedAtStation(Station station) {
 		
