@@ -1,7 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-
 public abstract class MovingObject extends MetaData {
 	
 	protected Railway CurrentRailwaySegment;
@@ -9,10 +7,10 @@ public abstract class MovingObject extends MetaData {
 	protected Cart Pulls;
 	
 	/**
-	 * Konstruktor. Beállítja a kezdeti értékeket.
-	 * @param railwaySegment Jelenlegi sín, ahol áll.
-	 * @param previousRailwaySegment Elõzõ sín, ahol állt.
-	 * @param nextCart Általa húzott kocsi.
+	 * Konstruktor. Beï¿½llï¿½tja a kezdeti ï¿½rtï¿½keket.
+	 * @param railwaySegment Jelenlegi sï¿½n, ahol ï¿½ll.
+	 * @param previousRailwaySegment Elï¿½zï¿½ sï¿½n, ahol ï¿½llt.
+	 * @param nextCart ï¿½ltala hï¿½zott kocsi.
 	 */
 	public MovingObject(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart) {
 		railwaySegment.setOnMe(this);
@@ -22,10 +20,10 @@ public abstract class MovingObject extends MetaData {
 	}
 	
 	/**
-	 * Egyet lép a vonatelem. A metódus átállítja a CurrentRailwaySegment
-	 * és a PreviousRailwaySegment értékét, illetve gondoskodik, hogy a Railway-ek tudjanak róla,
-	 * hogy ez az elem elhagyta, illetve rálépett az adott Railwayre.
-	 * @param toHere Az a sín, ahova lépnie kell a vonatelemnek.
+	 * Egyet lï¿½p a vonatelem. A metï¿½dus ï¿½tï¿½llï¿½tja a CurrentRailwaySegment
+	 * ï¿½s a PreviousRailwaySegment ï¿½rtï¿½kï¿½t, illetve gondoskodik, hogy a Railway-ek tudjanak rï¿½la,
+	 * hogy ez az elem elhagyta, illetve rï¿½lï¿½pett az adott Railwayre.
+	 * @param toHere Az a sï¿½n, ahova lï¿½pnie kell a vonatelemnek.
 	 */
 	public void step(Railway toHere) {
 		
@@ -37,7 +35,7 @@ public abstract class MovingObject extends MetaData {
 	}
 	
 	/**
-	 * Jelzi az Application-nek, hogy a vonatelem ütközött egy másik vonatelemmel.
+	 * Jelzi az Application-nek, hogy a vonatelem ï¿½tkï¿½zï¿½tt egy mï¿½sik vonatelemmel.
 	 */
 	public void crash() {
 		

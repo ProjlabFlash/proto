@@ -211,5 +211,4 @@ public class Application {
 	public static void sendMessage(String msg) {
 		targetOS.println(msg);
 	}
-
 }
