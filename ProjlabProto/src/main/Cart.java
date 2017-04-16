@@ -55,6 +55,10 @@ public class Cart extends MovingObject {
 	 * @return A leszallasi feltetelek megvannak-e
 
 	 */
+	public Color getColor(){
+		return this.color;
+	}
+	
 	public boolean colorCheck(Station station) {
 		Color c = station.getColor();
 		if(c.equals(Color.HORROR))

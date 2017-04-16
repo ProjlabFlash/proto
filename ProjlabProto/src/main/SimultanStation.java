@@ -5,6 +5,25 @@ public class SimultanStation extends Station{
 		super(railway,color);
 	}
 	public Color getColor(Cart toMe){ 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		Color TODO = Color.PIROS;
 		return TODO;		
 	}
