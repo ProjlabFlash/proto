@@ -11,7 +11,7 @@ public class SimultanStation extends Station{
 		{
 			if(!toMe.getPassengers())
 			{
-				toMe.setPassengers(true);
+				toMe.setPassengers();
 				return Color.FELSZALLTAK;
 			}
 			else
@@ -19,25 +19,6 @@ public class SimultanStation extends Station{
 				return Color.HORROR;
 			}
 		}
-		return Color.HORROR;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		Color TODO = Color.PIROS;
-		return TODO;		
+		return Color.HORROR;			
 	}
 }
