@@ -43,6 +43,12 @@ public class Cart extends MovingObject {
 		Passengers = false;
 		
 	}
+	public void setPassengers(){
+		Passengers = true;
+	}
+	public boolean getPassengers(){
+		return Passengers;
+	}
 	
 	/**
 
@@ -60,7 +66,7 @@ public class Cart extends MovingObject {
 	}
 	
 	public boolean colorCheck(Station station) {
-		Color c = station.getColor();
+		Color c = station.getColor(this);
 		if(c.equals(Color.HORROR))
 		{
 			if(Pulls != null) 
