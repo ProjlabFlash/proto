@@ -28,12 +28,6 @@ public class Cart extends MovingObject {
 	public void leaveTheTrain(Station station) {
 		this.Passengers = false;	
 	}
-	public void setPassengers(){
-		Passengers = true;
-	}
-	public boolean getPassengers(){
-		return Passengers;
-	}
 	
 	/**
 	 * Felszallitja az utasokat a vagonra.
