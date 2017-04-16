@@ -7,16 +7,16 @@ public class Tunnel extends MetaData {
 	private BuildingSpot bs1, bs2;
 
 	/**
-	 * Konstruktor. Nem hoz létre mûködõ alagutat.
+	 * Konstruktor. Nem hoz letre mukodo alagutat.
 	 */
 	public Tunnel() {
 		
 	}
 	
 	/**
-	 * Megépíti azalagutat a két paraméterül kapott építési terület között.
-	 * @param buildingSpot1 Egyik építési terület
-	 * @param buildingSpot2 Másik építési terület
+	 * Megepiti az alagutat a ket parameterul kapott epitesi terulet kozott.
+	 * @param buildingSpot1 Egyik epitesi terulet
+	 * @param buildingSpot2 Masik epitesi terulet
 	 */
 	public void build(BuildingSpot buildingSpot1, BuildingSpot buildingSpot2) {
 				
@@ -33,7 +33,7 @@ public class Tunnel extends MetaData {
 	}
 	
 	/**
-	 * Lebontja az alagutat a két korábban paraméterül kapott építési terület között.
+	 * Lebontja az alagutat a ket korobban parameterul kapott epitesi terulet kozott.
 	 */
 	public void destroy() {
 				

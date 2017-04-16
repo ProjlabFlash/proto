@@ -5,10 +5,10 @@ public class Station extends MetaData {
 	private Color color;
 	
 	/**
-	 * Konstruktor. Beállítja az állomás színét, és hozzárendeli
-	 * egy sínhez, aminél a leszállás történik.
-	 * @param railway A sín, amihez hozzárendelték
-	 * @param color Az állomás színe
+	 * Konstruktor. Beallitja az allomas szinet, es hozzarendeli
+	 * egy sinhez, aminel a leszallas tortenik.
+	 * @param railway A sin, amihez hozzarendeltuk
+	 * @param color Az allomas szine
 	 */
 	public Station(Railway railway, Color color) {
 		railway.setStation(this);
@@ -16,7 +16,7 @@ public class Station extends MetaData {
 	}
 	
 	/**
-	 * Visszaadja az állomás színét.
+	 * Visszaadja az allomas szinet.
 	 * @return
 	 */
 	public Color getColor() {

@@ -4,15 +4,15 @@ public abstract class MetaData {
 	private String name;
 	
 	/**
-	 * Eltárolja az objektumból készült példány nevét.
-	 * @param name Az eltárolt név
+	 * Eltarolja az objektumbol keszult peldany nevet.
+	 * @param name Az eltarolt nev
 	 */
 	public void setName(String name) {
 		this.name = name; 
 	};
 	
 	/**
-	 * Visszaadja az objektum nevét.
+	 * Visszaadja az objektum nevet.
 	 * @return Az objektum neve
 	 */
 	public String toString() {

@@ -11,8 +11,8 @@ public class Railway extends MetaData{
 	private Station station;
 	
 	/**
-	 * Konstruktor. Beállítja a paraméterül kapott Railway-t a szomszédjának,
-	 * és beállítja magát annak a szomszédjaként.
+	 * Konstruktor. Beallitja a parameterul kapott Railway-t a szomszedjanak,
+	 * es beallitja magat annak a szomszedjakent.
 	 * @param previousRailway A kapott railway
 	 */
 	public Railway(Railway previousRailway) {
@@ -22,10 +22,10 @@ public class Railway extends MetaData{
 	}
 	
 	/**
-	 * Visszaadja azt a sínt, amire a mozdony továbbléphet
-	 * a paraméterül kapott elõzõ sín alapján.
+	 * Visszaadja azt a sint, amire a mozdony tovabblephet
+	 * a parameterul kapott elozo sin alapjan.
 	 * @param previousRailway
-	 * @return A sín, amire a mozdony következõnek léphet.
+	 * @return A sin, amire a mozdony kovetkezonek lephet.
 	 */
 	public Railway next(Railway previousRailway) {
 		
@@ -64,8 +64,8 @@ public class Railway extends MetaData{
 	}
 	
 	/**
-	 * A paraméter szerint beállítja, hogy ki melyik vonatelem van éppen a sínen.
-	 * @param OnMe A sínre beállítandó vonatelem.
+	 * A parameter szerint beallitja, hogy melyik vonatelem van eppen a sinen.
+	 * @param OnMe A sinre beallitando vonatelem.
 	 */
 	public void setOnMe(MovingObject OnMe) {
 		
@@ -76,8 +76,8 @@ public class Railway extends MetaData{
 	}
 	
 	/**
-	 * Getter az egyik szomszédra
-	 * @return Az egyik szomszéd
+	 * Getter az egyik szomszedra
+	 * @return Az egyik szomszed
 	 */
 	public ArrayList<Railway> getThisNeighbour() {
 		
@@ -86,8 +86,8 @@ public class Railway extends MetaData{
 	}
 	
 	/**
-	 * Getter a másik szomszédra
-	 * @return A másik szomszéd
+	 * Getter a masik szomszedra
+	 * @return A masik szomszed
 	 */
 	public ArrayList<Railway> getThatNeighbour() {
 		
@@ -95,8 +95,8 @@ public class Railway extends MetaData{
 	}
 	
 	/**
-	 * Elhelyezi a szomszédjai közt a paraméterül kapott Railway-t.
-	 * @param newNeighbour A paraméterül kapott Railway
+	 * Elhelyezi a szomszedjai kozt a parameterul kapott Railway-t.
+	 * @param newNeighbour A parameterul kapott Railway
 	 */
 	public void insertNeighbour(Railway newNeighbour) {
 						
@@ -105,8 +105,8 @@ public class Railway extends MetaData{
 	}
 	
 	/**
-	 * Beállítja a sínhez tartozó megállót.
-	 * @param station A sínhez tartozó megálló.
+	 * Beallitja a sinhez tartozo megallot.
+	 * @param station A sinhez tartozo megallo.
 	 */
 	public void setStation(Station station) {
 				

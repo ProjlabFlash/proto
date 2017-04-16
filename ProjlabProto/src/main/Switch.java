@@ -8,10 +8,10 @@ public class Switch extends Railway {
 	private Railway CurrentStanding;
 	
 	/**
-	 * Konstruktor. A paraméterül kapott kimenetet állítja be a váltónak.
-	 * Null-esetén a lehetõség közül az elsõt állítja be.
-	 * @param defaultStanding A váltó kezdeti állása.
-	 * @param previousRailway Elõzõ sín. A konstruáláshoz kell.
+	 * Konstruktor. A parameterul kapott kimenetet allitja be a valtonak.
+	 * Null-eseten a lehetosegek kozul az elsot allitja be.
+	 * @param defaultStanding A valto kezdeti allasa.
+	 * @param previousRailway Elozo sin. A konstrualashoz kell.
 	 */
 	public Switch(Railway defaultStanding, Railway previousRailway) {
 		super(previousRailway);
@@ -20,8 +20,8 @@ public class Switch extends Railway {
 	}
 	
 	/**
-	 * Vált a paraméterül kapott sínre.
-	 * @param nextStanding A kapott sín.
+	 * Valt a parameterul kapott sinre.
+	 * @param nextStanding A kapott sin.
 	 */
 	public void switchTo(Railway nextStanding) {
 				
