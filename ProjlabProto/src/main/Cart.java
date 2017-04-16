@@ -6,13 +6,13 @@ public class Cart extends MovingObject {
 	private boolean Passengers;
 	
 	/**
-	 * Konstruktor. A paraméterül kapott értékeket állítja be rendre:
-	 * a sínt ahol a vagon tartózkodik, az elõzõ tartózkodási helyét a vagonnak,
-	 * a vagont amit húz, a színét, és hogy vannak-e rajta utasok.
-	 * @param railwaySegment Sín, ahol a vagon tartózkodik
-	 * @param previousRailwaySegment Elõzõ tartózkodási hely
-	 * @param nextCart Vagont amit húz
-	 * @param color A vagon színe
+	 * Konstruktor. A paramï¿½terï¿½l kapott ï¿½rtï¿½keket ï¿½llï¿½tja be rendre:
+	 * a sï¿½nt ahol a vagon tartï¿½zkodik, az elï¿½zï¿½ tartï¿½zkodï¿½si helyï¿½t a vagonnak,
+	 * a vagont amit hï¿½z, a szï¿½nï¿½t, ï¿½s hogy vannak-e rajta utasok.
+	 * @param railwaySegment Sï¿½n, ahol a vagon tartï¿½zkodik
+	 * @param previousRailwaySegment Elï¿½zï¿½ tartï¿½zkodï¿½si hely
+	 * @param nextCart Vagont amit hï¿½z
+	 * @param color A vagon szï¿½ne
 	 * @param passengers Vannak-e rajta utasok
 	 */
 	public Cart(Railway railwaySegment, Railway previousRailwaySegment, Cart nextCart, Color color, boolean passengers) {
@@ -22,8 +22,8 @@ public class Cart extends MovingObject {
 	}
 	
 	/**
-	 * Leszállítja az utasokat a kocsiról.
-	 * @param station Az állomás színe, aminél leszállnak.
+	 * Leszï¿½llï¿½tja az utasokat a kocsirï¿½l.
+	 * @param station Az ï¿½llomï¿½s szï¿½ne, aminï¿½l leszï¿½llnak.
 	 */
 	private void leaveTheTrain(Station station) {
 		
@@ -32,24 +32,45 @@ public class Cart extends MovingObject {
 	}
 	
 	/**
-	 * Ellenõrzi, hogy a leszállási feltételek teljesülnek-e.
-	 * @param station Az állomás, ahol a leszállás történik
-	 * @return A leszállási feltételek megvannak-e
+	 * Ellenï¿½rzi, hogy a leszï¿½llï¿½si feltï¿½telek teljesï¿½lnek-e.
+	 * @param station Az ï¿½llomï¿½s, ahol a leszï¿½llï¿½s tï¿½rtï¿½nik
+	 * @return A leszï¿½llï¿½si feltï¿½telek megvannak-e
 	 */
 	public boolean colorCheck(Station station) {
-				
-		if(station.getColor().equals(color)) leaveTheTrain(station);
-		if(Passengers == false && Pulls != null) {
-			
-			boolean result = Pulls.colorCheck(station);
-			
-			return result;
+		Color c = station.getColor();
+		if(c.equals(Color.HORROR))
+		{
+			if(Pulls != null) 
+			{
+				Pulls.colorCheck(station);
+			}
+			return false;
 		}
-		if(Passengers == false && Pulls == null) {
-			
+		if(c.equals(Color.FELSZALLTAK))
+		{
 			return true;
 		}
-		
+		if(c.equals(this.color))
+		{
+			if(Passengers)
+			{
+				this.leaveTheTrain(station);
+				if(Pulls != null) 
+				{
+					Pulls.colorCheck(station);
+				}
+				return true;
+			}
+			else
+			{
+				if(Pulls != null) 
+				{
+					Pulls.colorCheck(station);
+				}
+				return false;
+			}
+		}
 		return false;
-	}
+}
+		
 }
