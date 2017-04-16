@@ -2,7 +2,7 @@ package main;
 
 public class Station extends MetaData {
 	
-	private Color color;
+	protected Color color;
 	
 	/**
 	 * Konstruktor. Beallitja az allomas szinet, es hozzarendeli
@@ -19,8 +19,7 @@ public class Station extends MetaData {
 	 * Visszaadja az allomas szinet.
 	 * @return
 	 */
-	public Color getColor() {
-		
+	public Color getColor(Cart toMe) {		
 		return this.color;
 	}
 }
