@@ -1,0 +1,23 @@
+clearTable
+add rail
+add rail ss1
+add rail
+add rail ss3
+add rail
+add rail ss5
+add rail
+add rail ss7
+add crossing
+connect rail ss2 sc1 1
+connect rail ss3 sc1 1
+connect rail ss6 sc1 2
+connect rail ss7 sc1 2
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore loco ml1 allcart
+prepare train
+add loco ss6 ss5 60
+explore loco ml2
+step ml2
+step ml1

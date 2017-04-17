@@ -1,0 +1,17 @@
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+prepare train
+add cart ss1 null red true
+add cart ss2 ss1 blue true
+add cart ss3 ss2 blue true
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart

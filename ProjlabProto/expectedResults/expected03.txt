@@ -1,0 +1,16 @@
+A takaritas megtortent.
+Sikerult! Az uj sin azonositoja: ss1
+Sikerult! Az uj sin azonositoja: ss2
+Sikerult! Az uj sin azonositoja: sv1
+Sikerult! Az uj sin azonositoja: ss3
+Sikerult! Az uj sin azonositoja: ss4
+Sikerult!
+Sikerult!
+Uj vonat elkezdve.
+Sikerult! Az uj mozdony azonositoja: ml1
+Ez a valto az ss3 iranyaba mutat.
+Ertettem: ml1 vonat mozgatasa ss4 sinrol sv1 sinre.
+Ertettem: ml1 vonat mozgatasa sv1 sinrol ss2 sinre.
+Ez a valto az ss4 iranyaba mutat.
+Ez itt mozdony ml1.
+Epp az ss2 sinen allok, es 60-el megyek.

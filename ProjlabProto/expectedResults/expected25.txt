@@ -1,0 +1,17 @@
+A takaritas megtortent.
+Sikerult! Az uj sin azonositoja: ss1
+Sikerult! Az uj sin azonositoja: ss2
+Sikerult! Az uj sin azonositoja: ss3
+Sikerult! Az uj allomas azonositoja: sa1
+Sikerult! Az allomason most mar felszallhatnak az utasok.
+Uj vonat elkezdve.
+Sikerult! Az uj kocsi azonositoja: mc1
+Sikerult! Az uj mozdony azonositoja: ml1
+Ez itt az mc1 vagon.
+Epp az ss1 sinen allok.
+En egy utasszallito vagon vagyok. A szinem red, es jelenleg epp ures vagyok.
+Ertettem: ml1 vonat mozgatasa ss2 sinrol ss3 sinre.
+Elertuk a sa1 allomast.
+Ez itt az mc1 vagon.
+Epp az ss2 sinen allok.
+En egy utasszallito vagon vagyok. A szinem red, es jelenleg epp ures vagyok.

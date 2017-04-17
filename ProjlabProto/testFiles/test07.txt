@@ -1,0 +1,14 @@
+clearTable
+add rail
+add rail ss1
+add buildingspot ss2
+add buildingspot
+add rail sb2
+build tunnel sb1 sb2
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
