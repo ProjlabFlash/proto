@@ -17,4 +17,7 @@ public class CrossRailway extends Railway {
 		ThisNeighbour2.add(this2);
 		ThatNeighbour2.add(that2);		
 	}
+	public CrossRailway(Railway this1) {
+		super(this1);
+	}
 }
