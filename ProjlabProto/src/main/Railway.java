@@ -99,9 +99,8 @@ public class Railway extends MetaData{
 	 * @param newNeighbour A parameterul kapott Railway
 	 */
 	public void insertNeighbour(Railway newNeighbour) {
-						
-		
-		ThatNeighbour.add(newNeighbour);
+		if (ThisNeighbour.size() != 0)ThatNeighbour.add(newNeighbour);
+		else ThisNeighbour.add(newNeighbour);
 	}
 	
 	/**
