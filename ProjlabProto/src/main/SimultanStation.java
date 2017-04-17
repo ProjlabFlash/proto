@@ -13,7 +13,7 @@ public class SimultanStation extends Station{
 	}
 	
 	/**
-	 * Jelzoszinnel ter vissza, jelezve, hogy tortent-e felszallas. Ha megteheto, lebonyolit egy felszallast, ugy,
+	 * Jelzoszinnel ter vissza, jelezve, hogyha tortent-e felszallas. Ha megteheto, lebonyolit egy felszallast, ugy,
 	 * hogy lekerdezi a parameterul kapott vagon szinet, majd a Passengers attributumat, es ha azonos szinu, es ures
 	 * a vagon, akkor beallitja true-ra a Passengers attributumot.
 	 * @param toMe A parameterul kapott kocsi
