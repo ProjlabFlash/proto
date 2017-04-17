@@ -1,0 +1,15 @@
+A takaritas megtortent.
+Sikerult! Az uj sin azonositoja: ss1
+Sikerult! Az uj sin azonositoja: ss2
+Sikerult! Az uj sin azonositoja: sv1
+Sikerult! Az uj sin azonositoja: ss3
+Sikerult! Az uj sin azonositoja: ss4
+Sikerult!
+Sikerult!
+Uj vonat elkezdve.
+Sikerult! Az uj kocsi azonositoja: mc1
+Sikerult! Az uj mozdony azonositoja: ml1
+Uj vonat elkdezdve.
+Sikerult! Az uj mozdony azonositoja: ml2
+Ertettem: ml2 vonat mozgatasa ss4 sinrol sv1 sinre.
+Miert nincs 2 sinpar egy vonalon…? utkozes tortent.

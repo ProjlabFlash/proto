@@ -1,0 +1,11 @@
+clearTable
+add rail
+add rail
+add rail
+add switch
+connect rail sv1 1 ss1
+connect rail sv1 2 ss2
+connect rail sv1 2 ss3
+explore switch sv1
+toggle switch sv1 ss3
+explore switch sv1

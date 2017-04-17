@@ -1,0 +1,4 @@
+clearTable
+add buildingspot
+add buildingspot
+build tunnel sb1 sb2

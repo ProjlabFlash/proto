@@ -1,0 +1,25 @@
+A takaritas megtortent.
+Sikerult! Az uj sin azonositoja: ss1
+Sikerult! Az uj sin azonositoja: ss2
+Sikerult! Az uj sin azonositoja: sb1
+Sikerult! Az uj sin azonositoja: sb2
+Sikerult! Az uj sin azonositoja: ss3
+Sikerult! Az uj sin azonositoja: ss4
+Sikerult! Az alaguton mehetnek at a vonatok.
+Uj vonat elkezdve.
+Sikerult! Az uj kocsi azonositoja: mc1
+Sikerult! Az uj mozdony azonositoja: ml1
+Ez itt mozdony ml1.
+Epp az ss2 sinen allok es 60-el megyek.
+Engem kovetnek a kovetkezo kocsik:
+Ez itt a mc1 vagon.
+Epp az ss1 sinen allok.
+En egy szenszallito vagon vagyok.
+Uj vonat elkezdve.
+Sikerult! Az uj mozdony azonositoja: ml2
+Ez itt mozdony ml1.
+Epp az ss4 sinen allok es 60-el megyek.
+Ertettem: ml1 vonat mozgatasa ss2 sinrol sb1 sinre.
+Ertettem: ml2 vonat mozgatasa ss4 sinrol ss3 sinre.
+Ertettem: ml1 vonat mozgatasa sb1 sinrol ss3 sinre.
+Miert nincs 2 sinpar egy vonalon...? utkozes tortent.

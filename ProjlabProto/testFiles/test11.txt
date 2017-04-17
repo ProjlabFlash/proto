@@ -1,0 +1,7 @@
+clearTable
+add rail
+add rail
+add buildingspot ss1
+add buildingspot ss2
+build tunnel sb1 sb2
+destroy tunnel

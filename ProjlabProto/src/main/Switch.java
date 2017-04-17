@@ -19,6 +19,10 @@ public class Switch extends Railway {
 		ThisNeighbour.add(previousRailway);
 	}
 	
+	public Switch(Railway tbConnected) {
+		super(tbConnected);
+	}
+
 	/**
 	 * Valt a parameterul kapott sinre.
 	 * @param nextStanding A kapott sin.

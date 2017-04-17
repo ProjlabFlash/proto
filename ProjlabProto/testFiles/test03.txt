@@ -1,0 +1,15 @@
+clearTable
+add rail
+add rail ss1
+add switch ss2
+add rail
+add rail
+connect sv1 2 ss3
+connect sv1 2 ss4
+prepare train
+add loco ss4 null 60
+explore switch sv1
+step ml1
+step ml1
+explore switch sv1
+explore loco ml1
