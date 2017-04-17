@@ -505,9 +505,9 @@ public class Application {
 		}
 	}
 	
-	private static class CdmAddCart extends CommandBase{
+	private static class CmdAddCart extends CommandBase{
 
-		public CdmAddCart() {
+		public CmdAddCart() {
 			super("add cart");
 		}
 
@@ -517,9 +517,9 @@ public class Application {
 		}
 	}
 	
-	private static class CdmAddLoco extends CommandBase{
+	private static class CmdAddLoco extends CommandBase{
 
-		public CdmAddLoco() {
+		public CmdAddLoco() {
 			super("add loco");
 		}
 
@@ -529,9 +529,9 @@ public class Application {
 		}
 	}
 	
-	private static class CdmStep extends CommandBase{
+	private static class CmdStep extends CommandBase{
 
-		public CdmStep() {
+		public CmdStep() {
 			super("step");
 		}
 
@@ -541,9 +541,9 @@ public class Application {
 		}
 	}
 	
-	private static class CdmDeleteLoco extends CommandBase{
+	private static class CmdDeleteLoco extends CommandBase{
 
-		public CdmDeleteLoco() {
+		public CmdDeleteLoco() {
 			super("delete loco");
 		}
 
@@ -553,9 +553,9 @@ public class Application {
 		}
 	}
 	
-	private static class CdmExploreLoco extends CommandBase{
+	private static class CmdExploreLoco extends CommandBase{
 
-		public CdmExploreLoco() {
+		public CmdExploreLoco() {
 			super("explore loco");
 		}
 
@@ -565,9 +565,9 @@ public class Application {
 		}
 	}
 	
-	private static class CdmExploreCart extends CommandBase{
+	private static class CmdExploreCart extends CommandBase{
 
-		public CdmExploreCart() {
+		public CmdExploreCart() {
 			super("explore cart");
 		}
 
@@ -577,9 +577,9 @@ public class Application {
 		}
 	}
 	
-	private static class CdmTimerStart extends CommandBase{
+	private static class CmdTimerStart extends CommandBase{
 
-		public CdmTimerStart() {
+		public CmdTimerStart() {
 			super("timer start");
 		}
 
@@ -589,9 +589,9 @@ public class Application {
 		}
 	}
 	
-	private static class CdmTimerEnd extends CommandBase{
+	private static class CmdTimerEnd extends CommandBase{
 
-		public CdmTimerEnd() {
+		public CmdTimerEnd() {
 			super("timer end");
 		}
 
@@ -600,6 +600,31 @@ public class Application {
 			
 		}
 	}
+	
+	private static class CmdExploreSwitch extends CommandBase{
+
+		public CmdExploreSwitch() {
+			super("explore switch");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdClearTable extends CommandBase{
+
+		public CmdClearTable() {
+			super("clear table");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
 	
 	public static void sendMessage(String msg) {
 		targetOS.println(msg);
