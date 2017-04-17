@@ -66,6 +66,7 @@ public class Application {
 		commands.add(new CmdSwitchOutput());
 		commands.add(new CmdAddRail());
 		
+		commands.add(new CmdBuildTunnel());
 		mainloop:
 		while(true) {
 			try {
@@ -367,6 +368,27 @@ public class Application {
 		@Override
 		public void execute(String[] params) {
 			
+			if (params.length < 4) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			
+			Railway rail1 = rails.get(params[2]);
+			if (rail1 == null) buildingSpots.get(params[2]);
+			int nextRailParam;
+			
+			if (rail1 == null) {
+				rail1 = crosses.get(params[2]);
+				if (rail1 == null) switches.get(params[2]);
+				else {
+					CrossRailway cr = crosses.get(params[2]);
+				}
+				if (rail1 == null) {
+					targetOS.println("Sikertelen. A megadott sin nem letezik.");
+				}
+					
+			}
+			
 		}
 	}
 	
@@ -466,7 +488,11 @@ public class Application {
 		}
 	}
 	
-	private static class CmdBuildTunnel extends CommandBase{
+
+
+
+
+private static class CmdBuildTunnel extends CommandBase{
 
 		public CmdBuildTunnel() {
 			super("build tunnel");
@@ -474,11 +500,57 @@ public class Application {
 
 		@Override
 		public void execute(String[] params) {
+			BuildingSpot first = null;
+			BuildingSpot second = null;	
+			if (params.length == 4) {
 			
+				
+				if (!(params[2].startsWith("sb")))
+				{
+					sendMessage("Sikertelen. A megadott sin nem letezik.");
+					return;
+				}
+				else
+				{
+					
+					first= buildingSpots.get(params[2]);
+					if(first==null)
+					{
+						sendMessage("Sikertelen. A megadott sin nem letezik.");
+						return;
+					}
+				}
+				
+				if (!(params[3].startsWith("sb")))
+				{
+					sendMessage("Sikertelen. A megadott sin nem letezik.");
+					return;
+				}
+				else
+				{
+					
+					second= buildingSpots.get(params[3]);
+					if(second==null)
+					{
+						sendMessage("Sikertelen. A megadott sin nem letezik.");
+						return;
+					}
+				}
+				
+				if (tunnel!=null) {
+					sendMessage("Sikertelen. Mar van megepitve alagut.");
+					return;
+				}
+			}
+			
+			tunnel.build(first, second);
+			sendMessage("Sikerult! Az alaguton mehetnek at a vonatok.");
 		}
 	}
 	
-	private static class CmdDestroyTunnel extends CommandBase{
+
+
+private static class CmdDestroyTunnel extends CommandBase{
 
 		public CmdDestroyTunnel() {
 			super("destroy tunnel");
@@ -486,9 +558,18 @@ public class Application {
 
 		@Override
 		public void execute(String[] params) {
+			if(tunnel==null)
+				{
+					sendMessage("Sikertelen. Meg nincs megepitve alagut.");
+					return;
+				}
+			tunnel.destroy();
+			sendMessage("Sikerult! Az alaguton mostmar zarva.");
 			
+			tunnel = null;
 		}
 	}
+
 	
 	private static class CmdPrepareTrain extends CommandBase{
 
@@ -534,6 +615,8 @@ public class Application {
 
 		@Override
 		public void execute(String[] params) {
+			
+			
 			
 		}
 	}
