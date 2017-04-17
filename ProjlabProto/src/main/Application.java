@@ -66,7 +66,7 @@ public class Application {
 		commands.add(new CmdSwitchOutput());
 		commands.add(new CmdAddRail());
 		
-		commands.add(new CmdBuildTunnel());
+		//commands.add(new CmdBuildTunnel());
 		mainloop:
 		while(true) {
 			try {
@@ -107,6 +107,10 @@ public class Application {
 		}
 	}
 
+	public static void sendMessage(String msg) {
+		targetOS.println(msg);
+	}
+	
 	public static abstract class CommandBase {
 		
 		public final String cmdName;
@@ -347,7 +351,9 @@ public class Application {
 	}
 	
 	//INNENTŐL EZEK MÉG ÜRESEK!!!!
-	private static class CmdAddStation extends CommandBase{
+
+
+private static class CmdAddStation extends CommandBase{
 
 		public CmdAddStation() {
 			super("add station");
@@ -355,6 +361,27 @@ public class Application {
 
 		@Override
 		public void execute(String[] params) {
+			Railway onThis=null;
+						
+			onThis=rails.get(params[2]);
+			if(onThis==null)
+			{
+				sendMessage("Sikertelen. A megadott sin nem letezik.");
+				return;
+			}
+			
+			if(Color.fromString(params[3])==null)
+			{
+				sendMessage("Sikertelen. Hibas szin.");
+				return;
+			}
+			
+			Color szin=Color.fromString(params[3]);
+			
+			String key = "sa" + (++stationsCounter);
+			Station newStation = new Station(onThis, szin);
+			stations.put(key, newStation);
+			sendMessage("Sikerult! Az uj allomas azonositoja: " + key);
 			
 		}
 	}
@@ -375,20 +402,11 @@ public class Application {
 			
 			Railway rail1 = rails.get(params[2]);
 			if (rail1 == null) buildingSpots.get(params[2]);
-			int nextRailParam;
+			int secRwayParamNumber = 3;
 			
-			if (rail1 == null) {
-				rail1 = crosses.get(params[2]);
-				if (rail1 == null) switches.get(params[2]);
-				else {
-					CrossRailway cr = crosses.get(params[2]);
-				}
-				if (rail1 == null) {
-					targetOS.println("Sikertelen. A megadott sin nem letezik.");
-				}
+			if (rail1 == null)
+				secRwayParamNumber++;
 					
-			}
-			
 		}
 	}
 	
@@ -706,7 +724,6 @@ private static class CmdDestroyTunnel extends CommandBase{
 	}
 	
 	
-	public static void sendMessage(String msg) {
-		targetOS.println(msg);
-	}
+
+
 }
