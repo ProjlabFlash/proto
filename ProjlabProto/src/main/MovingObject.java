@@ -38,7 +38,7 @@ public abstract class MovingObject extends MetaData {
 	 * Jelzi az Application-nek, hogy a vonatelem utkozott egy masik vonatelemmel.
 	 */
 	public void crash() {
-		
+		Application.sendMessage("Miert nincs 2 sinpar egy vonalon...? utkozes tortent.");
 		//Application.lose()
 	}
 	public abstract void ArrivedAtStation(Station station);

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class Application {
 
@@ -108,6 +110,10 @@ public class Application {
 	}
 
 	public static void sendMessage(String msg) {
+		targetOS.println(msg);
+	}
+	
+	public static void sendMessage(String msg, Station station) {
 		targetOS.println(msg);
 	}
 	
@@ -486,7 +492,7 @@ public class Application {
 	
 
 
-private static class CmdList extends CommandBase{
+	private static class CmdList extends CommandBase{
 
 		public CmdList() {
 			super("list");
@@ -689,8 +695,8 @@ private static class CmdBuildTunnel extends CommandBase{
 	
 
 
-private static class CmdDestroyTunnel extends CommandBase{
-
+private static class CmdDestroyTunnel extends CommandBase{	
+	
 		public CmdDestroyTunnel() {
 			super("destroy tunnel");
 		}
@@ -755,8 +761,24 @@ private static class CmdDestroyTunnel extends CommandBase{
 		@Override
 		public void execute(String[] params) {
 			
+			if (params.length < 3) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			Locomotive target = locos.get(params[2]);
+			if (target == null) {
+				targetOS.println("Sikertelen. Nem letezik adott azonositoju mozdony.");
+				return;
+			}
+			Set<Entry<String, Railway> > railSet = rails.entrySet();
+			String railkey1 = null, railkey2 = null;
+			for (Map.Entry<String, Railway> entry: railSet) {
+				if (entry.getValue() == target.CurrentRailwaySegment) railkey1 = entry.getKey();
+				if (entry.getValue() == target.CurrentRailwaySegment.next(target.PreviousRailwaySegment)) railkey2 = entry.getKey();
+			}
 			
-			
+			targetOS.println("Ertettem: "+ params[2] +" vonat mozgatasa "+ railkey1 +" sinrol "+ railkey2 +" sinre.");
+			target.step(target.CurrentRailwaySegment.next(target.PreviousRailwaySegment));
 		}
 	}
 	
@@ -772,6 +794,8 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+
+
 	private static class CmdExploreLoco extends CommandBase{
 
 		public CmdExploreLoco() {
@@ -780,18 +804,109 @@ private static class CmdDestroyTunnel extends CommandBase{
 
 		@Override
 		public void execute(String[] params) {
+			Locomotive actual=null;
+			actual=locos.get(params[2]);
 			
+			if(!(params[2].equals("all"))||actual==null)
+			{
+				sendMessage("Sikertelen. Nem letezik adott azonositoju mozdony.");
+				return;
+			}
+			if(params.length>3)
+			{
+				//allcart happening pls
+				if(params[2].equals("all"))
+				{
+					String line=null;
+					String number=null;
+					sendMessage("A jelenleg letezo mozdonyok: ");
+					for(String keys:stations.keySet())
+					{
+						line=keys+": Epp az "+locos.get(keys).CurrentRailwaySegment+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
+						sendMessage(line);
+						if(actual.Pulls!=null)
+						{
+							sendMessage("Engem kovetnek a kovetkezo kocsik:");
+							//allcart rész.....
+						}
+					}
+				}
+				else
+				{
+					String line=null;
+					line="Ez itt mozdony "+params[2]+".";
+					sendMessage(line);
+					line="Epp az "+ actual.CurrentRailwaySegment +" sinen allok, es "+ actual.Speed +"-el megyek.";
+					sendMessage(line);
+					if(actual.Pulls!=null)
+					{
+						sendMessage("Engem kovetnek a kovetkezo kocsik:");
+						//allcart rész.....
+					}
+					
+				}
+			}
+			
+			else
+			{
+				//nincs allcart
+				if(params[2].equals("all"))
+				{
+					//all...
+					String line=null;
+					String number=null;
+					sendMessage("A jelenleg letezo mozdonyok: ");
+					for(String keys:stations.keySet())
+					{
+						line=keys+": Epp az "+locos.get(keys).CurrentRailwaySegment+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
+						sendMessage(line);
+						line=null;
+					}
+					
+				}
+				else
+				{
+					String line=null;
+					line="Ez itt mozdony "+params[2]+".";
+					sendMessage(line);
+					line="Epp az "+ actual.CurrentRailwaySegment +" sinen allok, es "+ actual.Speed +"-el megyek.";
+					sendMessage(line);
+				}
+			}
 		}
 	}
 	
+
+
 	private static class CmdExploreCart extends CommandBase{
 
 		public CmdExploreCart() {
 			super("explore cart");
 		}
-
 		@Override
 		public void execute(String[] params) {
+			Cart actual=null;
+			actual=carts.get(params[2]);
+			if(actual==null)
+			{
+				sendMessage("Sikertelen. Nem letezik adott azonositoju vagon.");
+				return;
+			}
+			sendMessage("Ez itt az "+params[2]+" vagon.");
+			if(actual instanceof CoalCart)
+			{
+				sendMessage("Epp az <sin> sinen allok.");
+				sendMessage("En egy szenszallito vagon vagyok.");
+			}
+			else
+			{
+				sendMessage("Epp az <sin> sinen allok.");
+				sendMessage("En egy utasszallito vagon vagyok.");
+				String state=null;
+				if(actual.getPassengers()) state="tele";
+				else state="ures";
+				sendMessage("A szinem "+ actual.getColor().toString().toLowerCase() +", es jelenleg epp "+state+" vagyok.");
+			}
 			
 		}
 	}
@@ -840,7 +955,33 @@ private static class CmdDestroyTunnel extends CommandBase{
 
 		@Override
 		public void execute(String[] params) {
+			rails = new HashMap<String, Railway>();
+			railsCounter = 0;
 			
+			switches = new HashMap<String, Switch>();
+			switchesCounter = 0;
+			
+			crosses = new HashMap<String, CrossRailway>();
+			crossesCounter = 0;
+			
+			buildingSpots = new HashMap<String, BuildingSpot>();
+			buildingSpotsCounter = 0;
+			
+			stations = new HashMap<String, Station>();
+			stationsCounter = 0;
+			
+			simultanStations = new HashMap<String, SimultanStation>();
+			simultanStationsCounter = 0;
+			
+			carts = new HashMap<String, Cart>();
+			cartsCounter = 0;
+			
+			locos = new HashMap<String, Locomotive>();
+			locosCounter = 0;
+			
+			tunnel = null;
+			
+			targetOS.println("A takaritas megtortent.");
 		}
 	}
 	

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 @SuppressWarnings("unused")
 public class Locomotive extends MovingObject {
 	
-	private int Speed;
+	protected int Speed;
 	
 	/**
 	 * Konstruktor. Letrehozza a mozdonyt.
@@ -36,10 +36,11 @@ public class Locomotive extends MovingObject {
 	 * @param station Az az allomas, ahova megerkezett a mozdony.
 	 */
 	public void ArrivedAtStation(Station station) {
-		
+		///TODO: Elertuk a san allomast.
 		if(Pulls.colorCheck(station) == true) {
 			//Application.win();
 		}
 		
 	}
+	
 }
