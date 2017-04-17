@@ -18,8 +18,11 @@ public class CoalCart extends Cart {
 	 */
 	@Override
 	public boolean colorCheck(Station station) {
-		boolean TODO = false;
-		return TODO;
+		if (Pulls != null)
+		{
+			Pulls.colorCheck(station);
+		}
+		return false;
 	}
 	
 }
