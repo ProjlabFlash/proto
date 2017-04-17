@@ -5,21 +5,50 @@ import java.util.ArrayList;
 public class CrossRailway extends Railway {
 	private ArrayList<Railway> ThatNeighbour2 = new ArrayList<>();
 	private ArrayList<Railway> ThisNeighbour2 = new ArrayList<>();
+	
+	
+	/**
+	 * Getter a ThatNeighbour2 attributumra
+	 * @return A masodik sinpar 2. szomszedja
+	 */
 	public ArrayList<Railway> getThatNeighbour2(){
 		return ThatNeighbour2;
 	}
+	
+	/**
+	 * Getter a ThisNeighbour2 attributumra
+	 * @return A masodik sinpar 1. szomszedja
+	 */
 	public ArrayList<Railway> getThisNeighbour2(){
 		return ThisNeighbour2;
 	}
+	
+	/**
+	 * Konstruktor. Rendre beallitja az elso sinpar 2 szomszedjat (elso ket parameter),
+	 * majd a masodik sinpar szomszedjait (3. es 4. parameter)
+	 * @param this1 Elso sinpar 1. szomszedja
+	 * @param that1 Elso sinpar 2. szomszedja
+	 * @param this2 Masodik sinpar 1. szomszedja
+	 * @param that2 Masodik sinpar 2. szomszedja
+	 */
 	public CrossRailway(Railway this1 ,Railway that1 ,Railway this2 ,Railway that2){
 		super(this1);
 		ThatNeighbour.add(that1);
 		ThisNeighbour2.add(this2);
 		ThatNeighbour2.add(that2);		
 	}
+	
+	/**
+	 * Konstruktor.
+	 * @param this1
+	 */
 	public CrossRailway(Railway this1) {
 		super(this1);
 	}
+	
+	/* (non-Javadoc)
+	 * @see main.Railway#next(main.Railway)
+	 */
 	@Override
 	public Railway next(Railway previousRailway) 
 	{
@@ -91,7 +120,6 @@ public class CrossRailway extends Railway {
 					return ThisNeighbour2.get(0);
 				}
 			}
-			
 		}
 		return null;
 	}

@@ -104,9 +104,6 @@ public class Application {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
 	}
 
 	public static abstract class CommandBase {
