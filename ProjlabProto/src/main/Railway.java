@@ -103,6 +103,26 @@ public class Railway extends MetaData{
 		else ThisNeighbour.add(newNeighbour);
 	}
 	
+	/**Helyfoglalo a valto es keresztezodesnek ugyanilyen funkcioju fuggvenyere
+	 * 
+	 * @param newNeighbour: A parameterul kapott Railway
+	 * @param where: A beszurassal kapcsolatos informacio(melyik oldalara szurja a valtonak/keresztezodesnek)
+	 */
+	public void insertNeighbour(Railway newNeighbour, int where) {
+		this.insertNeighbour(newNeighbour);
+	}
+	
+	/**Ellenorzi hogy a ket sin osszekotheto-e. A ket parameter megfeleltetheto az insertNeighbour fuggveny parametereivel.
+	 * 
+	 * @param newNeighbour: A parameterul kapott Railway
+	 * @param where: A beszurassal kapcsolatos informacio(melyik oldalara szurja a valtonak/keresztezodesnek)
+	 * @return
+	 */
+	public boolean checkInsertNeighbour(Railway newNeighbour, int where) {
+		boolean result = true;
+		if (ThisNeighbour.size() != 0 && ThatNeighbour.size() != 0) result = false;
+		return result;
+	}
 	/**
 	 * Beallitja a sinhez tartozo megallot.
 	 * @param station A sinhez tartozo megallo.

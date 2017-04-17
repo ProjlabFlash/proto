@@ -45,25 +45,41 @@ public class Switch extends Railway {
 		return result;
 	}
 	
-	/**
+	/**Ellenorzi hogy ez a sin hozzakotheto-e a parametrben kapott sinhez
 	 * 
 	 * @param newNeighbour: Az uj sin amit hozza akarunk kotni
 	 * @param where: A ket keresztezo sin kozul melyikre
-	 * @return Sikeres volt-e a muvelet
+	 * @return Hozzakotheto-e(true), vagy sem(false)
 	 */
-	public boolean insertNeighbour(Railway newNeighbour, int where) {
+	public boolean checkInsertNeighbour(Railway newNeighbour, int where) {
+		
+		if (ThisNeighbour.contains(newNeighbour) || ThatNeighbour.contains(newNeighbour))
+			return false;
+		
+		boolean result = true;
+		
+		if (where == 1) {
+			if (ThisNeighbour.size() == 0);
+			else result = false;
+		}
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param newNeighbour: Az uj sin amit hozza akarunk kotni
+	 * @param where: A valto melyik oldalara
+	 */
+	public void insertNeighbour(Railway newNeighbour, int where) {
 		boolean result = true;
 		switch (where) {
 		case 1:
 			if (ThisNeighbour.size() == 0) ThisNeighbour.add(newNeighbour);
-			else result = false;
 			break;
 		case 2:
 			ThatNeighbour.add(newNeighbour);
 			break;
 		default:
-			result = false;
 		}
-		return result;
 	}
 }

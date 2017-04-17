@@ -124,30 +124,31 @@ public class CrossRailway extends Railway {
 		return null;
 	}
 	
-	/**
+	/**Ellenorzi hogy ez a sin hozzakotheto-e a parametrben kapott sinhez
 	 * 
 	 * @param newNeighbour: Az uj sin amit hozza akarunk kotni
 	 * @param where: A ket keresztezo sin kozul melyikre
-	 * @return Sikeres volt-e a muvelet
+	 * @return Hozzakotheto-e(true), vagy sem(false)
 	 */
-	public boolean insertNeighbour(Railway newNeighbour, int where) {
+	public boolean checkInsertNeighbour(Railway newNeighbour, int where) {
 		
 		if (ThisNeighbour.contains(newNeighbour) || ThisNeighbour2.contains(newNeighbour) ||
 				ThatNeighbour.contains(newNeighbour) || ThatNeighbour2.contains(newNeighbour))
 			return false;
 		
 		boolean result = true;
+		
 		switch (where) {
 		
 		case 1:
-			if (ThisNeighbour.size() == 0) ThisNeighbour.add(newNeighbour);
-			else if (ThatNeighbour.size() == 0) ThatNeighbour.add(newNeighbour);
+			if (ThisNeighbour.size() == 0);
+			else if (ThatNeighbour.size() == 0);
 			else result = false;
 			break;
 			
 		case 2:
-			if (ThisNeighbour2.size() == 0) ThisNeighbour2.add(newNeighbour);
-			else if (ThatNeighbour2.size() == 0) ThatNeighbour2.add(newNeighbour);
+			if (ThisNeighbour2.size() == 0);
+			else if (ThatNeighbour2.size() == 0);
 			else result = false;
 			break;
 			
@@ -155,5 +156,28 @@ public class CrossRailway extends Railway {
 			result = false;
 		}
 		return result;
+	}
+	
+	/**Hozzakoti a parameterben kapott sint ehhez a sinhez
+	 * 
+	 * @param newNeighbour: Az uj sin amit hozza akarunk kotni
+	 * @param where: A ket keresztezo sin kozul melyikre
+	 */
+	public void insertNeighbour(Railway newNeighbour, int where) {
+
+		switch (where) {
+		
+		case 1:
+			if (ThisNeighbour.size() == 0) ThisNeighbour.add(newNeighbour);
+			else if (ThatNeighbour.size() == 0) ThatNeighbour.add(newNeighbour);
+			break;
+			
+		case 2:
+			if (ThisNeighbour2.size() == 0) ThisNeighbour2.add(newNeighbour);
+			else if (ThatNeighbour2.size() == 0) ThatNeighbour2.add(newNeighbour);
+			break;
+			
+		default:
+		}
 	}
 }
