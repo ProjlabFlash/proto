@@ -348,6 +348,259 @@ public class Application {
 		}
 	}
 	
+	//INNENTŐL EZEK MÉG ÜRESEK!!!!
+	private static class CmdAddStation extends CommandBase{
+
+		public CmdAddStation() {
+			super("add station");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdConnectRail extends CommandBase{
+
+		public CmdConnectRail() {
+			super("connect rail");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdDeleteRail extends CommandBase{
+
+		public CmdDeleteRail() {
+			super("delete rail");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdDeleteStation extends CommandBase{
+
+		public CmdDeleteStation() {
+			super("delete station");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdList extends CommandBase{
+
+		public CmdList() {
+			super("list");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdExploreLine extends CommandBase{
+
+		public CmdExploreLine() {
+			super("explore line");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdExplore extends CommandBase{
+
+		public CmdExplore() {
+			super("explore");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdExploreAllrail extends CommandBase{
+
+		public CmdExploreAllrail() {
+			super("explore allrail");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdToggleSwitch extends CommandBase{
+
+		public CmdToggleSwitch() {
+			super("toggle switch");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdToggleStation extends CommandBase{
+
+		public CmdToggleStation() {
+			super("toggle station");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdBuildTunnel extends CommandBase{
+
+		public CmdBuildTunnel() {
+			super("build tunnel");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdDestroyTunnel extends CommandBase{
+
+		public CmdDestroyTunnel() {
+			super("destroy tunnel");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CmdPrepareTrain extends CommandBase{
+
+		public CmdPrepareTrain() {
+			super("prepatre train");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CdmAddCart extends CommandBase{
+
+		public CdmAddCart() {
+			super("add cart");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CdmAddLoco extends CommandBase{
+
+		public CdmAddLoco() {
+			super("add loco");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CdmStep extends CommandBase{
+
+		public CdmStep() {
+			super("step");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CdmDeleteLoco extends CommandBase{
+
+		public CdmDeleteLoco() {
+			super("delete loco");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CdmExploreLoco extends CommandBase{
+
+		public CdmExploreLoco() {
+			super("explore loco");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CdmExploreCart extends CommandBase{
+
+		public CdmExploreCart() {
+			super("explore cart");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CdmTimerStart extends CommandBase{
+
+		public CdmTimerStart() {
+			super("timer start");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	private static class CdmTimerEnd extends CommandBase{
+
+		public CdmTimerEnd() {
+			super("timer end");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
 	public static void sendMessage(String msg) {
 		targetOS.println(msg);
 	}
