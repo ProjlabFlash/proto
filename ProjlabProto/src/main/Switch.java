@@ -44,4 +44,26 @@ public class Switch extends Railway {
 
 		return result;
 	}
+	
+	/**
+	 * 
+	 * @param newNeighbour: Az uj sin amit hozza akarunk kotni
+	 * @param where: A ket keresztezo sin kozul melyikre
+	 * @return Sikeres volt-e a muvelet
+	 */
+	public boolean insertNeighbour(Railway newNeighbour, int where) {
+		boolean result = true;
+		switch (where) {
+		case 1:
+			if (ThisNeighbour.size() == 0) ThisNeighbour.add(newNeighbour);
+			else result = false;
+			break;
+		case 2:
+			ThatNeighbour.add(newNeighbour);
+			break;
+		default:
+			result = false;
+		}
+		return result;
+	}
 }

@@ -123,4 +123,37 @@ public class CrossRailway extends Railway {
 		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @param newNeighbour: Az uj sin amit hozza akarunk kotni
+	 * @param where: A ket keresztezo sin kozul melyikre
+	 * @return Sikeres volt-e a muvelet
+	 */
+	public boolean insertNeighbour(Railway newNeighbour, int where) {
+		
+		if (ThisNeighbour.contains(newNeighbour) || ThisNeighbour2.contains(newNeighbour) ||
+				ThatNeighbour.contains(newNeighbour) || ThatNeighbour2.contains(newNeighbour))
+			return false;
+		
+		boolean result = true;
+		switch (where) {
+		
+		case 1:
+			if (ThisNeighbour.size() == 0) ThisNeighbour.add(newNeighbour);
+			else if (ThatNeighbour.size() == 0) ThatNeighbour.add(newNeighbour);
+			else result = false;
+			break;
+			
+		case 2:
+			if (ThisNeighbour2.size() == 0) ThisNeighbour2.add(newNeighbour);
+			else if (ThatNeighbour2.size() == 0) ThatNeighbour2.add(newNeighbour);
+			else result = false;
+			break;
+			
+		default:
+			result = false;
+		}
+		return result;
+	}
 }
