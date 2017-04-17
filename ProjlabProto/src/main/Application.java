@@ -349,11 +349,8 @@ public class Application {
 			sendMessage("Sikerult! Az uj sin azonositoja: " + key);
 		}
 	}
-	
-	//INNENTŐL EZEK MÉG ÜRESEK!!!!
 
-
-private static class CmdAddStation extends CommandBase{
+	private static class CmdAddStation extends CommandBase{
 
 		public CmdAddStation() {
 			super("add station");
@@ -401,12 +398,65 @@ private static class CmdAddStation extends CommandBase{
 			}
 			
 			Railway rail1 = rails.get(params[2]);
-			if (rail1 == null) buildingSpots.get(params[2]);
+			if (rail1 == null) rail1 = buildingSpots.get(params[2]);
 			int secRwayParamNumber = 3;
+			int firstParam = 0;
+			int secondParam = 0;
 			
-			if (rail1 == null)
+			if (rail1 == null) {
+				
+				rail1 = crosses.get(params[2]);
+				if (rail1 == null) rail1 = switches.get(params[2]);
+				if (rail1 == null) {
+					targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
+					return;
+				}
+				
 				secRwayParamNumber++;
-					
+				firstParam = Integer.parseInt(params[3]);
+				if (firstParam != 1 || firstParam != 2 || params[3].contains("s")) {
+					targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
+					return;
+				}
+			}
+			
+			if (params.length < secRwayParamNumber + 1) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			
+			Railway rail2 = rails.get(params[secRwayParamNumber]);
+			if (rail2 == null) rail2 = buildingSpots.get(params[secRwayParamNumber]);
+			if (rail2 == null) {
+				
+				if (params.length < secRwayParamNumber + 2) {
+					targetOS.println("Nincs eleg parameter!");
+					return;
+				}
+				
+				rail1 = crosses.get(params[secRwayParamNumber]);
+				if (rail1 == null) rail1 = switches.get(params[secRwayParamNumber]);
+				if (rail1 == null) {
+					targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
+					return;
+				}
+				
+				secRwayParamNumber++;
+				secondParam = Integer.parseInt(params[3]);
+				if (secondParam != 1 || secondParam != 2) {
+					targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
+					return;
+				}
+			}
+			
+			if (rail1.checkInsertNeighbour(rail2, firstParam) &&
+					rail2.checkInsertNeighbour(rail1, secondParam)) {
+				rail1.insertNeighbour(rail2, firstParam);
+				rail2.insertNeighbour(rail1, secondParam);
+				targetOS.println("Sikerult!");
+				return;
+			}
+			targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
 		}
 	}
 	
@@ -434,7 +484,9 @@ private static class CmdAddStation extends CommandBase{
 		}
 	}
 	
-	private static class CmdList extends CommandBase{
+
+
+private static class CmdList extends CommandBase{
 
 		public CmdList() {
 			super("list");
@@ -443,6 +495,75 @@ private static class CmdAddStation extends CommandBase{
 		@Override
 		public void execute(String[] params) {
 			
+			if(params[1].equals("a"))
+			{
+				String line=null;
+				String number=null;
+				sendMessage("A jelenleg letezo allomasok azonositoi (sa): ");
+				for(String keys:stations.keySet())
+				{
+					number=keys.replace("sa", "");
+					line=line + number + ", ";
+				}
+				line=line.substring(0, line.length()-2);
+				sendMessage(line);
+			}
+			if(params[1].equals("b"))
+			{
+				
+				String line=null;
+				String number=null;
+				sendMessage("A jelenleg letezo alagutepetesi helyek azonositoi (sb): ");
+				for(String keys:buildingSpots.keySet())
+				{
+					number=keys.replace("sb", "");
+					line=line + number + ", ";
+				}
+				line=line.substring(0, line.length()-2);
+				sendMessage(line);
+			}
+			if(params[1].equals("c"))
+			{
+				
+				String line=null;
+				String number=null;
+				sendMessage("A jelenleg letezo keresztezodo sinek azonositoi (sc): ");
+				for(String keys:crosses.keySet())
+				{
+					number=keys.replace("sc", "");
+					line=line + number + ", ";
+				}
+				line=line.substring(0, line.length()-2);
+				sendMessage(line);
+			}
+			if(params[1].equals("v"))
+			{
+				
+				String line=null;
+				String number=null;
+				sendMessage("A jelenleg letezo valtok azonositoi (sv): ");
+				for(String keys:stations.keySet())
+				{
+					number=keys.replace("sv", "");
+					line=line + number + ", ";
+				}
+				line=line.substring(0, line.length()-2);
+				sendMessage(line);
+			}
+			if(params[1].equals("s"))
+			{
+				
+				String line=null;
+				String number=null;
+				sendMessage("A jelenleg letezo sinek azonositoi (ss): ");
+				for(String keys:stations.keySet())
+				{
+					number=keys.replace("ss", "");
+					line=line + number + ", ";
+				}
+				line=line.substring(0, line.length()-2);
+				sendMessage(line);
+			}
 		}
 	}
 	
