@@ -41,4 +41,5 @@ public abstract class MovingObject extends MetaData {
 		
 		//Application.lose()
 	}
+	public abstract void ArrivedAtStation(Station station);
 }

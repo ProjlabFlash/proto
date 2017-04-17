@@ -92,5 +92,10 @@ public class Cart extends MovingObject {
 			}
 		}
 		return false;
-	}	
+	}
+	@Override
+	public void ArrivedAtStation(Station station) 
+	{	
+		return;
+	}
 }
