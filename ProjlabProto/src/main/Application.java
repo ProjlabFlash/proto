@@ -1002,7 +1002,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 			Locomotive actual=null;
 			actual=locos.get(params[2]);
 			
-			if(!(params[2].equals("all"))||actual==null)
+			if(!(params[2].equals("all")) && actual==null)
 			{
 				sendMessage("Sikertelen. Nem letezik adott azonositoju mozdony.");
 				return;
@@ -1015,14 +1015,27 @@ private static class CmdDestroyTunnel extends CommandBase{
 					String line=null;
 					String number=null;
 					sendMessage("A jelenleg letezo mozdonyok: ");
-					for(String keys:stations.keySet())
+					for(String keys:locos.keySet())
 					{
 						line=keys+": Epp az "+locos.get(keys).CurrentRailwaySegment+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
 						sendMessage(line);
-						if(actual.Pulls!=null)
+						if(params[3].equals("allcart"))
 						{
 							sendMessage("Engem kovetnek a kovetkezo kocsik:");
-							//allcart rész.....
+							Cart nextCart = locos.get(keys).Pulls;
+							
+							while (nextCart != null) {
+								Set<Entry<String, Cart> > cartsSet = carts.entrySet();
+								String key = null;
+								for (Map.Entry<String, Cart> entry: cartsSet)
+									if (entry.getValue() == nextCart) {
+										key = entry.getKey();
+										break;
+									}
+								String eCartParams[] = { "explore", "cart", key};
+								new CmdExploreCart().execute(eCartParams);
+								nextCart = nextCart.Pulls;
+							}
 						}
 					}
 				}
@@ -1033,10 +1046,23 @@ private static class CmdDestroyTunnel extends CommandBase{
 					sendMessage(line);
 					line="Epp az "+ actual.CurrentRailwaySegment +" sinen allok, es "+ actual.Speed +"-el megyek.";
 					sendMessage(line);
-					if(actual.Pulls!=null)
+					if(params[3].equals("allcart"))
 					{
 						sendMessage("Engem kovetnek a kovetkezo kocsik:");
-						//allcart rész.....
+						Cart nextCart = locos.get(params[2]).Pulls;
+						
+						while (nextCart != null) {
+							Set<Entry<String, Cart> > cartsSet = carts.entrySet();
+							String key = null;
+							for (Map.Entry<String, Cart> entry: cartsSet)
+								if (entry.getValue() == nextCart) {
+									key = entry.getKey();
+									break;
+								}
+							String eCartParams[] = { "explore", "cart", key};
+							new CmdExploreCart().execute(eCartParams);
+							nextCart = nextCart.Pulls;
+						}
 					}
 					
 				}
@@ -1051,7 +1077,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 					String line=null;
 					String number=null;
 					sendMessage("A jelenleg letezo mozdonyok: ");
-					for(String keys:stations.keySet())
+					for(String keys:locos.keySet())
 					{
 						line=keys+": Epp az "+locos.get(keys).CurrentRailwaySegment+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
 						sendMessage(line);
