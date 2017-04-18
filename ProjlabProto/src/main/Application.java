@@ -91,7 +91,7 @@ public class Application {
 		commands.add(new CmdAddLoco());
 		commands.add(new CmdStep());
 		//commands.add(new CmdDeleteLoco());
-		//commands.add(new CmdExploreLoco());
+		commands.add(new CmdExploreLoco());
 		commands.add(new CmdExploreCart());
 		//commands.add(new CmdTimerStart());
 		//commands.add(new CmdTimerEnd());
