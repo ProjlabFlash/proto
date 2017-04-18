@@ -1199,14 +1199,26 @@ private static class CmdDestroyTunnel extends CommandBase{
 				return;
 			}
 			sendMessage("Ez itt az "+params[2]+" vagon.");
+			
+			String railkey = null;
+			for(Entry<String, Railway> entry: rails.entrySet())
+				if (actual.CurrentRailwaySegment == entry.getValue()) {
+					railkey = entry.getKey();
+					break;
+				}
+			
+			
 			if(actual instanceof CoalCart)
 			{
-				sendMessage("Epp az <sin> sinen allok.");
+				sendMessage("Epp az " + railkey + " sinen allok.");
 				sendMessage("En egy szenszallito vagon vagyok.");
 			}
 			else
 			{
-				sendMessage("Epp az <sin> sinen allok.");
+				
+				
+				
+				sendMessage("Epp az " + railkey + " sinen allok.");
 				sendMessage("En egy utasszallito vagon vagyok.");
 				String state=null;
 				if(actual.getPassengers()) state="tele";
