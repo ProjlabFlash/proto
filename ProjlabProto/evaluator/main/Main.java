@@ -11,24 +11,32 @@ import java.util.ArrayList;
 public class Main {
 	/**
 	 * A program belepesi pontja
-	 * @param args A teszteset valos eredmenyet, es elvart eredmenyet tartalmazo szoveges fajlok (pontosan 2 fajl) eleresi utjai ebben a sorrendben
+	 * Indulas utan var 2 darab eleresi utat és az ott talahato 2 file-t osszehasonlitja, hiba eseten kiirja a nem egyezo sorokat es a sor szamat
 	 */
 	public static void main(String[] args) {
-		if(args.length != 2) {
-			System.out.println("Pontosan 2 fajl eleresi utat adjon meg!");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String first="";
+		String second="";
+		
+		
+		try {
+			first= br.readLine();
+			second = br.readLine();
+		} catch (IOException e2) {
+			System.out.println("Beolvasasi hiba tortent!");
 			return;
 		}
 		
 		boolean wrong_path = false;
 	    BufferedReader br1 = null, br2 = null;
 		try {
-			br1 = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(args[0]))));
+			br1 = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(first))));
 		} catch (FileNotFoundException e1) {
 			System.out.println("Az 1. fajl nem talalhato!");
 			wrong_path = true;
 		}
 		try {
-			br2 = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(args[1]))));
+			br2 = new BufferedReader(new InputStreamReader(new DataInputStream(new FileInputStream(second))));
 		} catch (FileNotFoundException e1) {
 			System.out.println("Az 2. fajl nem talalhato!");
 			wrong_path = true;
