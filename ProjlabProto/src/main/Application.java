@@ -226,8 +226,8 @@ public class Application {
 					}
 
 				}  catch (FileNotFoundException e) {
-					targetOS.println("A megadott fajl nem talalhato");
-					targetOS.println(dir.getAbsolutePath());
+					if (!isSilent) targetOS.println("A megadott fajl nem talalhato");
+					if (!isSilent) targetOS.println(dir.getAbsolutePath());
 					
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -281,9 +281,9 @@ public class Application {
 					}
 
 				}  catch (IOException e) {
-					targetOS.println("Hiba tortent a fajl irasra valo megnyitasakor:");
-					targetOS.println(dir.getAbsolutePath());
-					targetOS.println("A parancs hatastalan!");
+					if (!isSilent) targetOS.println("Hiba tortent a fajl irasra valo megnyitasakor:");
+					if (!isSilent) targetOS.println(dir.getAbsolutePath());
+					if (!isSilent) targetOS.println("A parancs hatastalan!");
 				}
 			}
 		}
