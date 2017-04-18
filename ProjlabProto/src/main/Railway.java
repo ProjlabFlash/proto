@@ -18,8 +18,10 @@ public class Railway extends MetaData{
 	 */
 	public Railway(Railway previousRailway) {
 		
-		if (previousRailway != null)
+		if (previousRailway != null) {
 			ThisNeighbour.add(previousRailway);
+			previousRailway.insertNeighbour(this);
+		}
 	}
 	
 	/**

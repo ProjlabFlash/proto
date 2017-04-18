@@ -550,17 +550,18 @@ public class Application {
 		@Override
 		public void execute(String[] params) {
 			boolean sent=false;
+			if(params.length>1){
 			if(params[1].equals("sa"))
 			{
-				String line=null;
+				String line="";
 				String number=null;
 				sendMessage("A jelenleg letezo allomasok azonositoi (sa): ");
-				for(String keys:stations.keySet())
+				for (Entry<String, Station> entry : stations.entrySet())
 				{
-					number=keys.replace("sa", "");
+					number=entry.getKey().replace("sa", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				sent=true;
@@ -568,15 +569,15 @@ public class Application {
 			if(params[1].equals("sb"))
 			{
 				
-				String line=null;
+				String line="";
 				String number=null;
 				sendMessage("A jelenleg letezo alagutepetesi helyek azonositoi (sb): ");
-				for(String keys:buildingSpots.keySet())
+				for (Entry<String, BuildingSpot> entry : buildingSpots.entrySet())
 				{
-					number=keys.replace("sb", "");
+					number=entry.getKey().replace("sb", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				sent=true;
@@ -584,15 +585,15 @@ public class Application {
 			if(params[1].equals("sc"))
 			{
 				
-				String line=null;
+				String line="";
 				String number=null;
 				sendMessage("A jelenleg letezo keresztezodo sinek azonositoi (sc): ");
-				for(String keys:crosses.keySet())
+				for (Entry<String, CrossRailway> entry : crosses.entrySet())
 				{
-					number=keys.replace("sc", "");
+					number=entry.getKey().replace("sc", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				sent=true;
@@ -600,15 +601,15 @@ public class Application {
 			if(params[1].equals("sv"))
 			{
 				
-				String line=null;
+				String line="";
 				String number=null;
 				sendMessage("A jelenleg letezo valtok azonositoi (sv): ");
-				for(String keys:stations.keySet())
+				for (Entry<String, Switch> entry : switches.entrySet())
 				{
-					number=keys.replace("sv", "");
+					number=entry.getKey().replace("sv", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				sent=true;
@@ -616,74 +617,74 @@ public class Application {
 			if(params[1].equals("ss"))
 			{
 				
-				String line=null;
+				String line="";
 				String number=null;
 				sendMessage("A jelenleg letezo sinek azonositoi (ss): ");
-				for(String keys:stations.keySet())
+				for (Entry<String, Railway> entry : rails.entrySet())
 				{
-					number=keys.replace("ss", "");
+					number=entry.getKey().replace("ss", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				sent=true;
-			}
-			if(params[1]==null)
+			}}
+			else
 			{
-				String line=null;
+				String line="";
 				String number=null;
 				sendMessage("A jelenleg letezo allomasok azonositoi (sa): ");
-				for(String keys:stations.keySet())
+				for (Entry<String, Station> entry : stations.entrySet())
 				{
-					number=keys.replace("sa", "");
+					number=entry.getKey().replace("sa", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				
-				line=null;
+				line="";
 				sendMessage("A jelenleg letezo alagutepetesi helyek azonositoi (sb): ");
-				for(String keys:buildingSpots.keySet())
+				for (Entry<String, BuildingSpot> entry : buildingSpots.entrySet())
 				{
-					number=keys.replace("sb", "");
+					number=entry.getKey().replace("sb", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				
-				line=null;
+				line="";
 				sendMessage("A jelenleg letezo keresztezodo sinek azonositoi (sc): ");
-				for(String keys:crosses.keySet())
+				for (Entry<String, CrossRailway> entry : crosses.entrySet())
 				{
-					number=keys.replace("sc", "");
+					number=entry.getKey().replace("sc", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				
-				line=null;
+				line="";
 				sendMessage("A jelenleg letezo valtok azonositoi (sv): ");
-				for(String keys:stations.keySet())
+				for (Entry<String, Switch> entry : switches.entrySet())
 				{
-					number=keys.replace("sv", "");
+					number=entry.getKey().replace("sv", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				
-				line=null;
+				line="";
 				sendMessage("A jelenleg letezo sinek azonositoi (ss): ");
-				for(String keys:stations.keySet())
+				for (Entry<String, Railway> entry : rails.entrySet())
 				{
-					number=keys.replace("ss", "");
+					number=entry.getKey().replace("ss", "");
 					line=line + number + ", ";
 				}
-				if(line!=null) line=line.substring(0, line.length()-2);
+				if(line.length()!=0) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
 				sent=true;
@@ -1087,7 +1088,14 @@ private static class CmdDestroyTunnel extends CommandBase{
 					sendMessage("A jelenleg letezo mozdonyok: ");
 					for(String keys:locos.keySet())
 					{
-						line=keys+": Epp az "+locos.get(keys).CurrentRailwaySegment+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
+						String railkey = null;
+						for(Entry<String, Railway> entry: rails.entrySet())
+							if (locos.get(keys).CurrentRailwaySegment == entry.getValue()) {
+								railkey = entry.getKey();
+								break;
+							}
+						
+						line=keys+": Epp az "+railkey+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
 						sendMessage(line);
 						if(params[3].equals("allcart"))
 						{
@@ -1114,7 +1122,14 @@ private static class CmdDestroyTunnel extends CommandBase{
 					String line=null;
 					line="Ez itt mozdony "+params[2]+".";
 					sendMessage(line);
-					line="Epp az "+ actual.CurrentRailwaySegment +" sinen allok, es "+ actual.Speed +"-el megyek.";
+					String railkey = null;
+					for(Entry<String, Railway> entry: rails.entrySet())
+						if (actual.CurrentRailwaySegment == entry.getValue()) {
+							railkey = entry.getKey();
+							break;
+						}
+					
+					line="Epp az "+ railkey +" sinen allok, es "+ actual.Speed +"-el megyek.";
 					sendMessage(line);
 					if(params[3].equals("allcart"))
 					{
