@@ -95,7 +95,7 @@ public class Application {
 		commands.add(new CmdExploreCart());
 		//commands.add(new CmdTimerStart());
 		//commands.add(new CmdTimerEnd());
-		//commands.add(new CmdExploreSwitch());
+		commands.add(new CmdExploreSwitch());
 		commands.add(new CmdClearTable());
 	
 		mainloop:
@@ -1262,7 +1262,34 @@ private static class CmdDestroyTunnel extends CommandBase{
 		@Override
 		public void execute(String[] params) {
 			
-			targetOS.println("Ez a valto az ssn iranyaba mutat.");
+			if (params.length < 3) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			
+			Switch sw = switches.get(params[2]);
+			
+			if (sw == null) {
+				sendMessage("Sikertelen. A megadott sin nem letezik.");
+				return;
+			}
+			
+			Railway cs = sw.getCurrentStanding();
+			String cskey = null;
+			
+			for (Entry<String, Railway> entry: rails.entrySet())
+				if (entry.getValue() == cs) cskey = entry.getKey();
+			if (cskey == null)
+				for (Entry<String, Switch> entry: switches.entrySet())
+					if (entry.getValue() == cs) cskey = entry.getKey();
+			if (cskey == null)
+				for (Entry<String, CrossRailway> entry: crosses.entrySet())
+					if (entry.getValue() == cs) cskey = entry.getKey();
+			if (cskey == null)
+				for (Entry<String, BuildingSpot> entry: buildingSpots.entrySet())
+					if (entry.getValue() == cs) cskey = entry.getKey();
+			
+			targetOS.println("Ez a valto az " + cskey + " iranyaba mutat.");
 		}
 	}
 	

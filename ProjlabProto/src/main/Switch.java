@@ -78,6 +78,7 @@ public class Switch extends Railway {
 			break;
 		case 2:
 			ThatNeighbour.add(newNeighbour);
+			if (ThatNeighbour.size() == 1) CurrentStanding = newNeighbour;
 			break;
 		default:
 		}
