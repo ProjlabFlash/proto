@@ -31,6 +31,8 @@ public abstract class MovingObject extends MetaData {
 		CurrentRailwaySegment.setOnMe(null);
 		toHere.setOnMe(this);
 		if(Pulls != null) Pulls.step(CurrentRailwaySegment);
+		PreviousRailwaySegment = CurrentRailwaySegment;
+		CurrentRailwaySegment = toHere;
 		
 	}
 	
