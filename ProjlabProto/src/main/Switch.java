@@ -82,4 +82,6 @@ public class Switch extends Railway {
 		default:
 		}
 	}
+	
+	public Railway getCurrentStanding() { return CurrentStanding;}
 }
