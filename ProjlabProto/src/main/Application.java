@@ -88,7 +88,7 @@ public class Application {
 		commands.add(new CmdDestroyTunnel());
 		commands.add(new CmdPrepareTrain());
 		commands.add(new CmdAddCart());
-		//commands.add(new CmdAddLoco());
+		commands.add(new CmdAddLoco());
 		commands.add(new CmdStep());
 		//commands.add(new CmdDeleteLoco());
 		//commands.add(new CmdExploreLoco());
