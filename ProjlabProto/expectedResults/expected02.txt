@@ -8,11 +8,11 @@ Sikerult!
 Sikerult!
 Uj vonat elkezdve.
 Sikerult! Az uj kocsi azonositoja: mc1
-Sikerult! Uj mozdony azonositoja: ml1
+Sikerult! Az uj mozdony azonositoja: ml1
 Ez a valto az ss3 iranyba mutat.
 Ez itt mozdony ml1.
 Epp az ss2 sinen allok, es 60-el megyek.
-Engem kovetnek a kovekezo kocsik:
+Engem kovetnek a kovetkezo kocsik:
 Ez itt az mc1 vagon.
 Epp az ss1 sinen allok.
 En egy szenszallito vagon vagyok.
@@ -20,7 +20,7 @@ Ertettem: ml1 vonat mozgatasa ss2 sinrol sv1 sinre.
 Ertettem: ml1 vonat mozgatasa sv1 sinrol ss3 sinre.
 Ez itt mozdony ml1.
 Epp az ss3 sinen allok, es 60-el megyek.
-Engem kovetnek a kovekezo kocsik:
+Engem kovetnek a kovetkezo kocsik:
 Ez itt az mc1 vagon.
 Epp az sv1 sinen allok.
 En egy szenszallito vagon vagyok.
