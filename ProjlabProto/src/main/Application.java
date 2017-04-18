@@ -469,7 +469,7 @@ public class Application {
 				
 				secRwayParamNumber++;
 				firstParam = Integer.parseInt(params[3]);
-				if (firstParam != 1 || firstParam != 2 || params[3].contains("s")) {
+				if (!(firstParam == 1 || firstParam == 2) || params[3].contains("s")) {
 					targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
 					return;
 				}
@@ -1262,6 +1262,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 		@Override
 		public void execute(String[] params) {
 			
+			targetOS.println("Ez a valto az ssn iranyaba mutat.");
 		}
 	}
 	
