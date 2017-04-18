@@ -550,7 +550,7 @@ public class Application {
 		@Override
 		public void execute(String[] params) {
 			
-			if(params[1].equals("a"))
+			if(params[1].equals("sa"))
 			{
 				String line=null;
 				String number=null;
@@ -563,7 +563,7 @@ public class Application {
 				line=line.substring(0, line.length()-2);
 				sendMessage(line);
 			}
-			if(params[1].equals("b"))
+			if(params[1].equals("sb"))
 			{
 				
 				String line=null;
@@ -577,7 +577,7 @@ public class Application {
 				line=line.substring(0, line.length()-2);
 				sendMessage(line);
 			}
-			if(params[1].equals("c"))
+			if(params[1].equals("sc"))
 			{
 				
 				String line=null;
@@ -591,7 +591,7 @@ public class Application {
 				line=line.substring(0, line.length()-2);
 				sendMessage(line);
 			}
-			if(params[1].equals("v"))
+			if(params[1].equals("sv"))
 			{
 				
 				String line=null;
@@ -605,7 +605,7 @@ public class Application {
 				line=line.substring(0, line.length()-2);
 				sendMessage(line);
 			}
-			if(params[1].equals("s"))
+			if(params[1].equals("ss"))
 			{
 				
 				String line=null;
