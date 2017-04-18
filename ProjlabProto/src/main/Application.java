@@ -291,32 +291,32 @@ public class Application {
 	
 	private static class CmdAddRail extends CommandBase{
 
-		public CmdAddRail() {
-			super("add rail");
-		}
+		  public CmdAddRail() {
+		   super("add rail");
+		  }
 
-		@Override
-		public void execute(String[] params) {
-			
-			Railway tbConnected = null;
-			
-			if (params.length > 3) {
-				
-				tbConnected = rails.get(params[2]);
-				if (tbConnected == null) tbConnected = buildingSpots.get(params[2]);
-				
-				if (tbConnected == null) {
-					sendMessage("Sikertelen. A megadott sin nem letezik.");
-					return;
-				}
-			}
-			
-			String key = "ss" + (++railsCounter);
-			Railway newRailway = new Railway(tbConnected);
-			rails.put(key, newRailway);
-			sendMessage("Sikerult! Az uj sin azonositoja: " + key);
-		}
-	}
+		  @Override
+		  public void execute(String[] params) {
+		   
+		   Railway tbConnected = null;
+		   
+		   if (params.length > 3) {
+		    
+		    tbConnected = rails.get(params[2]);
+		    if (tbConnected == null) tbConnected = buildingSpots.get(params[2]);
+		    
+		    if (tbConnected == null) {
+		     sendMessage("Sikertelen. A megadott sin nem letezik.");
+		     return;
+		    }
+		   }
+		   
+		   String key = "ss" + (++railsCounter);
+		   Railway newRailway = new Railway(tbConnected);
+		   rails.put(key, newRailway);
+		   sendMessage("Sikerult! Az uj sin azonositoja: " + key);
+		  }
+		 }
 	
 	private static class CmdAddBuildingSpot extends CommandBase{
 
@@ -560,7 +560,8 @@ public class Application {
 					number=keys.replace("sa", "");
 					line=line + number + ", ";
 				}
-				line=line.substring(0, line.length()-2);
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
 				sendMessage(line);
 			}
 			if(params[1].equals("sb"))
@@ -574,7 +575,8 @@ public class Application {
 					number=keys.replace("sb", "");
 					line=line + number + ", ";
 				}
-				line=line.substring(0, line.length()-2);
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
 				sendMessage(line);
 			}
 			if(params[1].equals("sc"))
@@ -588,7 +590,8 @@ public class Application {
 					number=keys.replace("sc", "");
 					line=line + number + ", ";
 				}
-				line=line.substring(0, line.length()-2);
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
 				sendMessage(line);
 			}
 			if(params[1].equals("sv"))
@@ -602,7 +605,8 @@ public class Application {
 					number=keys.replace("sv", "");
 					line=line + number + ", ";
 				}
-				line=line.substring(0, line.length()-2);
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
 				sendMessage(line);
 			}
 			if(params[1].equals("ss"))
@@ -616,7 +620,8 @@ public class Application {
 					number=keys.replace("ss", "");
 					line=line + number + ", ";
 				}
-				line=line.substring(0, line.length()-2);
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
 				sendMessage(line);
 			}
 		}
