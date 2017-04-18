@@ -300,7 +300,7 @@ public class Application {
 		   
 		   Railway tbConnected = null;
 		   
-		   if (params.length > 3) {
+		   if (params.length > 2) {
 		    
 		    tbConnected = rails.get(params[2]);
 		    if (tbConnected == null) tbConnected = buildingSpots.get(params[2]);
@@ -329,7 +329,7 @@ public class Application {
 			
 			Railway tbConnected = null;
 			
-			if (params.length > 3) {
+			if (params.length > 2) {
 				
 				tbConnected = rails.get(params[2]);
 				if (tbConnected == null) tbConnected = buildingSpots.get(params[2]);
@@ -358,7 +358,7 @@ public class Application {
 			
 			Railway tbConnected = null;
 			
-			if (params.length > 3) {
+			if (params.length > 2) {
 				
 				tbConnected = rails.get(params[2]);
 				if (tbConnected == null) tbConnected = buildingSpots.get(params[2]);
@@ -387,7 +387,7 @@ public class Application {
 			
 			Railway tbConnected = null;
 			
-			if (params.length > 3) {
+			if (params.length > 2) {
 				
 				tbConnected = rails.get(params[2]);
 				if (tbConnected == null) tbConnected = buildingSpots.get(params[2]);
