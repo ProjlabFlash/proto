@@ -781,7 +781,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 	private static class CmdPrepareTrain extends CommandBase{
 
 		public CmdPrepareTrain() {
-			super("prepatre train");
+			super("prepare train");
 		}
 
 		@Override
@@ -956,11 +956,11 @@ private static class CmdDestroyTunnel extends CommandBase{
 		@Override
 		public void execute(String[] params) {
 			
-			if (params.length < 3) {
+			if (params.length < 2) {
 				targetOS.println("Nincs eleg parameter!");
 				return;
 			}
-			Locomotive target = locos.get(params[2]);
+			Locomotive target = locos.get(params[1]);
 			if (target == null) {
 				targetOS.println("Sikertelen. Nem letezik adott azonositoju mozdony.");
 				return;
@@ -972,7 +972,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 				if (entry.getValue() == target.CurrentRailwaySegment.next(target.PreviousRailwaySegment)) railkey2 = entry.getKey();
 			}
 			
-			targetOS.println("Ertettem: "+ params[2] +" vonat mozgatasa "+ railkey1 +" sinrol "+ railkey2 +" sinre.");
+			targetOS.println("Ertettem: "+ params[1] +" vonat mozgatasa "+ railkey1 +" sinrol "+ railkey2 +" sinre.");
 			target.step(target.CurrentRailwaySegment.next(target.PreviousRailwaySegment));
 		}
 	}
@@ -1171,7 +1171,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 	private static class CmdClearTable extends CommandBase{
 
 		public CmdClearTable() {
-			super("clear table");
+			super("clearTable");
 		}
 
 		@Override
