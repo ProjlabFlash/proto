@@ -56,6 +56,10 @@ public class Application {
 	
 	private static Tunnel tunnel = null;
 	
+	//A prepare train nullazza, amugy pedig az epitendo vonat legutobb letett kocsijat tartalmazza
+	private static String lastCart = null; 
+	private static Boolean isFinished = true;
+	
 	public static void main(String[] args) {
 		
 		targetOS = stdoutWriter = System.out;
@@ -114,9 +118,29 @@ public class Application {
 	}
 	
 	public static void sendMessage(String msg, Station station) {
+		Set<Entry<String, Station> > stationSet = stations.entrySet();
+		Set<Entry<String, SimultanStation>> simultanStationSet = simultanStations.entrySet();
+		String key = null;
+		for (Map.Entry<String, Station> entry: stationSet)
+			if (entry.getValue() == station) key = entry.getKey();
+		if (key == null)
+			for (Map.Entry<String, SimultanStation> entry: simultanStationSet)
+				if (entry.getValue() == station) key = entry.getKey();
+		
+		msg.replace("san", key);
 		targetOS.println(msg);
 	}
 	
+	public static void sendMessage(String msg, Cart cart) {
+		
+		Set<Entry<String, Cart> > cartSet = carts.entrySet();
+		String key = null;
+		for (Map.Entry<String, Cart> entry: cartSet)
+			if (entry.getValue() == cart) key = entry.getKey();
+		
+		msg.replace("mcn", key);
+		targetOS.println(msg);
+	}
 	public static abstract class CommandBase {
 		
 		public final String cmdName;
@@ -724,7 +748,9 @@ private static class CmdDestroyTunnel extends CommandBase{
 
 		@Override
 		public void execute(String[] params) {
-			
+			lastCart = null;
+			isFinished = false;
+			targetOS.println("Uj vonat elkezdve.");
 		}
 	}
 	
@@ -736,7 +762,11 @@ private static class CmdDestroyTunnel extends CommandBase{
 
 		@Override
 		public void execute(String[] params) {
-			
+			if (params[2].equals("coal")) {
+				
+			} else {
+				
+			}
 		}
 	}
 	
@@ -980,6 +1010,9 @@ private static class CmdDestroyTunnel extends CommandBase{
 			locosCounter = 0;
 			
 			tunnel = null;
+			
+			lastCart = null;
+			isFinished = true;
 			
 			targetOS.println("A takaritas megtortent.");
 		}
