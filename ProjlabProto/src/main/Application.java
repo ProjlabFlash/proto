@@ -549,7 +549,7 @@ public class Application {
 
 		@Override
 		public void execute(String[] params) {
-			
+			boolean sent=false;
 			if(params[1].equals("sa"))
 			{
 				String line=null;
@@ -563,6 +563,7 @@ public class Application {
 				if(line!=null) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
+				sent=true;
 			}
 			if(params[1].equals("sb"))
 			{
@@ -578,6 +579,7 @@ public class Application {
 				if(line!=null) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
+				sent=true;
 			}
 			if(params[1].equals("sc"))
 			{
@@ -593,6 +595,7 @@ public class Application {
 				if(line!=null) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
+				sent=true;
 			}
 			if(params[1].equals("sv"))
 			{
@@ -608,6 +611,7 @@ public class Application {
 				if(line!=null) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
+				sent=true;
 			}
 			if(params[1].equals("ss"))
 			{
@@ -623,7 +627,68 @@ public class Application {
 				if(line!=null) line=line.substring(0, line.length()-2);
 				else line="";
 				sendMessage(line);
+				sent=true;
 			}
+			if(params[1]==null)
+			{
+				String line=null;
+				String number=null;
+				sendMessage("A jelenleg letezo allomasok azonositoi (sa): ");
+				for(String keys:stations.keySet())
+				{
+					number=keys.replace("sa", "");
+					line=line + number + ", ";
+				}
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
+				sendMessage(line);
+				
+				line=null;
+				sendMessage("A jelenleg letezo alagutepetesi helyek azonositoi (sb): ");
+				for(String keys:buildingSpots.keySet())
+				{
+					number=keys.replace("sb", "");
+					line=line + number + ", ";
+				}
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
+				sendMessage(line);
+				
+				line=null;
+				sendMessage("A jelenleg letezo keresztezodo sinek azonositoi (sc): ");
+				for(String keys:crosses.keySet())
+				{
+					number=keys.replace("sc", "");
+					line=line + number + ", ";
+				}
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
+				sendMessage(line);
+				
+				line=null;
+				sendMessage("A jelenleg letezo valtok azonositoi (sv): ");
+				for(String keys:stations.keySet())
+				{
+					number=keys.replace("sv", "");
+					line=line + number + ", ";
+				}
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
+				sendMessage(line);
+				
+				line=null;
+				sendMessage("A jelenleg letezo sinek azonositoi (ss): ");
+				for(String keys:stations.keySet())
+				{
+					number=keys.replace("ss", "");
+					line=line + number + ", ";
+				}
+				if(line!=null) line=line.substring(0, line.length()-2);
+				else line="";
+				sendMessage(line);
+				sent=true;
+			}
+			if(!sent) sendMessage("Nem letezo tipust nem lehet listazni!");
 		}
 	}
 	
@@ -822,7 +887,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 				
 				Railway thisRail = findRail(params[3]);
 				Railway lastRail = findRail(params[4]);
-				if (thisRail == null || lastRail == null) {
+				if (thisRail == null) {
 					targetOS.println("Sikertelen. Nem letezik a megadott sin.");
 					return;
 				}
