@@ -191,7 +191,7 @@ public class Application {
 			boolean isSilent = false;
 			
 			if (params.length < 3) {
-				targetOS.println("Nincs eleg parameter!");
+				//targetOS.println("Nincs eleg parameter!");
 				return;
 			}
 			
@@ -246,7 +246,7 @@ public class Application {
 		public void execute(String[] params) {
 			boolean isSilent = false;
 			if (params.length < 3) {
-				targetOS.println("Nincs eleg parameter!");
+				//targetOS.println("Nincs eleg parameter!");
 				return;
 			}
 			
@@ -1044,7 +1044,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 			}
 			
 			targetOS.println("Ertettem: "+ params[1] +" vonat mozgatasa "+ railkey1 +" sinrol "+ railkey2 +" sinre.");
-			target.step(target.CurrentRailwaySegment.next(target.PreviousRailwaySegment));
+			target.move();
 		}
 	}
 	
