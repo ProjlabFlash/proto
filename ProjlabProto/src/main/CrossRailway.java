@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CrossRailway extends Railway {
 	private ArrayList<Railway> ThatNeighbour2 = new ArrayList<>();
@@ -179,5 +180,21 @@ public class CrossRailway extends Railway {
 			
 		default:
 		}
+	}
+	
+	@Override
+	public List<Railway> getNeighbours() {
+		List<Railway> result = super.getNeighbours();
+		result.addAll(ThatNeighbour2);
+		result.addAll(ThisNeighbour2);
+		return result;
+	}
+	
+	@Override
+	public boolean deleteNeighbour(Railway tbDeleted) {
+		boolean result = super.deleteNeighbour(tbDeleted);
+		if (!result) result = ThisNeighbour2.remove(tbDeleted);
+		if (!result) result = ThatNeighbour2.remove(tbDeleted);
+		return result;
 	}
 }

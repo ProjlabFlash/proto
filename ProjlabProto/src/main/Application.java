@@ -46,7 +46,6 @@ public class Application {
 	private static int stationsCounter = 0;
 	
 	private static Map<String, SimultanStation> simultanStations = new HashMap<String, SimultanStation>();
-	private static int simultanStationsCounter = 0;
 	
 	private static Map<String, Cart> carts = new HashMap<String, Cart>();
 	private static int cartsCounter = 0;
@@ -71,8 +70,34 @@ public class Application {
 		commands.add(new CmdSwitchInput());
 		commands.add(new CmdSwitchOutput());
 		commands.add(new CmdAddRail());
-		
-		//commands.add(new CmdBuildTunnel());
+		commands.add(new CmdAddBuildingSpot());
+		commands.add(new CmdAddCrossway());
+		commands.add(new CmdAddSwitch());
+		commands.add(new CmdAddStation());
+		commands.add(new CmdConnectRail());
+		//commands.add(new CmdDeleteRail());
+		//commands.add(new CmdDeleteStation());
+		commands.add(new CmdList());
+		//commands.add(new CmdExploreLine());
+		//commands.add(new CmdExploreRail());
+		//commands.add(new CmdExploreStation());
+		//commands.add(new CmdExploreAllrail());
+		//commands.add(new CmdToggleSwitch());
+		//commands.add(new CmdToggleStation());
+		commands.add(new CmdBuildTunnel());
+		commands.add(new CmdDestroyTunnel());
+		commands.add(new CmdPrepareTrain());
+		commands.add(new CmdAddCart());
+		//commands.add(new CmdAddLoco());
+		commands.add(new CmdStep());
+		//commands.add(new CmdDeleteLoco());
+		//commands.add(new CmdExploreLoco());
+		commands.add(new CmdExploreCart());
+		//commands.add(new CmdTimerStart());
+		//commands.add(new CmdTimerEnd());
+		//commands.add(new CmdExploreSwitch());
+		commands.add(new CmdClearTable());
+	
 		mainloop:
 		while(true) {
 			try {
@@ -609,10 +634,23 @@ public class Application {
 		}
 	}
 	
-	private static class CmdExplore extends CommandBase{
+	private static class CmdExploreRail extends CommandBase{
 
-		public CmdExplore() {
-			super("explore");
+		public CmdExploreRail() {
+			super("explore rail");
+		}
+
+		@Override
+		public void execute(String[] params) {
+			
+		}
+	}
+	
+	
+	private static class CmdExploreStation extends CommandBase{
+
+		public CmdExploreStation() {
+			super("explore station");
 		}
 
 		@Override
@@ -762,11 +800,96 @@ private static class CmdDestroyTunnel extends CommandBase{
 
 		@Override
 		public void execute(String[] params) {
+			
+			if (isFinished) {
+				targetOS.println("A legutobbi mozdony elkeszitese ota nem volt prepare train parancs!");
+				return;
+			}
+			
+			if (params.length < 5) {
+				targetOS.println("Nince eleg parameter!");
+				return;
+			}
+			
+			Cart newCart = null;
+			
 			if (params[2].equals("coal")) {
 				
+				Railway thisRail = findRail(params[3]);
+				Railway lastRail = findRail(params[4]);
+				if (thisRail == null || lastRail == null) {
+					targetOS.println("Sikertelen. Nem letezik a megadott sin.");
+					return;
+				}
+				if (lastRail != null  && !thisRail.getNeighbours().contains(lastRail)) {
+					targetOS.println("Sikertelen. A ket megadott sin nem szomszedos.");
+					return;
+				}
+				
+				
+				if (lastCart != null) {
+					
+					if (carts.get(lastCart).PreviousRailwaySegment == thisRail) {
+						targetOS.println("Sikertelen. A sin parameter hibasan lett megadva.");
+						return;
+					}
+					
+					newCart = new CoalCart(thisRail, lastRail, carts.get(lastCart));
+				} else {
+					newCart = new CoalCart(thisRail, lastRail, null);
+				}
 			} else {
 				
+				if (params.length < 6) {
+					targetOS.println("Nince eleg parameter!");
+					return;
+				}
+				
+				Railway thisRail = findRail(params[2]);
+				Railway lastRail = findRail(params[3]);
+				if (thisRail == null) {
+					targetOS.println("Sikertelen. Nem letezik a megadott sin.");
+					return;
+				}
+				if (lastRail != null  && !thisRail.getNeighbours().contains(lastRail)) {
+					targetOS.println("Sikertelen. A ket megadott sin nem szomszedos.");
+					return;
+				}
+				
+				Color color = Color.fromString(params[4]);
+				if (color == null) {
+					targetOS.println("Sikertelen. A szin parameter hibasan lett megadva.");
+					return;
+				}
+				if (!params[5].equalsIgnoreCase("true") && !params[5].equalsIgnoreCase("false")) {
+					targetOS.println("Sikertelen. A utasok parameter hibasan lett megadva.");
+					return;
+				}
+				boolean passengers = Boolean.parseBoolean(params[5]);
+				
+				if (lastCart != null) {
+					
+					if (carts.get(lastCart).PreviousRailwaySegment == thisRail) {
+						targetOS.println("Sikertelen. A sin parameter hibasan lett megadva.");
+						return;
+					}
+					newCart = new Cart(thisRail, lastRail, carts.get(lastCart), color, passengers);
+				} else 
+					newCart = new Cart(thisRail, lastRail, null, color, passengers);
+				
 			}
+			String key = "mc" + (++cartsCounter);
+			carts.put(key, newCart);
+			lastCart = key;
+			targetOS.println("Sikerult! Az uj kocsi azonositoja: " + key);
+		}
+		
+		private Railway findRail(String which) {
+			Railway result = rails.get(which);
+			if (result == null) result = crosses.get(which);
+			if (result == null) result = switches.get(which);
+			if (result == null) result = buildingSpots.get(which);
+			return result;
 		}
 	}
 	
@@ -779,6 +902,48 @@ private static class CmdDestroyTunnel extends CommandBase{
 		@Override
 		public void execute(String[] params) {
 			
+			if (isFinished) {
+				targetOS.println("A legutobbi mozdony elkeszitese ota nem volt prepare train parancs!");
+				return;
+			}
+			
+			if (params.length < 5) {
+				targetOS.println("Nince eleg parameter!");
+				return;
+			}
+			
+			Railway thisRail = findRail(params[2]);
+			Railway lastRail = findRail(params[3]);
+			if (thisRail == null) {
+				targetOS.println("Sikertelen. Nem letezik a megadott sin.");
+				return;
+			}
+			if (lastRail != null && !thisRail.getNeighbours().contains(lastRail)) {
+				targetOS.println("Sikertelen. A ket megadott sin nem szomszedos.");
+				return;
+			}
+			
+			int speed = -1;
+			try {
+				speed = Integer.parseInt(params[4]);
+			} catch (NumberFormatException e) {
+				targetOS.println("Sikertelen. A sebesseg hibasan lett megadva.");
+				return;
+			}
+			
+			String key = "ml" + (++locosCounter);
+			locos.put(key, new Locomotive(thisRail, lastRail, carts.get(lastCart), speed));
+			isFinished = true;
+			
+			targetOS.println("Sikerult! Az uj mozdony azonositoja: " + key);
+		}
+		
+		private Railway findRail(String which) {
+			Railway result = rails.get(which);
+			if (result == null) result = crosses.get(which);
+			if (result == null) result = switches.get(which);
+			if (result == null) result = buildingSpots.get(which);
+			return result;
 		}
 	}
 	
@@ -1001,7 +1166,6 @@ private static class CmdDestroyTunnel extends CommandBase{
 			stationsCounter = 0;
 			
 			simultanStations = new HashMap<String, SimultanStation>();
-			simultanStationsCounter = 0;
 			
 			carts = new HashMap<String, Cart>();
 			cartsCounter = 0;

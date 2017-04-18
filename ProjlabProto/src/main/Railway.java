@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class Railway extends MetaData{
@@ -133,5 +134,18 @@ public class Railway extends MetaData{
 				
 		this.station = station;
 		
+	}
+	
+	public List<Railway> getNeighbours () {
+		List<Railway> result = new ArrayList<Railway>();
+		result.addAll(ThisNeighbour);
+		result.addAll(ThatNeighbour);
+		return result;
+	}
+	
+	public boolean deleteNeighbour (Railway tbDeleted) {
+		boolean result = ThisNeighbour.remove(tbDeleted);
+		if (result == false) ThatNeighbour.remove(tbDeleted);
+		return result;
 	}
 }
