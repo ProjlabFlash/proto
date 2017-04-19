@@ -40,7 +40,8 @@ public class BuildingSpot extends Railway {
 		
 		if (thisNewNeighbour != null) {
 			
-			OldThatNeighbour = ThatNeighbour.get(0);
+			if (ThatNeighbour.size() != 0)
+				OldThatNeighbour = ThatNeighbour.get(0);
 			this.ThatNeighbour = thatNewNeighbour;
 		} else {
 			

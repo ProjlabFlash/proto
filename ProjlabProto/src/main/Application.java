@@ -817,7 +817,7 @@ private static class CmdBuildTunnel extends CommandBase{
 		public void execute(String[] params) {
 			BuildingSpot first = null;
 			BuildingSpot second = null;	
-			if (params.length == 4) {
+			if (params.length > 3) {
 			
 				
 				if (!(params[2].startsWith("sb")))
@@ -856,10 +856,12 @@ private static class CmdBuildTunnel extends CommandBase{
 					sendMessage("Sikertelen. Mar van megepitve alagut.");
 					return;
 				}
+				tunnel = new Tunnel();
+				tunnel.build(first, second);
+				sendMessage("Sikerult! Az alaguton mehetnek at a vonatok.");
 			}
 			
-			tunnel.build(first, second);
-			sendMessage("Sikerult! Az alaguton mehetnek at a vonatok.");
+			
 		}
 	}
 	
@@ -1235,11 +1237,10 @@ private static class CmdDestroyTunnel extends CommandBase{
 				
 				
 				sendMessage("Epp az " + railkey + " sinen allok.");
-				sendMessage("En egy utasszallito vagon vagyok.");
 				String state=null;
 				if(actual.getPassengers()) state="tele";
 				else state="ures";
-				sendMessage("A szinem "+ actual.getColor().toString().toLowerCase() +", es jelenleg epp "+state+" vagyok.");
+				sendMessage("En egy utasszallito vagon vagyok. A szinem "+ actual.getColor().toString().toLowerCase() +", es jelenleg epp "+state+" vagyok.");
 			}
 			
 		}
