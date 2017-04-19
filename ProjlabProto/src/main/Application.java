@@ -547,7 +547,6 @@ public class Application {
 				targetOS.println("Sikerult!");
 				return;
 			}
-			System.out.println("booooh");
 			targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
 		}
 	}
