@@ -818,13 +818,18 @@ public class Application {
 			previousRail = null;
 			
 			paramRail = rails.get(params[2]);
-			
+			if (rails != null) {
+				getStarterRail();
+				writeLine();
+			}
 		}
 		
 		private void stepLoop() {
-			while (firstRail != null && !(firstRail instanceof Switch)) {
+			int counter = 0;
+			while (firstRail != null && !(firstRail instanceof Switch) && counter < 100) {
 				firstRail.next(previousRail);
 				previousRail = firstRail;
+				counter++;
 			}
 		}
 		
@@ -835,6 +840,10 @@ public class Application {
 			previousRail = paramRail;
 			firstRail = rails.get(0);
 			stepLoop();
+		}
+		
+		private void writeLine() {
+			//targetOS.print(getStringForRail());
 		}
 		
 	}
