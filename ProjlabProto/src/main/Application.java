@@ -76,7 +76,7 @@ public class Application {
 		commands.add(new CmdAddStation());
 		commands.add(new CmdConnectRail());
 		//commands.add(new CmdDeleteRail());
-		//commands.add(new CmdDeleteStation());
+		commands.add(new CmdDeleteStation());
 		commands.add(new CmdList());
 		//commands.add(new CmdExploreLine());
 		//commands.add(new CmdExploreRail());
@@ -90,7 +90,7 @@ public class Application {
 		commands.add(new CmdAddCart());
 		commands.add(new CmdAddLoco());
 		commands.add(new CmdStep());
-		//commands.add(new CmdDeleteLoco());
+		commands.add(new CmdDeleteLoco());
 		commands.add(new CmdExploreLoco());
 		commands.add(new CmdExploreCart());
 		//commands.add(new CmdTimerStart());
@@ -551,6 +551,7 @@ public class Application {
 		}
 	}
 	
+	//TODO
 	private static class CmdDeleteRail extends CommandBase{
 
 		public CmdDeleteRail() {
@@ -559,7 +560,24 @@ public class Application {
 
 		@Override
 		public void execute(String[] params) {
-			
+			if (params.length > 2) {
+				String key = params[2];
+				
+				Railway rail = rails.remove(key);
+				if (rail == null) switches.remove(key);
+				if (rail == null) crosses.remove(key);
+				if (rail == null) buildingSpots.remove(key);
+				
+				List<Railway> railList = rail.getNeighbours();
+				for (Railway r: railList) {
+					r.deleteNeighbour(rail);
+				}
+				
+				
+				targetOS.println("Sikerult!");
+			} else {
+				targetOS.println("Nincs eleg parameter!");
+			}
 		}
 	}
 	
@@ -571,7 +589,24 @@ public class Application {
 
 		@Override
 		public void execute(String[] params) {
-			
+			if (params.length > 2) {
+				
+				Station station = stations.get(params[2]);
+				if (station == null) simultanStations.get(params[2]);
+				else stations.remove(params[2]);
+				if (station == null) {
+					targetOS.println("Sikertelen. A megadott allomas nem letezik.");
+					return;
+				} else simultanStations.remove(params[2]);
+				
+				Railway rail = station.railway;
+				rail.setStation(null);
+				
+				
+				targetOS.println("Sikerult!");
+			} else {
+				targetOS.println("Nincs eleg parameter!");
+			}
 		}
 	}
 	
@@ -1147,6 +1182,27 @@ private static class CmdDestroyTunnel extends CommandBase{
 		@Override
 		public void execute(String[] params) {
 			
+			if (params.length > 2) {
+				
+				Locomotive loco = locos.get(params[2]);
+				if (loco == null) {
+					targetOS.println("Sikertelen. Nem letezik adott azonositoju mozdony.");
+					return;
+				}
+				Cart nextCart = loco.Pulls;
+				locos.remove(params[2]);
+				loco.CurrentRailwaySegment.setOnMe(null);
+				
+				while (nextCart != null) {
+					carts.remove(nextCart);
+					nextCart.CurrentRailwaySegment.setOnMe(null);
+					nextCart = nextCart.Pulls;
+				}
+				
+				targetOS.println("Sikerult! mln mozdony megszunt az osszes kocsival egyutt.");
+			} else {
+				targetOS.println("Nincs eleg parameter!");
+			}
 		}
 	}
 	
