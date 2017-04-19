@@ -79,7 +79,7 @@ public class Application {
 		commands.add(new CmdDeleteStation());
 		commands.add(new CmdList());
 		//commands.add(new CmdExploreLine());
-		//commands.add(new CmdExploreRail());
+		commands.add(new CmdExploreRail());
 		//commands.add(new CmdExploreStation());
 		//commands.add(new CmdExploreAllrail());
 		commands.add(new CmdToggleSwitch());
@@ -551,7 +551,6 @@ public class Application {
 		}
 	}
 	
-	//TODO
 	private static class CmdDeleteRail extends CommandBase{
 
 		public CmdDeleteRail() {
@@ -572,6 +571,7 @@ public class Application {
 					if (tunnel.isTunnel(rail)) {
 						targetOS.println("A sin nem torolheto, mert rajta alagut van epitve!");
 					}
+				//TODO nullcheck és switchbug
 				
 				List<Railway> railList = rail.getNeighbours();
 				for (Railway r: railList) {
@@ -806,7 +806,28 @@ public class Application {
 			}
 			
 			List<Railway> neighs = rail.getNeighbours();
-			//Station station = rail.station
+			targetOS.print("Szomszedok: ");
+			for (int i = 0; i < neighs.size(); i++) {
+				targetOS.print(getStringForRail(neighs.get(i)));
+				if (i != neighs.size() - 1) targetOS.print(" ");
+			}
+			
+			targetOS.println();
+			String moKey = null;
+			MovingObject c = rail.OnMe;
+			
+			for (Entry<String, Locomotive> entry: locos.entrySet())
+				if (entry.getValue() == c)
+					moKey = entry.getKey();
+			
+			if (moKey == null)
+				for (Entry<String, Cart> entry: carts.entrySet())
+					if (entry.getValue() == c)
+						moKey = entry.getKey();
+			
+			if (moKey != null) targetOS.println("Vonat: " + moKey);
+			else targetOS.println("Vonat: Nincs rajtam.");
+			if (rail.station != null) sendMessage("Allomas: san", rail.station);
 		}
 	}
 	
