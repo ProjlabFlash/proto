@@ -9,7 +9,7 @@ public class Railway extends MetaData{
 	protected ArrayList<Railway> ThisNeighbour = new ArrayList<>();
 	protected ArrayList<Railway> ThatNeighbour = new ArrayList<>();
 	protected MovingObject OnMe;
-	private Station station;
+	protected Station station;
 	
 	/**
 	 * Konstruktor. Beallitja a parameterul kapott Railway-t a szomszedjanak,

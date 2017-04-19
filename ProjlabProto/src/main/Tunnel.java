@@ -40,4 +40,8 @@ public class Tunnel extends MetaData {
 		bs1.setNewNeighbours(null, null, null);
 		bs2.setNewNeighbours(null, null, null);
 	}
+	
+	public boolean isTunnel(Railway railway) {
+		return railway != null && (railway == bs2 || railway == bs1);
+	}
 }

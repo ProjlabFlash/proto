@@ -75,7 +75,7 @@ public class Application {
 		commands.add(new CmdAddSwitch());
 		commands.add(new CmdAddStation());
 		commands.add(new CmdConnectRail());
-		//commands.add(new CmdDeleteRail());
+		commands.add(new CmdDeleteRail());
 		commands.add(new CmdDeleteStation());
 		commands.add(new CmdList());
 		//commands.add(new CmdExploreLine());
@@ -568,6 +568,11 @@ public class Application {
 				if (rail == null) crosses.remove(key);
 				if (rail == null) buildingSpots.remove(key);
 				
+				if (tunnel != null)
+					if (tunnel.isTunnel(rail)) {
+						targetOS.println("A sin nem torolheto, mert rajta alagut van epitve!");
+					}
+				
 				List<Railway> railList = rail.getNeighbours();
 				for (Railway r: railList) {
 					r.deleteNeighbour(rail);
@@ -785,6 +790,23 @@ public class Application {
 		@Override
 		public void execute(String[] params) {
 			
+			if (params.length < 3) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			} 
+			
+			String key = params[2];
+			Railway rail = rails.get(key);
+			if (rail == null) switches.get(key);
+			if (rail == null) crosses.get(key);
+			if (rail == null) buildingSpots.get(key);
+			if (rail == null) {
+				targetOS.println("");
+				return;
+			}
+			
+			List<Railway> neighs = rail.getNeighbours();
+			//Station station = rail.station
 		}
 	}
 	
