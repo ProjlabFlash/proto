@@ -2,9 +2,11 @@ clearTable
 add rail
 add rail ss1
 add buildingspot ss2
-add buildingspot
+add rail sb1
+add rail
+add buildingspot ss4
 add rail sb2
-add rail ss3
+add rail ss5
 build tunnel sb1 sb2
 prepare train
 add cart coal ss1 null
@@ -15,4 +17,3 @@ add loco ss4 null 60
 explore loco ml2
 step ml1
 step ml2
-step ml1

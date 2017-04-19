@@ -2,7 +2,9 @@ clearTable
 add rail
 add rail ss1
 add buildingspot ss2
-add buildingspot
+add rail sb1
+add rail
+add buildingspot ss4
 add rail sb2
 build tunnel sb1 sb2
 prepare train

@@ -27,8 +27,8 @@ public class Tunnel extends MetaData {
 		ArrayList<Railway> bs2thisNeighbour = buildingSpot2.getThisNeighbour();
 		ArrayList<Railway> bs2thatNeighbour = buildingSpot2.getThatNeighbour();
 		
-		bs1.setNewNeighbours(bs2thisNeighbour, bs2thatNeighbour);
-		bs2.setNewNeighbours(bs1thisNeighbour, bs1thatNeighbour);
+		bs1.setNewNeighbours(bs1thisNeighbour, bs2thatNeighbour, bs2);
+		bs2.setNewNeighbours(bs2thisNeighbour, bs1thatNeighbour, bs1);
 		
 	}
 	
@@ -37,7 +37,7 @@ public class Tunnel extends MetaData {
 	 */
 	public void destroy() {
 				
-		bs1.setNewNeighbours(null, null);
-		bs2.setNewNeighbours(null, null);
+		bs1.setNewNeighbours(null, null, null);
+		bs2.setNewNeighbours(null, null, null);
 	}
 }

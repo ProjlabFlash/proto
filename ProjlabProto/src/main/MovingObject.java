@@ -41,7 +41,7 @@ public abstract class MovingObject extends MetaData {
 	 */
 	public void crash() {
 		Application.sendMessage("Miert nincs 2 sinpar egy vonalon...? utkozes tortent.");
-		//Application.lose()
+		//Application.lose();
 	}
 	public abstract void ArrivedAtStation(Station station);
 }

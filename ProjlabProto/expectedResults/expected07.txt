@@ -2,8 +2,10 @@ A takaritas megtortent.
 Sikerult! Az uj sin azonositoja: ss1
 Sikerult! Az uj sin azonositoja: ss2
 Sikerult! Az uj sin azonositoja: sb1
-Sikerult! Az uj sin azonositoja: sb2
 Sikerult! Az uj sin azonositoja: ss3
+Sikerult! Az uj sin azonositoja: ss4
+Sikerult! Az uj sin azonositoja: sb2
+Sikerult! Az uj sin azonositoja: ss5
 Sikerult! Az alaguton mehetnek at a vonatok.
 Uj vonat elkezdve.
 Sikerult! Az uj kocsi azonositoja: mc1

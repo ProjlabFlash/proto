@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class BuildingSpot extends Railway {
 	
-	private Railway OldThisNeighbour;
-	private Railway OldThatNeighbour;
+	private ArrayList<Railway> OldThisNeighbour;
+	private ArrayList<Railway> OldThatNeighbour;
+	private BuildingSpot otherbs;
 	
 	/**
 	 * Konstruktor. Beallitja a parameterul kapott Railway-t a szomszedjanak,
@@ -21,32 +22,23 @@ public class BuildingSpot extends Railway {
 	 * @param thisNewNeighbour Egyik szomszed
 	 * @param thatNewNeighbour Masik szomszed
 	 */
-	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour) {
-		ArrayList<Object> paramlist=new ArrayList<Object>();	
-		paramlist.add(thisNewNeighbour);
-		paramlist.add(thatNewNeighbour);
+	public void setNewNeighbours(ArrayList<Railway> thisNewNeighbour, ArrayList<Railway> thatNewNeighbour, BuildingSpot otherbs) {
 		
-		if (thisNewNeighbour != null) {
-
-			if (ThisNeighbour.size() != 0)
-				OldThisNeighbour = ThisNeighbour.get(0);
-			else if (ThatNeighbour.size() > 1)
-				OldThisNeighbour = ThatNeighbour.get(1);
+		if (thisNewNeighbour != null && thatNewNeighbour != null) {
+			OldThisNeighbour = ThisNeighbour;
 			ThisNeighbour = thisNewNeighbour;
-		} else {
-			ThisNeighbour = new ArrayList<Railway>();
-			ThisNeighbour.add(OldThisNeighbour);
-		}
 		
-		if (thisNewNeighbour != null) {
-			
-			if (ThatNeighbour.size() != 0)
-				OldThatNeighbour = ThatNeighbour.get(0);
-			this.ThatNeighbour = thatNewNeighbour;
-		} else {
-			
-			ThatNeighbour = new ArrayList<Railway>();
-			ThisNeighbour.add(OldThisNeighbour);
+			OldThatNeighbour = ThatNeighbour;
+			ThatNeighbour = thatNewNeighbour;
+		} else if (thisNewNeighbour == null && thatNewNeighbour == null){
+			ThisNeighbour = OldThisNeighbour;
+			ThatNeighbour = OldThatNeighbour;
 		}
+		this.otherbs = otherbs;
+	}
+	
+	public void setOnMe(MovingObject OnMe) {
+		super.setOnMe(OnMe);
+		if (otherbs != null && otherbs.OnMe != null) OnMe.crash();
 	}
 }
