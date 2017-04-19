@@ -166,6 +166,41 @@ public class Application {
 		msg.replace("mcn", key);
 		targetOS.println(msg);
 	}
+	
+	
+	public static String getStringForRail(Railway railway) {
+		String result = null;
+		
+		for (Entry<String, Railway> entry: rails.entrySet())
+			if (entry.getValue() == railway) {
+				result = entry.getKey();
+				break;
+			}
+		
+		if (result == null)
+			for (Entry<String, BuildingSpot> entry: buildingSpots.entrySet())
+				if (entry.getValue() == railway) {
+					result = entry.getKey();
+					break;
+				}
+		
+		if (result == null)
+			for (Entry<String, Switch> entry: switches.entrySet())
+				if (entry.getValue() == railway) {
+					result = entry.getKey();
+					break;
+				}
+		
+		if (result == null)
+			for (Entry<String, CrossRailway> entry: crosses.entrySet())
+				if (entry.getValue() == railway) {
+					result = entry.getKey();
+					break;
+				}
+		
+		return result;
+	}
+	
 	public static abstract class CommandBase {
 		
 		public final String cmdName;
@@ -1036,12 +1071,8 @@ private static class CmdDestroyTunnel extends CommandBase{
 				targetOS.println("Sikertelen. Nem letezik adott azonositoju mozdony.");
 				return;
 			}
-			Set<Entry<String, Railway> > railSet = rails.entrySet();
-			String railkey1 = null, railkey2 = null;
-			for (Map.Entry<String, Railway> entry: railSet) {
-				if (entry.getValue() == target.CurrentRailwaySegment) railkey1 = entry.getKey();
-				if (entry.getValue() == target.CurrentRailwaySegment.next(target.PreviousRailwaySegment)) railkey2 = entry.getKey();
-			}
+			String railkey1 = getStringForRail(target.CurrentRailwaySegment);
+			String railkey2 = getStringForRail(target.CurrentRailwaySegment.next(target.PreviousRailwaySegment));
 			
 			targetOS.println("Ertettem: "+ params[1] +" vonat mozgatasa "+ railkey1 +" sinrol "+ railkey2 +" sinre.");
 			target.move();
@@ -1088,12 +1119,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 					sendMessage("A jelenleg letezo mozdonyok: ");
 					for(String keys:locos.keySet())
 					{
-						String railkey = null;
-						for(Entry<String, Railway> entry: rails.entrySet())
-							if (locos.get(keys).CurrentRailwaySegment == entry.getValue()) {
-								railkey = entry.getKey();
-								break;
-							}
+						String railkey = getStringForRail(locos.get(keys).CurrentRailwaySegment);
 						
 						line=keys+": Epp az "+railkey+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
 						sendMessage(line);
@@ -1122,12 +1148,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 					String line=null;
 					line="Ez itt mozdony "+params[2]+".";
 					sendMessage(line);
-					String railkey = null;
-					for(Entry<String, Railway> entry: rails.entrySet())
-						if (actual.CurrentRailwaySegment == entry.getValue()) {
-							railkey = entry.getKey();
-							break;
-						}
+					String railkey = getStringForRail(actual.CurrentRailwaySegment);
 					
 					line="Epp az "+ railkey +" sinen allok, es "+ actual.Speed +"-el megyek.";
 					sendMessage(line);
@@ -1200,13 +1221,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 			}
 			sendMessage("Ez itt az "+params[2]+" vagon.");
 			
-			String railkey = null;
-			for(Entry<String, Railway> entry: rails.entrySet())
-				if (actual.CurrentRailwaySegment == entry.getValue()) {
-					railkey = entry.getKey();
-					break;
-				}
-			
+			String railkey = getStringForRail(actual.CurrentRailwaySegment);
 			
 			if(actual instanceof CoalCart)
 			{
@@ -1275,19 +1290,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 			}
 			
 			Railway cs = sw.getCurrentStanding();
-			String cskey = null;
-			
-			for (Entry<String, Railway> entry: rails.entrySet())
-				if (entry.getValue() == cs) cskey = entry.getKey();
-			if (cskey == null)
-				for (Entry<String, Switch> entry: switches.entrySet())
-					if (entry.getValue() == cs) cskey = entry.getKey();
-			if (cskey == null)
-				for (Entry<String, CrossRailway> entry: crosses.entrySet())
-					if (entry.getValue() == cs) cskey = entry.getKey();
-			if (cskey == null)
-				for (Entry<String, BuildingSpot> entry: buildingSpots.entrySet())
-					if (entry.getValue() == cs) cskey = entry.getKey();
+			String cskey = getStringForRail(cs);
 			
 			targetOS.println("Ez a valto az " + cskey + " iranyaba mutat.");
 		}
