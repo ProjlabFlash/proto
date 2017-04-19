@@ -6,7 +6,7 @@ Sikerult! Az uj sin azonositoja: ss4
 Sikerult! Az uj sin azonositoja: ss5
 Sikerult! Az uj sin azonositoja: ss6
 Sikerult! Az uj allomas azonositoja: sa1
-Sikerult! Az allomason mostmar felszalhatnak az utasok.
+Sikerult! Az allomason mostmar felszallhatnak az utasok.
 Uj vonat elkezdve.
 Sikerult! Az uj kocsi azonositoja: mc1
 Sikerult! Az uj kocsi azonositoja: mc2
@@ -16,10 +16,10 @@ Epp az ss4 sinen allok, es 60-el megyek.
 Engem kovetnek a kovetkezo kocsik:
 Ez itt az mc2 vagon.
 Epp az ss3 sinen allok.
-En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp tele vagyok
+En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp tele vagyok.
 Ez itt az mc1 vagon.
 Epp az ss2 sinen allok.
-En egy utasszallito vagon vagyok. A szinem red, es jelenleg epp ures vagyok
+En egy utasszallito vagon vagyok. A szinem red, es jelenleg epp ures vagyok.
 Ertettem: ml1 vonat mozgatasa ss4 sinrol ss5 sinre.
 Elertuk a sa1 allomast.
 Ertettem: ml1 vonat mozgatasa ss5 sinrol ss6 sinre.
@@ -28,7 +28,7 @@ Epp az ss6 sinen allok, es 60-el megyek.
 Engem kovetnek a kovetkezo kocsik:
 Ez itt az mc2 vagon.
 Epp az ss5 sinen allok.
-En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp tele vagyok
+En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp tele vagyok.
 Ez itt az mc1 vagon.
 Epp az ss4 sinen allok.
-En egy utasszallito vagon vagyok. A szinem red, es jelenleg epp ures vagyok
+En egy utasszallito vagon vagyok. A szinem red, es jelenleg epp ures vagyok.
