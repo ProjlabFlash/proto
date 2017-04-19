@@ -16,15 +16,15 @@ Uj vonat elkezdve.
 Sikerult! Az uj kocsi azonositoja: mc1
 Sikerult! Az uj mozdony azonositoja: ml1
 Ez itt mozdony ml1.
-Epp az ss2 sinen allok es 60-el megyek.
+Epp az ss2 sinen allok, es 60-el megyek.
 Engem kovetnek a kovetkezo kocsik:
-Ez itt a mc1 vagon.
+Ez itt az mc1 vagon.
 Epp az ss1 sinen allok.
 En egy szenszallito vagon vagyok.
 Uj vonat elkezdve.
 Sikerult! Az uj mozdony azonositoja: ml2
 Ez itt mozdony ml2.
-Epp az ss6 sinen allok es 60-el megyek.
+Epp az ss6 sinen allok, es 60-el megyek.
 Ertettem: ml2 vonat mozgatasa ss6 sinrol sc1 sinre.
 Ertettem: ml1 vonat mozgatasa ss2 sinrol sc1 sinre.
 Miert nincs 2 sinpar egy vonalon...? utkozes tortent.
