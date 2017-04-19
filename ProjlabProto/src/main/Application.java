@@ -849,7 +849,7 @@ public class Application {
 			if (isSimultan) {
 				
 				simultanStations.put(params[2], new SimultanStation(station.railway, station.color));
-				targetOS.println("Sikerult! Az allomason mostmar felszalhatnak az utasok.");
+				targetOS.println("Sikerult! Az allomason mostmar felszallhatnak az utasok.");
 			} else {
 				stations.put(params[2], new Station(station.railway, station.color));
 				targetOS.println("Sikerult! Az allomason mostmar nem szallhatnak fel az utasok.");
