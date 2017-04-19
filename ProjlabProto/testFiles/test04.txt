@@ -4,8 +4,8 @@ add rail ss1
 add switch ss2
 add rail
 add rail
-connect sv1 2 ss3
-connect sv1 2 ss4
+connect rail sv1 2 ss3
+connect rail sv1 2 ss4
 prepare train
 add cart coal ss3 null
 add loco sv1 ss3 60

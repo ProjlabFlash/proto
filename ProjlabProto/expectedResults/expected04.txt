@@ -9,7 +9,7 @@ Sikerult!
 Uj vonat elkezdve.
 Sikerult! Az uj kocsi azonositoja: mc1
 Sikerult! Az uj mozdony azonositoja: ml1
-Uj vonat elkdezdve.
+Uj vonat elkezdve.
 Sikerult! Az uj mozdony azonositoja: ml2
 Ertettem: ml2 vonat mozgatasa ss4 sinrol sv1 sinre.
-Miert nincs 2 sinpar egy vonalon…? utkozes tortent.
+Miert nincs 2 sinpar egy vonalon...? utkozes tortent.
