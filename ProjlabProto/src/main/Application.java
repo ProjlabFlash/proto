@@ -152,7 +152,7 @@ public class Application {
 			for (Map.Entry<String, SimultanStation> entry: simultanStationSet)
 				if (entry.getValue() == station) key = entry.getKey();
 		
-		msg.replace("san", key);
+		msg = msg.replace("san", key);
 		targetOS.println(msg);
 	}
 	
@@ -163,7 +163,7 @@ public class Application {
 		for (Map.Entry<String, Cart> entry: cartSet)
 			if (entry.getValue() == cart) key = entry.getKey();
 		
-		msg.replace("mcn", key);
+		msg = msg.replace("mcn", key);
 		targetOS.println(msg);
 	}
 	
