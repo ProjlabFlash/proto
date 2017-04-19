@@ -12,7 +12,7 @@ Sikerult! Az uj kocsi azonositoja: mc2
 Sikerult! Az uj kocsi azonositoja: mc3
 Sikerult! Az uj mozdony azonositoja: ml1
 Ez itt mozdony ml1.
-Epp az ss4 sinen allok es 60-el megyek.
+Epp az ss4 sinen allok, es 60-el megyek.
 Engem kovetnek a kovetkezo kocsik:
 Ez itt a mc3 vagon.
 Epp az ss3 sinen allok.
@@ -27,7 +27,7 @@ Ertettem: ml1 vonat mozgatasa ss4 sinrol ss5 sinre.
 Elertuk a sa1 allomast.
 Ertettem: ml1 vonat mozgatasa ss5 sinrol ss6 sinre.
 Ez itt mozdony ml1.
-Epp az ss6 sinen allok es 60-el megyek.
+Epp az ss6 sinen allok, es 60-el megyek.
 Engem kovetnek a kovetkezo kocsik:
 Ez itt a mc3 vagon.
 Epp az ss5 sinen allok.
