@@ -17,10 +17,10 @@ Engem kovetnek a kovetkezo kocsik:
 Ez itt a mc3 vagon.
 Epp az ss3 sinen allok.
 En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp tele vagyok.
-Ez itt a mc2 vagon.
+Ez itt az mc2 vagon.
 Epp az ss2 sinen allok.
 En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp ures vagyok.
-Ez itt a mc1 vagon.
+Ez itt az mc1 vagon.
 Epp az ss1 sinen allok.
 En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp tele vagyok.
 Ertettem: ml1 vonat mozgatasa ss4 sinrol ss5 sinre.
@@ -34,9 +34,9 @@ Engem kovetnek a kovetkezo kocsik:
 Ez itt a mc3 vagon.
 Epp az ss5 sinen allok.
 En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp ures vagyok.
-Ez itt a mc2 vagon.
+Ez itt az mc2 vagon.
 Epp az ss4 sinen allok.
 En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp ures vagyok.
-Ez itt a mc1 vagon.
+Ez itt az mc1 vagon.
 Epp az ss3 sinen allok.
 En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp ures vagyok.

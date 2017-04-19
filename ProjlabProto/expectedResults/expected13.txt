@@ -10,7 +10,7 @@ Sikerult! Az uj mozdony azonositoja: ml1
 Ez itt mozdony ml1.
 Epp az ss2 sinen allok es 60-el megyek.
 Engem kovetnek a kovetkezo kocsik:
-Ez itt a mc1 vagon.
+Ez itt az mc1 vagon.
 Epp az ss1 sinen allok.
 En egy utasszallito vagon vagyok. A szinem red, es jelenleg epp tele vagyok.
 Ertettem: ml1 vonat mozgatasa ss2 sinrol ss3 sinre.
@@ -19,6 +19,6 @@ Ertettem: ml1 vonat mozgatasa ss3 sinrol ss4 sinre.
 Ez itt mozdony ml1.
 Epp az ss4 sinen allok es 60-el megyek.
 Engem kovetnek a kovetkezo kocsik:
-Ez itt a mc1 vagon.
+Ez itt az mc1 vagon.
 Epp az ss3 sinen allok.
 En egy utasszallito vagon vagyok. A szinem red, es jelenleg epp tele vagyok.
