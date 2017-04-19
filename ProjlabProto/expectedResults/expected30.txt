@@ -22,7 +22,7 @@ Epp az ss2 sinen allok.
 En egy utasszallito vagon vagyok. A szinem blue, es jelenleg epp ures vagyok
 Ertettem: ml1 vonat mozgatasa ss4 sinrol ss5 sinre.
 Elertuk a sa1 allomast.
-Az mc1 kocsiba felszalltak az utasok!
+Az mc1 kocsira felszalltak az utasok!
 Ertettem: ml1 vonat mozgatasa ss5 sinrol ss6 sinre.
 Ez itt mozdony ml1.
 Epp az ss6 sinen allok, es 60-el megyek.

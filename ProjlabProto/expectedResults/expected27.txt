@@ -3,7 +3,7 @@ Sikerult! Az uj sin azonositoja: ss1
 Sikerult! Az uj sin azonositoja: ss2
 Sikerult! Az uj sin azonositoja: ss3
 Sikerult! Az uj allomas azonositoja: sa1
-Sikerult! Az allomason most mar felszallhatnak az utasok.
+Sikerult! Az allomason mostmar felszallhatnak az utasok.
 Uj vonat elkezdve.
 Sikerult! Az uj kocsi azonositoja: mc1
 Sikerult! Az uj mozdony azonositoja: ml1
