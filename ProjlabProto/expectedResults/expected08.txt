@@ -19,8 +19,8 @@ Epp az ss1 sinen allok.
 En egy szenszallito vagon vagyok.
 Uj vonat elkezdve.
 Sikerult! Az uj mozdony azonositoja: ml2
-Ez itt mozdony ml1.
+Ez itt mozdony ml2.
 Epp az ss4 sinen allok, es 60-el megyek.
 Ertettem: ml1 vonat mozgatasa ss2 sinrol sb1 sinre.
-Ertettem: ml2 vonat mozgatasa ss4 sinrol ss3 sinre.
+Ertettem: ml2 vonat mozgatasa ss4 sinrol sb2 sinre.
 Miert nincs 2 sinpar egy vonalon...? utkozes tortent.
