@@ -305,7 +305,7 @@ public class Application {
 
 					if (fileWriter != null)
 						fileWriter.close();
-					if (params.length < 5 && !params[5].equals("continous")) {
+					if (params.length > 4 && !params[5].equals("continous")) {
 						dir.createNewFile();
 						fileWriter = new FileOutputStream(dir);
 						targetOS = new PrintStream(fileWriter);
@@ -843,7 +843,21 @@ public class Application {
 		}
 		
 		private void writeLine() {
-			//targetOS.print(getStringForRail());
+			Railway firstout = firstRail;
+			
+			targetOS.print(getStringForRail(firstRail));
+			firstRail = firstRail.next(previousRail);
+			previousRail = firstRail;
+			while (!(firstRail instanceof Switch) && firstRail != null && firstRail != firstout) {
+				targetOS.print("-" + getStringForRail(firstRail));
+				firstRail = firstRail.next(previousRail);
+				previousRail = firstRail;
+			}
+			if (firstRail instanceof Switch)
+				targetOS.print("-" + getStringForRail(firstRail));
+			if (firstRail == firstout)
+				targetOS.print("-");
+			
 		}
 		
 	}
