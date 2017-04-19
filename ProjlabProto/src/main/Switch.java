@@ -37,8 +37,10 @@ public class Switch extends Railway {
 		
 		Railway result = null;
 		
-		if (ThatNeighbour.contains(previousRailway))
+		if (ThatNeighbour.contains(previousRailway)) {
 			result = ThisNeighbour.get(0);
+			switchTo(previousRailway);
+		}
 		else if (ThisNeighbour.contains(previousRailway))
 			result = CurrentStanding;
 
