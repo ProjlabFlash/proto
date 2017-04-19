@@ -797,16 +797,15 @@ public class Application {
 				targetOS.println("Sikertelen. A megadott valto nem letezik.");
 				return;
 			}
-			int where = -1;
-			try {where = Integer.parseInt(params[3]);}
-			catch (NumberFormatException e) {
-				targetOS.println("Sikertelen. A valto nem allithato a kert helyzetbe, mert nincs ilyen helyzet.");
-				return;
-			}
+			
 			List<Railway> railList = sw.getThatNeighbour();
-			Railway switchTo = null;
-			if (railList.size() > where) switchTo = railList.get(where);
-			if (switchTo != null) {
+			
+			Railway switchTo = rails.get(params[3]);
+			if (switchTo == null) switchTo = switches.get(params[3]);
+			if (switchTo == null) switchTo = crosses.get(params[3]);
+			if (switchTo == null) switchTo = buildingSpots.get(params[3]);
+			
+			if (switchTo != null && railList.contains(switchTo)) {
 				
 				sw.switchTo(switchTo);
 				targetOS.println("Sikerult!");
