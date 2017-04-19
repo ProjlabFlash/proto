@@ -80,7 +80,7 @@ public class Application {
 		commands.add(new CmdList());
 		//commands.add(new CmdExploreLine());
 		commands.add(new CmdExploreRail());
-		//commands.add(new CmdExploreStation());
+		commands.add(new CmdExploreStation());
 		//commands.add(new CmdExploreAllrail());
 		commands.add(new CmdToggleSwitch());
 		commands.add(new CmdToggleStation());
@@ -94,7 +94,7 @@ public class Application {
 		commands.add(new CmdExploreLoco());
 		commands.add(new CmdExploreCart());
 		//commands.add(new CmdTimerStart());
-		//commands.add(new CmdTimerEnd());
+		//commands.add(newf CmdTimerEnd());
 		commands.add(new CmdExploreSwitch());
 		commands.add(new CmdClearTable());
 	
@@ -866,6 +866,20 @@ public class Application {
 		@Override
 		public void execute(String[] params) {
 			
+			if (params.length < 3) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			
+			Station station = stations.get(params[2]);
+			if (station == null) station = simultanStations.get(params[2]);
+			if (station == null) {
+				targetOS.println("A megadott allomas nem letezik!");
+				return;
+			}
+			
+			targetOS.println("Ez a " + params[2] + " allomas, es " + station.color.toString().toLowerCase() + " szinu.");
+			targetOS.println("Az allomas a " + getStringForRail(station.railway) + " mellett van.");
 		}
 	}
 	
@@ -1262,7 +1276,11 @@ private static class CmdDestroyTunnel extends CommandBase{
 				loco.CurrentRailwaySegment.setOnMe(null);
 				
 				while (nextCart != null) {
-					carts.remove(nextCart);
+					String key = null;
+					for (Entry<String, Cart> entry: carts.entrySet())
+						if (entry.getValue() == nextCart)
+							key = entry.getKey();
+					carts.remove(key);
 					nextCart.CurrentRailwaySegment.setOnMe(null);
 					nextCart = nextCart.Pulls;
 				}
