@@ -305,14 +305,10 @@ public class Application {
 
 					if (fileWriter != null)
 						fileWriter.close();
-					if (params.length > 4 && !params[5].equals("continous")) {
-						dir.createNewFile();
-						fileWriter = new FileOutputStream(dir);
-						targetOS = new PrintStream(fileWriter);
-					} else {
-						fileWriter = new FileOutputStream(dir, true);
-						targetOS = new PrintStream(fileWriter);
-					}
+					
+					dir.createNewFile();	
+					fileWriter = new FileOutputStream(dir, true);
+					targetOS = new PrintStream(fileWriter);
 					
 
 					if (!isSilent) {
