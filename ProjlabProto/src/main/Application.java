@@ -82,8 +82,8 @@ public class Application {
 		//commands.add(new CmdExploreRail());
 		//commands.add(new CmdExploreStation());
 		//commands.add(new CmdExploreAllrail());
-		//commands.add(new CmdToggleSwitch());
-		//commands.add(new CmdToggleStation());
+		commands.add(new CmdToggleSwitch());
+		commands.add(new CmdToggleStation());
 		commands.add(new CmdBuildTunnel());
 		commands.add(new CmdDestroyTunnel());
 		commands.add(new CmdPrepareTrain());
@@ -787,6 +787,33 @@ public class Application {
 		@Override
 		public void execute(String[] params) {
 			
+			if (params.length < 4) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			
+			Switch sw = switches.get(params[2]);
+			if (sw == null) {
+				targetOS.println("Sikertelen. A megadott valto nem letezik.");
+				return;
+			}
+			int where = -1;
+			try {where = Integer.parseInt(params[3]);}
+			catch (NumberFormatException e) {
+				targetOS.println("Sikertelen. A valto nem allithato a kert helyzetbe, mert nincs ilyen helyzet.");
+				return;
+			}
+			List<Railway> railList = sw.getThatNeighbour();
+			Railway switchTo = null;
+			if (railList.size() > where) switchTo = railList.get(where);
+			if (switchTo != null) {
+				
+				sw.switchTo(switchTo);
+				targetOS.println("Sikerult!");
+			} else {
+				targetOS.println("Sikertelen. A valto nem allithato a kert helyzetbe, mert nincs ilyen helyzet.");
+				return;
+			}
 		}
 	}
 	
@@ -798,6 +825,36 @@ public class Application {
 
 		@Override
 		public void execute(String[] params) {
+			
+			if (params.length < 4) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			
+			boolean isSimultan = false; 
+			if (params[3].equalsIgnoreCase("true") || params[3].equalsIgnoreCase("false"))
+				isSimultan = Boolean.parseBoolean(params[3]);
+			else {
+				targetOS.println("A negyedik parameter erteke hibas.");
+			}
+			
+			Station station = stations.get(params[2]);
+			if (station == null) station = simultanStations.get(params[2]);
+			else stations.remove(params[2]);
+			if (station == null) {
+				targetOS.println("Sikertelen. A megadott allomas nem letezik.");
+				return;
+			} else simultanStations.remove(params[2]);
+			
+			
+			if (isSimultan) {
+				
+				simultanStations.put(params[2], new SimultanStation(station.railway, station.color));
+				targetOS.println("Sikerult! Az allomason mostmar felszalhatnak az utasok.");
+			} else {
+				stations.put(params[2], new Station(station.railway, station.color));
+				targetOS.println("Sikerult! Az allomason mostmar nem szallhatnak fel az utasok.");
+			}
 			
 		}
 	}
@@ -1118,7 +1175,6 @@ private static class CmdDestroyTunnel extends CommandBase{
 				if(params[2].equals("all"))
 				{
 					String line=null;
-					String number=null;
 					sendMessage("A jelenleg letezo mozdonyok: ");
 					for(String keys:locos.keySet())
 					{
@@ -1183,7 +1239,6 @@ private static class CmdDestroyTunnel extends CommandBase{
 				{
 					//all...
 					String line=null;
-					String number=null;
 					sendMessage("A jelenleg letezo mozdonyok: ");
 					for(String keys:locos.keySet())
 					{

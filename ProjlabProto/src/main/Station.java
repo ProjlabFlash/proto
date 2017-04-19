@@ -3,6 +3,7 @@ package main;
 public class Station extends MetaData {
 	
 	protected Color color;
+	protected Railway railway;
 	
 	/**
 	 * Konstruktor. Beallitja az allomas szinet, es hozzarendeli
@@ -13,6 +14,7 @@ public class Station extends MetaData {
 	public Station(Railway railway, Color color) {
 		railway.setStation(this);
 		this.color = color;
+		this.railway = railway;
 	}
 	
 	/**
