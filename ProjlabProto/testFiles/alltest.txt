@@ -1,33 +1,479 @@
-redirect input test01.txt silent
-redirect input test02.txt silent
-redirect input test03.txt silent
-redirect input test04.txt silent
-redirect input test05.txt silent
-redirect input test06.txt silent
-redirect input test07.txt silent
-redirect input test08.txt silent
-redirect input test09.txt silent
-redirect input test10.txt silent
-redirect input test11.txt silent
-redirect input test12.txt silent
-redirect input test13.txt silent
-redirect input test14.txt silent
-redirect input test15.txt silent
-redirect input test16.txt silent
-redirect input test17.txt silent
-redirect input test18.txt silent
-redirect input test19.txt silent
-redirect input test20.txt silent
-redirect input test21.txt silent
-redirect input test22.txt silent
-redirect input test23.txt silent
-redirect input test24.txt silent
-redirect input test25.txt silent
-redirect input test26.txt silent
-redirect input test27.txt silent
-redirect input test28.txt silent
-redirect input test29.txt silent
-redirect input test30.txt silent
-redirect input test31.txt silent
-redirect input test32.txt silent
-redirect input test33.txt silent
+clearTable
+add rail
+add rail ss1
+add rail ss2
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore loco ml1 allcart
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add switch ss2
+add rail
+add rail
+connect rail sv1 2 ss3 
+connect rail sv1 2 ss4
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore switch sv1
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add switch ss2
+add rail
+add rail
+connect rail sv1 2 ss3
+connect rail sv1 2 ss4
+prepare train
+add loco ss4 null 60
+explore switch sv1
+step ml1
+step ml1
+explore switch sv1
+explore loco ml1
+clearTable
+add rail
+add rail ss1
+add switch ss2
+add rail
+add rail
+connect rail sv1 2 ss3
+connect rail sv1 2 ss4
+prepare train
+add cart coal ss3 null
+add loco sv1 ss3 60
+prepare train
+add loco ss4 null 60
+step ml2
+clearTable
+add rail
+add rail ss1
+add rail
+add rail ss3
+add crossing ss2
+connect rail ss3 sc1 1
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail
+add rail ss3
+add rail
+add rail ss5
+add rail
+add rail ss7
+add crossing
+connect rail ss2 sc1 1
+connect rail ss3 sc1 1
+connect rail ss6 sc1 2
+connect rail ss7 sc1 2
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore loco ml1 allcart
+prepare train
+add loco ss6 ss5 60
+explore loco ml2
+step ml2
+step ml1
+clearTable
+add rail
+add rail ss1
+add buildingspot ss2
+add rail sb1
+add rail
+add buildingspot ss4
+add rail sb2
+build tunnel sb1 sb2
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add buildingspot ss2
+add rail sb1
+add rail
+add buildingspot ss4
+add rail sb2
+add rail ss5
+build tunnel sb1 sb2
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore loco ml1 allcart
+prepare train
+add loco ss4 null 60
+explore loco ml2
+step ml1
+step ml2
+clearTable
+add rail
+add rail
+add rail
+add switch
+connect rail sv1 1 ss1
+connect rail sv1 2 ss2
+connect rail sv1 2 ss3
+explore switch sv1
+toggle switch sv1 ss3
+explore switch sv1
+clearTable
+add buildingspot
+add buildingspot
+build tunnel sb1 sb2
+clearTable
+add rail
+add rail
+add buildingspot ss1
+add buildingspot ss2
+build tunnel sb1 sb2
+destroy tunnel
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add station ss3 blue
+prepare train
+add cart ss1 null blue true
+add loco ss2 ss1 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add station ss3 blue
+prepare train
+add cart ss1 null red true
+add loco ss2 ss1 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add station ss3 blue
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add station ss3 blue
+prepare train
+add cart ss1 null blue false
+add loco ss2 ss1 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add station ss4 blue
+prepare train
+add cart ss1 null blue true
+add cart ss2 ss1 blue false
+add loco ss3 ss2 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add station ss4 blue
+prepare train
+add cart ss1 null red true
+add cart ss2 ss1 blue false
+add loco ss3 ss2 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+prepare train
+add cart ss1 null red true
+add cart ss2 ss1 blue true
+add cart ss3 ss2 blue true
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add station ss4 blue
+prepare train
+add cart ss1 null blue true
+add cart coal ss2 ss1 
+add loco ss3 ss2 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add station ss4 blue
+prepare train
+add cart ss1 null red true
+add cart coal ss2 ss1
+add loco ss3 ss2 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+prepare train
+add cart ss1 null blue true
+add cart coal ss2 ss1
+add cart ss3 ss2 blue true
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+prepare train
+add cart ss1 null blue true
+add cart ss2 ss1 blue false
+add cart ss3 ss2 blue true
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+prepare train
+add cart ss1 null blue true
+add cart coal ss2 ss1
+add cart ss3 ss2 red true
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add station ss3 blue
+toggle station sa1 true
+prepare train
+add cart ss1 null blue false
+add loco ss2 ss1 60
+explore cart mc1
+step ml1
+explore cart mc1
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add station ss3 blue
+toggle station sa1 true
+prepare train
+add cart ss1 null red false
+add loco ss2 ss1 60
+explore cart mc1
+step ml1
+explore cart mc1
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add station ss3 blue
+toggle station sa1 true
+prepare train
+add cart ss1 null blue true
+add loco ss2 ss1 60
+explore cart mc1
+step ml1
+explore cart mc1
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add station ss3 blue
+toggle station sa1 true
+prepare train
+add cart coal ss1 null
+add loco ss2 ss1 60
+explore cart mc1
+step ml1
+explore cart mc1
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+toggle station sa1 true
+prepare train
+add cart ss2 ss1 red false
+add cart ss3 ss2 blue false
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+toggle station sa1 true
+prepare train
+add cart ss2 ss1 blue false
+add cart ss3 ss2 red false
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+toggle station sa1 true
+prepare train
+add cart ss2 ss1 blue false
+add cart coal ss3 ss2
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+toggle station sa1 true
+prepare train
+add cart ss2 ss1 red false
+add cart coal ss3 ss2
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+toggle station sa1 true
+prepare train
+add cart ss2 ss1 blue false
+add cart ss3 ss2 blue true
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add station ss5 blue
+toggle station sa1 true
+prepare train
+add cart ss2 ss1 red false
+add cart ss3 ss2 blue true
+add loco ss4 ss3 60
+explore loco ml1 allcart
+step ml1
+step ml1
+explore loco ml1 allcart
