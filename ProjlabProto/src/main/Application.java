@@ -1120,7 +1120,6 @@ private static class CmdDestroyTunnel extends CommandBase{
 					for(String keys:locos.keySet())
 					{
 						String railkey = getStringForRail(locos.get(keys).CurrentRailwaySegment);
-						
 						line=keys+": Epp az "+railkey+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
 						sendMessage(line);
 						if(params[3].equals("allcart"))
@@ -1185,7 +1184,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 					sendMessage("A jelenleg letezo mozdonyok: ");
 					for(String keys:locos.keySet())
 					{
-						line=keys+": Epp az "+locos.get(keys).CurrentRailwaySegment+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
+						line=keys+": Epp az "+ getStringForRail(locos.get(keys).CurrentRailwaySegment)+" sinen allok, es "+locos.get(keys).Speed+"-el megyek.";
 						sendMessage(line);
 						line=null;
 					}
@@ -1196,7 +1195,7 @@ private static class CmdDestroyTunnel extends CommandBase{
 					String line=null;
 					line="Ez itt mozdony "+params[2]+".";
 					sendMessage(line);
-					line="Epp az "+ actual.CurrentRailwaySegment +" sinen allok, es "+ actual.Speed +"-el megyek.";
+					line="Epp az "+ getStringForRail(actual.CurrentRailwaySegment) +" sinen allok, es "+ actual.Speed +"-el megyek.";
 					sendMessage(line);
 				}
 			}
