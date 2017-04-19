@@ -524,16 +524,17 @@ public class Application {
 					return;
 				}
 				
-				rail1 = crosses.get(params[secRwayParamNumber]);
-				if (rail1 == null) rail1 = switches.get(params[secRwayParamNumber]);
-				if (rail1 == null) {
+				rail2 = crosses.get(params[secRwayParamNumber]);
+				if (rail2 == null) rail2 = switches.get(params[secRwayParamNumber]);
+				if (rail2 == null) {
 					targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
 					return;
 				}
 				
 				secRwayParamNumber++;
-				secondParam = Integer.parseInt(params[3]);
-				if (secondParam != 1 || secondParam != 2) {
+				secondParam = Integer.parseInt(params[secRwayParamNumber]);
+				
+				if (secondParam != 1 && secondParam != 2) {
 					targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
 					return;
 				}
@@ -546,6 +547,7 @@ public class Application {
 				targetOS.println("Sikerult!");
 				return;
 			}
+			System.out.println("booooh");
 			targetOS.println("Sikertelen. A megadott parameter nem megfelelo.");
 		}
 	}
