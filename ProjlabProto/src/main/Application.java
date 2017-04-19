@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -304,10 +305,14 @@ public class Application {
 
 					if (fileWriter != null)
 						fileWriter.close();
-					
-					dir.createNewFile();
-					fileWriter = new FileOutputStream(dir);
-					targetOS = new PrintStream(fileWriter);
+					if (params.length < 5 && !params[5].equals("continous")) {
+						dir.createNewFile();
+						fileWriter = new FileOutputStream(dir);
+						targetOS = new PrintStream(fileWriter);
+					} else {
+						fileWriter = new FileOutputStream(dir, true);
+						targetOS = new PrintStream(fileWriter);
+					}
 					
 
 					if (!isSilent) {
@@ -332,7 +337,7 @@ public class Application {
 
 		  @Override
 		  public void execute(String[] params) {
-		   
+		   //TODO csak 2 szomszéd
 		   Railway tbConnected = null;
 		   
 		   if (params.length > 2) {
@@ -800,10 +805,38 @@ public class Application {
 			super("explore line");
 		}
 
+		Railway paramRail = null;
+		Railway firstRail = null;
+		Railway previousRail = null;
+		boolean hasToBeReported = false;
+		
 		@Override
 		public void execute(String[] params) {
 			
+			paramRail = null;
+			firstRail = null;
+			previousRail = null;
+			
+			paramRail = rails.get(params[2]);
+			
 		}
+		
+		private void stepLoop() {
+			while (firstRail != null && !(firstRail instanceof Switch)) {
+				firstRail.next(previousRail);
+				previousRail = firstRail;
+			}
+		}
+		
+		private void getStarterRail() {
+			List<Railway> rails = paramRail.getNeighbours();
+			if (rails.size() < 2) return;
+			
+			previousRail = paramRail;
+			firstRail = rails.get(0);
+			stepLoop();
+		}
+		
 	}
 	
 	private static class CmdExploreRail extends CommandBase{
