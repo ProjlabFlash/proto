@@ -34,7 +34,7 @@ public class Locomotive extends MovingObject {
 	 * @param station Az az allomas, ahova megerkezett a mozdony.
 	 */
 	public void ArrivedAtStation(Station station) {
-		///TODO: Elertuk a san allomast.
+		Application.sendMessage("Elertuk a san allomast.", station);
 		if(Pulls.colorCheck(station) == true) {
 			//Application.win();
 		}
