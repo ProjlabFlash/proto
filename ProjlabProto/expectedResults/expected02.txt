@@ -9,7 +9,7 @@ Sikerult!
 Uj vonat elkezdve.
 Sikerult! Az uj kocsi azonositoja: mc1
 Sikerult! Az uj mozdony azonositoja: ml1
-Ez a valto az ss3 iranyba mutat.
+Ez a valto az ss3 iranyaba mutat.
 Ez itt mozdony ml1.
 Epp az ss2 sinen allok, es 60-el megyek.
 Engem kovetnek a kovetkezo kocsik:
