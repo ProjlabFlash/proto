@@ -563,21 +563,46 @@ public class Application {
 				String key = params[2];
 				
 				Railway rail = rails.remove(key);
-				if (rail == null) switches.remove(key);
-				if (rail == null) crosses.remove(key);
-				if (rail == null) buildingSpots.remove(key);
+				if (rail == null) rail = switches.remove(key);
+				if (rail == null) rail = crosses.remove(key);
+				if (rail == null) rail = buildingSpots.remove(key);
 				
+				if (rail == null) {
+					targetOS.println("Sikertelen. A megadott sin nem letezik.");
+					return;
+				}
+					
 				if (tunnel != null)
 					if (tunnel.isTunnel(rail)) {
 						targetOS.println("A sin nem torolheto, mert rajta alagut van epitve!");
 					}
-				//TODO nullcheck és switchbug
+				
+				if (rail.OnMe != null) {
+					targetOS.println("Sikertelen. A megadott sinen epp egy vonat tartozkodik!");
+					return;
+				}
 				
 				List<Railway> railList = rail.getNeighbours();
 				for (Railway r: railList) {
 					r.deleteNeighbour(rail);
 				}
 				
+				Station toBeDeleted = rail.station;
+				if (toBeDeleted != null)
+					for (Entry<String, Station> entry: stations.entrySet())
+						if (entry.getValue() == toBeDeleted) {
+							stations.remove(entry.getKey());
+							toBeDeleted = null;
+							break;
+						}
+				
+				if (toBeDeleted != null)
+					for (Entry<String, SimultanStation> entry: simultanStations.entrySet())
+						if (entry.getValue() == toBeDeleted) {
+							simultanStations.remove(entry.getKey());
+							toBeDeleted = null;
+							break;
+						}
 				
 				targetOS.println("Sikerult!");
 			} else {
@@ -797,11 +822,11 @@ public class Application {
 			
 			String key = params[2];
 			Railway rail = rails.get(key);
-			if (rail == null) switches.get(key);
-			if (rail == null) crosses.get(key);
-			if (rail == null) buildingSpots.get(key);
+			if (rail == null) rail = switches.get(key);
+			if (rail == null) rail = crosses.get(key);
+			if (rail == null) rail = buildingSpots.get(key);
 			if (rail == null) {
-				targetOS.println("");
+				targetOS.println("A megadott sin nem letezik!");
 				return;
 			}
 			
