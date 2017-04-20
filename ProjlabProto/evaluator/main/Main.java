@@ -73,5 +73,10 @@ public class Main {
 	    else { 
 	    	System.out.println("A program kimenete megegyezik az elvart kimenettel");
 	    }
+	    
+	    try {
+			System.in.read();
+		} catch (Exception e) {
+		}
 	}
 }
