@@ -86,8 +86,6 @@ public class CrossRailway extends Railway {
 		}
 		if(ThatNeighbour.contains(previousRailway))
 		{
-			if(ThisNeighbour.contains(previousRailway)) 
-			{
 				if(ThisNeighbour.size() == 0){
 					return null;
 				}
@@ -95,7 +93,6 @@ public class CrossRailway extends Railway {
 				{
 					return ThisNeighbour.get(0);
 				}
-			}
 			
 		}
 		if(ThisNeighbour2.contains(previousRailway)) 
@@ -111,8 +108,6 @@ public class CrossRailway extends Railway {
 		}
 		if(ThatNeighbour2.contains(previousRailway))
 		{
-			if(ThisNeighbour2.contains(previousRailway)) 
-			{
 				if(ThisNeighbour2.size() == 0){
 					return null;
 				}
@@ -120,7 +115,6 @@ public class CrossRailway extends Railway {
 				{
 					return ThisNeighbour2.get(0);
 				}
-			}
 		}
 		return null;
 	}
@@ -186,6 +180,12 @@ public class CrossRailway extends Railway {
 	public List<Railway> getNeighbours() {
 		List<Railway> result = super.getNeighbours();
 		result.addAll(ThatNeighbour2);
+		result.addAll(ThisNeighbour2);
+		return result;
+	}
+	
+	public List<Railway> get2ndNeighbours() {
+		List<Railway> result = ThatNeighbour2;
 		result.addAll(ThisNeighbour2);
 		return result;
 	}

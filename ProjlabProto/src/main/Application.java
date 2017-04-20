@@ -79,7 +79,7 @@ public class Application {
 		commands.add(new CmdDeleteRail());
 		commands.add(new CmdDeleteStation());
 		commands.add(new CmdList());
-		//commands.add(new CmdExploreLine());
+		commands.add(new CmdExploreLine());
 		commands.add(new CmdExploreRail());
 		commands.add(new CmdExploreStation());
 		//commands.add(new CmdExploreAllrail());
@@ -805,32 +805,97 @@ public class Application {
 		Railway firstRail = null;
 		Railway previousRail = null;
 		boolean hasToBeReported = false;
+		CmdExploreAllrail toReport = null;
 		
 		@Override
 		public void execute(String[] params) {
+			
+			if (params.length < 3) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
 			
 			paramRail = null;
 			firstRail = null;
 			previousRail = null;
 			
 			paramRail = rails.get(params[2]);
-			if (rails != null) {
+			if (paramRail != null) {
 				getStarterRail();
 				writeLine();
+				return;
+			} paramRail = buildingSpots.get(params[2]);
+			
+			if (paramRail != null) {
+				getStarterRail();
+				writeLine();
+			}  paramRail = crosses.get(params[2]);
+			
+			if (paramRail != null) {
+				CrossRailway cr = crosses.get(params[2]);
+				List<Railway> secondList = cr.get2ndNeighbours();
+				int num2 = secondList.size();
+				
+				if (num2 > 0) {
+					firstRail = cr;
+					previousRail = secondList.get(0);
+					stepLoop();
+					writeLine();
+					targetOS.println("");
+				}
+				
+				List<Railway> firstList = cr.getNeighbours();
+				firstList.removeAll(secondList);
+				int num1 = firstList.size();
+				if (num1 > 0) {
+					firstRail = cr;
+					previousRail = firstList.get(0);
+					stepLoop();
+					writeLine();
+				}
+				
+				if (num2 == 0 && num1 == 0)
+					targetOS.println(params[2]);
+			} paramRail = switches.get(params[2]);
+			
+			if (paramRail != null) {
+				List<Railway> lanes = paramRail.getNeighbours();
+				for (Railway line: lanes) {
+					firstRail = line;
+					previousRail = paramRail;
+					stepLoop();
+					writeLine();
+					targetOS.println("");
+				}
 			}
+			
+			targetOS.println("");
+		}
+		
+		public void executeWithReport(CmdExploreAllrail who, String[] params) {
+			hasToBeReported = true;
+			toReport = who;
+			if (who != null) execute(params);
+			hasToBeReported = false;
+			toReport = null;
 		}
 		
 		private void stepLoop() {
 			int counter = 0;
 			while (firstRail != null && !(firstRail instanceof Switch) && counter < 100) {
-				firstRail.next(previousRail);
-				previousRail = firstRail;
+				Railway temp = firstRail;
+				firstRail = firstRail.next(previousRail);
+				previousRail = temp;
 				counter++;
 			}
+			Railway temp = firstRail;
+			firstRail = previousRail;
+			previousRail = temp;
 		}
 		
 		private void getStarterRail() {
 			List<Railway> rails = paramRail.getNeighbours();
+			firstRail = paramRail;
 			if (rails.size() < 2) return;
 			
 			previousRail = paramRail;
@@ -842,18 +907,24 @@ public class Application {
 			Railway firstout = firstRail;
 			
 			targetOS.print(getStringForRail(firstRail));
+			if (hasToBeReported) toReport.report(getStringForRail(firstRail));
+			
+			Railway temp = firstRail;
 			firstRail = firstRail.next(previousRail);
-			previousRail = firstRail;
+			previousRail = temp;
 			while (!(firstRail instanceof Switch) && firstRail != null && firstRail != firstout) {
+				
 				targetOS.print("-" + getStringForRail(firstRail));
+				if (hasToBeReported) toReport.report(getStringForRail(firstRail));
+				
+				temp = firstRail;
 				firstRail = firstRail.next(previousRail);
-				previousRail = firstRail;
+				previousRail = temp;
 			}
 			if (firstRail instanceof Switch)
 				targetOS.print("-" + getStringForRail(firstRail));
 			if (firstRail == firstout)
 				targetOS.print("-");
-			
 		}
 		
 	}
@@ -939,6 +1010,13 @@ public class Application {
 
 		public CmdExploreAllrail() {
 			super("explore allrail");
+		}
+		
+		
+
+		public void report(String stringForRail) {
+			// TODO Auto-generated method stub
+			
 		}
 
 		@Override

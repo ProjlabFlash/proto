@@ -30,7 +30,18 @@ public class BuildingSpot extends Railway {
 		
 			OldThatNeighbour = ThatNeighbour;
 			ThatNeighbour = thatNewNeighbour;
+			
+			if (OldThatNeighbour.size() != 0) {
+				OldThatNeighbour.get(0).deleteNeighbour(this);
+				OldThatNeighbour.get(0).insertNeighbour(otherbs);
+			}
 		} else if (thisNewNeighbour == null && thatNewNeighbour == null){
+			
+			if (ThatNeighbour.size() != 0) {
+				ThatNeighbour.get(0).deleteNeighbour(otherbs);
+				ThatNeighbour.get(0).insertNeighbour(this);
+			}
+			
 			ThisNeighbour = OldThisNeighbour;
 			ThatNeighbour = OldThatNeighbour;
 		}
