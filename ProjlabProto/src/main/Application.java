@@ -1242,7 +1242,7 @@ public class Application {
 	}
 	
 	/**
-	 * 
+	 * Atallitja a valtot hogy egy masik sin fele nezzen.
 	 */
 	private static class CmdToggleSwitch extends CommandBase{
 
@@ -1250,6 +1250,10 @@ public class Application {
 			super("toggle switch");
 		}
 
+		/**
+		 * @param params[2] A valto azonositoja.
+		 * @param params[3] Egy szam, ami kijeloli hogy a valtohoz hanyadiknak hozzakotott sinre valtsunk.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1282,12 +1286,19 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Beallitja hogy egy allomas, fel-, vagy leszallo.
+	 */
 	private static class CmdToggleStation extends CommandBase{
 
 		public CmdToggleStation() {
 			super("toggle station");
 		}
 
+		/**
+		 * @param params[2] Az allomas azonositoja
+		 * @param params[3] "true"/"false" (true->felaszallo)
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1324,16 +1335,20 @@ public class Application {
 		}
 	}
 	
-
-
-
-
-private static class CmdBuildTunnel extends CommandBase{
+	/**
+	 * Felepit egy alagutat es elvegzi az ezzel kapcsolatos adminisztraciokat.
+	 * Ha mar fel van epitve egy, akkor nem epit fel meg egyet.
+	 */
+	private static class CmdBuildTunnel extends CommandBase{
 
 		public CmdBuildTunnel() {
 			super("build tunnel");
 		}
 
+		/**
+		 * @param params[2] Az egyik epitohely azonositoja(sbn) ami az alagut bejarataul fog szolgalni.
+		 * @param params[3] Az masik epitohely azonositoja(sbn) ami az alagut bejarataul fog szolgalni. A sorrend lenyegtelen.
+		 */
 		@Override
 		public void execute(String[] params) {
 			BuildingSpot first = null;
@@ -1386,14 +1401,18 @@ private static class CmdBuildTunnel extends CommandBase{
 		}
 	}
 	
-
-
-private static class CmdDestroyTunnel extends CommandBase{	
+	/**
+	 * Leromoblja az eppen aktualisan felpitett alagutat.
+	 */
+	private static class CmdDestroyTunnel extends CommandBase{	
 	
 		public CmdDestroyTunnel() {
 			super("destroy tunnel");
 		}
 
+		/**
+		 * @param params Nem hasznalt
+		 */
 		@Override
 		public void execute(String[] params) {
 			if(tunnel==null)
@@ -1408,13 +1427,22 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 
-	
+	/**
+	 * Ezek utan a kovetkezo add cart, vagy add loco barmelyik pontjat kijelolheti a palyanak,
+	 * majd ott kezdi el epiteni az uj vonatot. Ezt ugy kell elkepzelni hogy amikor a felhasznalo kiadja ezt
+	 * az utasitast, akkor a korabban epitett vonat befejezettnek tekintetik, es ezutan a kovetkezo add cart,
+	 * iletve add loco utasitassal lehelyezheti az uj vonat utolso(/egyetlen) kocsijat, majd a tovabbi ilyen
+	 * utasitasok ezt a vonatot fogjak tovabb epiteni.
+	 */
 	private static class CmdPrepareTrain extends CommandBase{
 
 		public CmdPrepareTrain() {
 			super("prepare train");
 		}
 
+		/**
+		 * @param params Hasznalatlan.
+		 */
 		@Override
 		public void execute(String[] params) {
 			lastCart = null;
@@ -1423,12 +1451,26 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * Felvesz egy uj kocsit a vonathoz. Ha ez nem az utolso kocsi(elorol nezve, es nem a hozzadas sorrendjet nezve),
+	 * akkor a program figyel arra, hogy tenyleg szmszedos sinre akarja-e tenni a felhasznalo.
+	 */
 	private static class CmdAddCart extends CommandBase{
 
 		public CmdAddCart() {
 			super("add cart");
 		}
 
+		/**
+		 * @param params[2] Ha szenszallitot akarunk: "coal"
+		 * @param params[3] Ha szenszallitot akarunk: A mostani sin amire tenni akarjuk.
+		 * @param params[4] Ha szenszallitot akarunk: A menetirannyal ellentetes szomszedos sin.
+		 * 
+		 * @param params[2] Ha utasszallito kocsit akarunk: A mostani sin amire tenni akarjuk.
+		 * @param params[3] Ha utasszallito kocsit akarunk: A menetirannyal ellentetes szomszedos sin.
+		 * @param params[4] Ha utasszallito kocsit akarunk: A kocsi szine.
+		 * @param params[5] Ha utasszallito kocsit akarunk: "true"/"false" ulnek-e benne utasok(true = igen).
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1524,12 +1566,20 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * Egy uj mozdonyt ad a vonathoz, es ezzel be is fejezi az aktualis vonat epiteset.
+	 */
 	private static class CmdAddLoco extends CommandBase{
 
 		public CmdAddLoco() {
 			super("add loco");
 		}
 
+		/**
+		 * @param params[2] A sin amire tenni akarjuk.
+		 * @param params[3] A menetirannyal szembeni szomszedos sin.
+		 * @param params[4] A vonat sebessege, egesz szam(1 = 1 lepes/60 masodperc ha fut az idozito, amugy erdektelen).
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1578,12 +1628,18 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * Lepteti egyet a vonatot, ami aztan mindent elvegez maga(kocsik huzasa, allomasok figyelese, stb.)
+	 */
 	private static class CmdStep extends CommandBase{
 
 		public CmdStep() {
 			super("step");
 		}
 
+		/**
+		 * @param params[2] A leptetni kivant vonat azonostioja.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1604,12 +1660,18 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * Torli az adott vonatot(a mozdonyt az osszes kocsijaval egyutt), HA nincs ra vonatkozo ervenyes idozito.
+	 */
 	private static class CmdDeleteLoco extends CommandBase{
 
 		public CmdDeleteLoco() {
 			super("delete loco");
 		}
 
+		/**
+		 * @param params[2] A torolni kivant mozdony azonositoja.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1640,15 +1702,21 @@ private static class CmdDestroyTunnel extends CommandBase{
 			}
 		}
 	}
-	
 
-
+	/**
+	 * A mozdonyra, vagy akar a teljes vonatra kapcsolatos informaciokat irja ki a felhasznalo szamara.
+	 */
 	private static class CmdExploreLoco extends CommandBase{
 
 		public CmdExploreLoco() {
 			super("explore loco");
 		}
 
+		/**
+		 * @param params[2] A mozdony azonositoja, vagy "all" ha az osszes mozdonyt le akarjuk kerdezni.
+		 * @param params[3] opcionalis "allcart" Ha a teljes vonatra kivancsiak vagyunk, akkor ez a vonat osszes kocsijatol
+		 *  megkerdezi a parametereit es kiiratja veluk.
+		 */
 		@Override
 		public void execute(String[] params) {
 			Locomotive actual=null;
@@ -1750,13 +1818,18 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
-
-
+	/**
+	 * Kiiratja egy kocsinak a helyzetet, szinet, es hogy vannak-e rajta utasok, ha nem szenszallito.(illetve azt is, hogy az-e.)
+	 */
 	private static class CmdExploreCart extends CommandBase{
 
 		public CmdExploreCart() {
 			super("explore cart");
 		}
+		
+		/**
+		 * @param params[2] A lekerdezett kocsi azonositoja.
+		 */
 		@Override
 		public void execute(String[] params) {
 			Cart actual=null;
@@ -1790,12 +1863,18 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * Elindit egy idozitot ami aztan a vonat sebessegetol fuggoen fogja leptetni azt. Egy vonaton csak egy idozito lehet.
+	 */
 	private static class CmdTimerStart extends CommandBase{
 
 		public CmdTimerStart() {
 			super("timer start");
 		}
 
+		/**
+		 * @param params[2] A mozdony azonositoja amihez kotjuk az idozitot.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1820,6 +1899,11 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * A mozdony leptetsehez az idozito ennek az osztalynak a peldanyat hasznalja.
+	 * Ez lenyegebe csak egy csomagolo osztaly, viszi magaval a kiiratashoz, a lepteteshez, es
+	 * az idoziteshez szukseges informaciokat.
+	 */
 	private static class MyTask extends TimerTask {
 		Timer myTimer;
 		private Locomotive loco;
@@ -1827,6 +1911,9 @@ private static class CmdDestroyTunnel extends CommandBase{
 		
 		MyTask(Locomotive loco, String key, Timer t) {this.loco = loco; this.key = key; myTimer = t;}
 		
+		/**
+		 * A leptetes itt van megvalositva
+		 */
 		@Override
 		public void run() {
 			targetOS.println("A "+ key +" vonat mozgatasa "+ getStringForRail(loco.CurrentRailwaySegment) +" sinrol "+ 
@@ -1836,12 +1923,18 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * Megallitja a megfelelo vonathoz tartozo idozitot.
+	 */
 	private static class CmdTimerEnd extends CommandBase{
 
 		public CmdTimerEnd() {
 			super("timer end");
 		}
 
+		/**
+		 * @param params[2] A mozdony azonositoja, amihez tartozik a leallitani kivant idozito.
+		 */
 		@Override
 		public void execute(String[] params) {
 			if (params.length < 3) {
@@ -1864,12 +1957,18 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * Kiirja, hogy a valto merre all.
+	 */
 	private static class CmdExploreSwitch extends CommandBase{
 
 		public CmdExploreSwitch() {
 			super("explore switch");
 		}
 
+		/**
+		 * @param params[2] A valto azonositoja amirol tudni akarjuk ezt.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1892,12 +1991,19 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * Letakaritja az asztalt. Ezt ugy eri el, hogy lenyegebe az osszes tarolt erteket eldobja, lenullazza.
+	 * Kulon figyelmet fordit az idozitok leallitasara is, es az azonositok kiosztasara szolgalo szamlalot is visszaallitja.
+	 */
 	private static class CmdClearTable extends CommandBase{
 
 		public CmdClearTable() {
 			super("clearTable");
 		}
 
+		/**
+		 * @param params Nem hasznalt!
+		 */
 		@Override
 		public void execute(String[] params) {
 			rails = new HashMap<String, Railway>();
@@ -1937,12 +2043,18 @@ private static class CmdDestroyTunnel extends CommandBase{
 		}
 	}
 	
+	/**
+	 * A program befejezesere szolgalo parancs. Kiadasa utan ez az utolso parancs amit lefut.
+	 */
 	private static class CmdExit extends CommandBase{
 
 		public CmdExit() {
 			super("exit");
 		}
 
+		/**
+		 * @param params Nem hasznalt!
+		 */
 		@Override
 		public void execute(String[] params) {
 			isRunning = false;
