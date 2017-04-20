@@ -27,6 +27,7 @@ public abstract class MovingObject extends MetaData {
 	 */
 	public void step(Railway toHere) {
 		
+		if (toHere == null) return;
 		
 		CurrentRailwaySegment.setOnMe(null);
 		toHere.setOnMe(this);

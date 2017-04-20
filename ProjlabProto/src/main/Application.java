@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -15,22 +14,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class Application {
 
-	//Becsomagolt stdin, es stdout
+	/**
+	 * Csomagolo a konzolos ki-/ es bemenet szamara.
+	 */
 	private static PrintStream stdoutWriter;
 	private static BufferedReader stdinReader;
 	
-	//Az eppen aktualis kimeneti, es bemeneti stream
+	/**
+	 * Az eppen akutalis kimeneti, illetve bementi stream. Minden iras vagy olvasas muvelet ezekre vonatkozik.
+	 */
 	private static PrintStream targetOS;
 	private static BufferedReader targetIS;
 	
-	//Fajlokba/-bol valo atiranyitashoz.
+	/**
+	 * Az eppen megnyitott fajl(ok).
+	 */
 	private static FileInputStream fileReader = null;
 	private static FileOutputStream fileWriter = null;
 	
-	//A palya elemei
+	/**
+	 * A palya elemei, illetve egy hozzajuk tartozo szamlalo az egyedi kulcsok kiosztasahoz
+	 */
 	private static Map<String, Railway> rails = new HashMap<String, Railway>();
 	private static int railsCounter = 0;
 	
@@ -46,6 +56,9 @@ public class Application {
 	private static Map<String, Station> stations = new HashMap<String, Station>();
 	private static int stationsCounter = 0;
 	
+	/**
+	 * Az egyedi kulcsat megosztja a stations valtozoval.
+	 */
 	private static Map<String, SimultanStation> simultanStations = new HashMap<String, SimultanStation>();
 	
 	private static Map<String, Cart> carts = new HashMap<String, Cart>();
@@ -54,19 +67,44 @@ public class Application {
 	private static Map<String, Locomotive> locos = new HashMap<String, Locomotive>();
 	private static int locosCounter = 0;
 	
+	/**
+	 * Referencia magara az alagutra. Ebbol mindig csak egy lehet, es ezen keresztul lehet megszuntetni.
+	 */
 	private static Tunnel tunnel = null;
 	
-	//A prepare train nullazza, amugy pedig az epitendo vonat legutobb letett kocsijat tartalmazza
+	/**
+	 * Ha a mozdonyokat automatikusan szeretnenk leptetni, akkor az ehhez hasznalt idozitoket itt tarolhatjuk.
+	 * Mivel kulcs-ertek parokat tartalmaz ezert csak egyszerre egy idozito lehet szamon tartva vonatonkent, tehat
+	 * a megfelelo utasitasok mindig ellenorzik, hogy fut-e mar egy idozito, mielott a regi referenciajat elveszitve felulirna azt.
+	 */
+	private static Map<Locomotive, Timer> timers = new HashMap<Locomotive, Timer>();
+	
+	/**
+	 * A vonat keszitesehez szukseges allapotvaltozok. Ezaltal a vonat elemeit fel lehet sorolni egymas utan,
+	 * anelkul hogy ugyelnunk kene arra, hogy jo sorrendben lettek-e osszekotve.
+	 */
 	private static String lastCart = null; 
 	private static Boolean isFinished = true;
 	
+	/**
+	 * Ha false, akkor az aktualis parancs feldolgozasa utan kilep a programbol.
+	 */
+	private static boolean isRunning = true;
+	
+	/**
+	 * A program fo hurka. Az aktualis bemenetrol olvas, es soronkent osszeveti a parancsok listajaval.
+	 * Amelyiknel egyezest tlal, azt meghivja. Egy sorra, csak egy parancs hivodik.
+	 * 
+	 * @param args: Nem hasznalt
+	 */
 	public static void main(String[] args) {
 		
 		targetOS = stdoutWriter = System.out;
 		targetIS = stdinReader = new BufferedReader(new InputStreamReader(System.in));
 		
-
-		
+		/**
+		 * A parancsokat magaba foglalo lista.
+		 */
 		List<CommandBase> commands = new ArrayList<CommandBase> ();
 		commands.add(new CmdSwitchInput());
 		commands.add(new CmdSwitchOutput());
@@ -82,7 +120,7 @@ public class Application {
 		commands.add(new CmdExploreLine());
 		commands.add(new CmdExploreRail());
 		commands.add(new CmdExploreStation());
-		//commands.add(new CmdExploreAllrail());
+		commands.add(new CmdExploreAllrail());
 		commands.add(new CmdToggleSwitch());
 		commands.add(new CmdToggleStation());
 		commands.add(new CmdBuildTunnel());
@@ -94,17 +132,23 @@ public class Application {
 		commands.add(new CmdDeleteLoco());
 		commands.add(new CmdExploreLoco());
 		commands.add(new CmdExploreCart());
-		//commands.add(new CmdTimerStart());
-		//commands.add(newf CmdTimerEnd());
+		commands.add(new CmdTimerStart());
+		commands.add(new CmdTimerEnd());
 		commands.add(new CmdExploreSwitch());
 		commands.add(new CmdClearTable());
+		commands.add(new CmdExit());
 	
+		/**
+		 * A hurok megnezi, hogy letezik-e az elso szoban megadott parancs, ha nem akkor osszefuzi azt a masodik szoval
+		 * es ujra megnezi, mert akadnak ket szavas parameterek. Ezek miatt ket parameter elso szava nem egyezhet meg, ha az egyik egy szavas.
+		 * Ha megtalaltuk a parancsot amire a felhasznalo gondolt, akkor a teljes sort atadjuk neki, es ezzel kesz is vagyunk
+		 */
 		mainloop:
-		while(true) {
+		while(isRunning) {
 			try {
 				String line = targetIS.readLine();
 				if (line == null)
-					if (fileReader != null && fileReader.available() == 0) {
+					if (fileReader != null && fileReader.available() == 0) { //Ha a fajl olvasasa anelkul ert veget, hogy atirnyitottak a bemenetet, akkor ez megfogja, es visszaadja a felhasznalonak a bemenetet.
 						targetIS = stdinReader;
 						continue mainloop;
 				}
@@ -139,10 +183,22 @@ public class Application {
 		}
 	}
 
+	/**
+	 * Az osztalyon kivuli objektumok ezen fuggveny segitsegevel kommunikalhatnak a felhasznaloval.
+	 * @param msg A kuldeni kivant uzenet.
+	 */
 	public static void sendMessage(String msg) {
 		targetOS.println(msg);
 	}
 	
+	/**
+	 * Az osztalyon kivuli objektumok ezen fuggveny segitsegevel kommunikalhatnak a felhasznaloval.
+	 * Az uzenetet kiirasa elott atvizsgalja, es az "san" elofordulast benne felulirja a parametrul
+	 * kapott allomashoz tartozo kulccsal.
+	 * 
+	 * @param msg A kuldeni kivant uzenet.
+	 * @param station Az allomas aminek a kulcsat akarjuk kozolni a felhasznaloval.
+	 */
 	public static void sendMessage(String msg, Station station) {
 		Set<Entry<String, Station> > stationSet = stations.entrySet();
 		Set<Entry<String, SimultanStation>> simultanStationSet = simultanStations.entrySet();
@@ -157,6 +213,14 @@ public class Application {
 		targetOS.println(msg);
 	}
 	
+	/**
+	 * Az osztalyon kivuli objektumok ezen fuggveny segitsegevel kommunikalhatnak a felhasznaloval.
+	 * Az uzenetet kiirasa elott atvizsgalja, es az "mcn" elofordulast benne felulirja a parametrul
+	 * kapott kocsihoz tartozo kulccsal.
+	 * 
+	 * @param msg A kuldeni kivant uzenet.
+	 * @param station A kocsi aminek a kulcsat akarjuk kozolni a felhasznaloval.
+	 */
 	public static void sendMessage(String msg, Cart cart) {
 		
 		Set<Entry<String, Cart> > cartSet = carts.entrySet();
@@ -168,7 +232,14 @@ public class Application {
 		targetOS.println(msg);
 	}
 	
-	
+	/**
+	 * Ha adott egy sin, es abbol meg akarjuk hatarozni a hozza tartozo kulcsot(altalaba a felhasznaloval valo kozles celjabol),
+	 * akkor ez a fuggveny használhato. Atvizsgalja az osszes sínelemet tartalmazo Map-et, es visszaadja az elso elofordulat.
+	 * (Megjegyzendo, hogy elmeletileg nem szabadna tobbnek lenni).
+	 * 
+	 * @param railway A sin referenciaja, aminek a kulcsat tudni akarjuk
+	 * @return A parameterul kapott sinhez tartozo kulcs.
+	 */
 	public static String getStringForRail(Railway railway) {
 		String result = null;
 		
@@ -202,6 +273,12 @@ public class Application {
 		return result;
 	}
 	
+	/**
+	 * Egy osztaly ami arra szolgal, hogy alapjaul szolgaljon az osszes parancsnak.
+	 * A benne tarolt string alapjan lehet osszehasonlitani a felhasznaloi bemenettel.
+	 * Az execute utasitas az, amit a fohurok elindit, ha a felhasznalo ezt az utasitast jelolte ki
+	 * Ennek parametere a teljes sor, szokozok mentem darabokra szedve.
+	 */
 	public static abstract class CommandBase {
 		
 		public final String cmdName;
@@ -214,13 +291,21 @@ public class Application {
 		
 	}
 	
-	
+	/**
+	 * A bemenet atiranyitasara szolgalo fajl. A parancs meghivasa utan ha "stdin"-t kap akkor a standard bemenetrol
+	 * olvas ezutan minden utasitas, ha pedig egy fajlnevet, akkor a <batch fajl elerese>/testFiles mappahoz relativan kell megadni.
+	 * Ezutan a fajlban a sorok olvasa azonnal elkezdodik.
+	 */
 	private static class CmdSwitchInput extends CommandBase {
 
 		public CmdSwitchInput() {
 			super("redirect input");
 		}
 
+		/**
+		 * @param params[2] A fajl neve/elerese a /testFiles mappahoz viszonitva, vagy "stdin"
+		 * @param params[3] opcionalis: Ha "silent", akkor a parancs nem ir a kimenetre
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -272,12 +357,21 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * A kimenet atiranyitasara szolgalo osztaly. A parancs meghivasa utan ha "stdout"-t kap akkor a standard kimenetre ir
+	 * ezutan minden utasitas, ha pedig egy fajlnevet, akkor a <batch fajl elerese>/dataFiles mappahoz relativan kell megadni.
+	 * Ezutan az osszes kimenet, beleertve ezt a parancsot is, ha sikeresen meg lehetett nyitni a fajlt, ebbe ir.
+	 */
 	private static class CmdSwitchOutput extends CommandBase {
 
 		public CmdSwitchOutput() {
 			super("redirect output");
 		}
 
+		/**
+		 * @param params[2] A fajl neve/elerese a /dataFiles mappahoz viszonitva, vagy "stdout"
+		 * @param params[3] opcionalis: Ha "silent", akkor a parancs nem ir a kimenetre
+		 */
 		@Override
 		public void execute(String[] params) {
 			boolean isSilent = false;
@@ -325,15 +419,21 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Felvesz egy uj sint a modellbe
+	 */
 	private static class CmdAddRail extends CommandBase{
 
 		  public CmdAddRail() {
 		   super("add rail");
 		  }
 
+		  /**
+		   * @param params[2] opcionalis, ssn, vagy sbn alaku, es az altala kijelolt palyaelemmel azonnal osszekoti, ha megvan adva. 
+		   */
 		  @Override
 		  public void execute(String[] params) {
-		   //TODO csak 2 szomszéd
+		   
 		   Railway tbConnected = null;
 		   
 		   if (params.length > 2) {
@@ -347,6 +447,10 @@ public class Application {
 		    }
 		   }
 		   
+		   if (tbConnected != null && tbConnected.getNeighbours().size() == 2) {
+			   sendMessage("Sikertelen. A megadott sinhez nem lehet tobbet kotni.");
+			   return;
+		   }
 		   String key = "ss" + (++railsCounter);
 		   Railway newRailway = new Railway(tbConnected);
 		   rails.put(key, newRailway);
@@ -354,12 +458,18 @@ public class Application {
 		  }
 		 }
 	
+	/**
+	 * Felvesz egy uj alagutepitesi helyet a modellbe.
+	 */
 	private static class CmdAddBuildingSpot extends CommandBase{
 
 		public CmdAddBuildingSpot() {
 			super("add buildingspot");
 		}
 
+		/**
+		 * @param params[2] opcionalis, ssn, vagy sbn alaku, es az altala kijelolt palyaelemmel azonnal osszekoti, ha megvan adva.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -383,12 +493,18 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Felvesz egy uj keresztezodest helyet a modellbe.
+	 */
 	private static class CmdAddCrossway extends CommandBase{
 
 		public CmdAddCrossway() {
 			super("add crossing");
 		}
 
+		/**
+		 * @param params[2] opcionalis, ssn, vagy sbn alaku, es az altala kijelolt palyaelemmel azonnal osszekoti, ha megvan adva.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -412,12 +528,18 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Felvesz egy uj valtot a modellbe.
+	 */
 	private static class CmdAddSwitch extends CommandBase{
 
 		public CmdAddSwitch() {
 			super("add switch");
 		}
 
+		/**
+		 * @param params[2] opcionalis, ssn, vagy sbn alaku, es az altala kijelolt palyaelemmel azonnal osszekoti, ha megvan adva.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -441,12 +563,19 @@ public class Application {
 		}
 	}
 
+	/**
+	 * Felvesz egy uj allomast a modellbe. Ezen csak leszallni tudnak az utasok.
+	 */
 	private static class CmdAddStation extends CommandBase{
 
 		public CmdAddStation() {
 			super("add station");
 		}
 
+		/**
+		 * @param params[2] A sin kulcsa, ami melle tennie kell az allomast.
+		 * @param params[3] Az allomas szine.
+		 */
 		@Override
 		public void execute(String[] params) {
 			Railway onThis=null;
@@ -474,12 +603,21 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Osszekot 2 mar letezo sin elemet.
+	 */
 	private static class CmdConnectRail extends CommandBase{
 
 		public CmdConnectRail() {
 			super("connect rail");
 		}
 
+		/**
+		 * @param params A 2es indexu jeloli az elso sint. Viszont ha ez keresztezodes, vagy valtot jelol ki, akkor
+		 * 	a params[3] egy szam kell legyen, ami tovabbi informaciot ad meg rola(a keresztezodesnek, melyik sinparra tegye,
+		 * 	es a valtonal meg azt, hogy melyik oldalra). A kovetkezo parameter megadja a kovetkezo sint, ami ugyanilyen modon varhat
+		 * 	meg egy parametert.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -552,12 +690,18 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Kitorol a modellbol egy sint, HA nincs rajta alagut epitve, vagy nem halad rajta vonat.
+	 */
 	private static class CmdDeleteRail extends CommandBase{
 
 		public CmdDeleteRail() {
 			super("delete rail");
 		}
 
+		/**
+		 * @param params[2] A torolni kivant sin azonositoja.
+		 */
 		@Override
 		public void execute(String[] params) {
 			if (params.length > 2) {
@@ -612,12 +756,18 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Kitorol a modellbol egy allomast.
+	 */
 	private static class CmdDeleteStation extends CommandBase{
 
 		public CmdDeleteStation() {
 			super("delete station");
 		}
 
+		/**
+		 * @param params[2] A torolni kivant allomas azonositoja.
+		 */
 		@Override
 		public void execute(String[] params) {
 			if (params.length > 2) {
@@ -641,14 +791,19 @@ public class Application {
 		}
 	}
 	
-
-
+	/**
+	 * Kilistazza az osszes azonosito szamot, ami az adott tipushoz tartozik.
+	 * Ebbol ugy lesz azonosito, hogy az elotte zarojelben irt betusorozat melle illesztjuk a szamot.
+	 */
 	private static class CmdList extends CommandBase{
 
 		public CmdList() {
 			super("list");
 		}
 
+		/**
+		 * A tipust jeloli ki. Vagy minden tipust.
+		 */
 		@Override
 		public void execute(String[] params) {
 			boolean sent=false;
@@ -795,6 +950,14 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Egy vizualis megjelenitest ad a felhasznalonak egy palyaszakaszrol
+	 * A palyaszakasz egy vakvagany/valtotol megy egy masikig, vagy onmagaba visszater("-" jeloli a vegen)
+	 * ha egy kort alkot a sin.
+	 * A kimenet ekeppen nez ki: ss1-ss2-ss3-sc1-ss7-ss8-sv1
+	 * A kimenet lehet tobb soros is ha keresztezodest kerdezunk le, vagy valtot, mert ilyenkor az osszes
+	 * beloluk indulo/ rajtuk athalado vonalon vegigmegyunk.
+	 */
 	private static class CmdExploreLine extends CommandBase{
 
 		public CmdExploreLine() {
@@ -807,6 +970,9 @@ public class Application {
 		boolean hasToBeReported = false;
 		CmdExploreAllrail toReport = null;
 		
+		/**
+		 * @param params[2] A sin azonositoja aminek megakarjuk hatarozni ezt a szakaszat.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -824,13 +990,15 @@ public class Application {
 				getStarterRail();
 				writeLine();
 				return;
-			} paramRail = buildingSpots.get(params[2]);
+			} 
 			
+			paramRail = buildingSpots.get(params[2]);
 			if (paramRail != null) {
 				getStarterRail();
 				writeLine();
-			}  paramRail = crosses.get(params[2]);
+			} 
 			
+			paramRail = crosses.get(params[2]);
 			if (paramRail != null) {
 				CrossRailway cr = crosses.get(params[2]);
 				List<Railway> secondList = cr.get2ndNeighbours();
@@ -856,8 +1024,9 @@ public class Application {
 				
 				if (num2 == 0 && num1 == 0)
 					targetOS.println(params[2]);
-			} paramRail = switches.get(params[2]);
+			} 
 			
+			paramRail = switches.get(params[2]);
 			if (paramRail != null) {
 				List<Railway> lanes = paramRail.getNeighbours();
 				for (Railway line: lanes) {
@@ -867,11 +1036,18 @@ public class Application {
 					writeLine();
 					targetOS.println("");
 				}
+				return;
 			}
-			
 			targetOS.println("");
 		}
 		
+		/**
+		 * Ugyanugy vegrehajta a vonalak kiirasat, de emelett meg el is kuldi a who parameterben definialt objektumnak
+		 * az osszes kiirt kulcsot.
+		 * 
+		 * @param who Az objektum referenciaja, amit ertesiteni kell
+		 * @param params megfelel a sima executeban leirttal(mert pontosan ezzel hivja meg)
+		 */
 		public void executeWithReport(CmdExploreAllrail who, String[] params) {
 			hasToBeReported = true;
 			toReport = who;
@@ -880,6 +1056,9 @@ public class Application {
 			toReport = null;
 		}
 		
+		/**
+		 * A vonal vegere megy.
+		 */
 		private void stepLoop() {
 			int counter = 0;
 			while (firstRail != null && !(firstRail instanceof Switch) && counter < 100) {
@@ -893,6 +1072,9 @@ public class Application {
 			previousRail = temp;
 		}
 		
+		/**
+		 * Egy sima sinnel, kitolti az indulo parametereket, majd elindul ezekkel a vonal vegere.
+		 */
 		private void getStarterRail() {
 			List<Railway> rails = paramRail.getNeighbours();
 			firstRail = paramRail;
@@ -903,7 +1085,14 @@ public class Application {
 			stepLoop();
 		}
 		
+		/**
+		 * Miutan a vegen vagyunk, zutan bejarja a vonalat, es kiirja az osszes kozben erintett sin azonositojat.
+		 */
 		private void writeLine() {
+			if (previousRail != null && previousRail instanceof Switch) {
+				targetOS.print(getStringForRail(previousRail) + "-");
+			}
+			
 			Railway firstout = firstRail;
 			
 			targetOS.print(getStringForRail(firstRail));
@@ -929,12 +1118,18 @@ public class Application {
 		
 	}
 	
+	/**
+	 * A sinnek par alapveto tulajdonsagat kozli a felhasznaloval.
+	 */
 	private static class CmdExploreRail extends CommandBase{
 
 		public CmdExploreRail() {
 			super("explore rail");
 		}
 
+		/**
+		 * @param params[2] A sin azonositoja amirol informaciot kerunk.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -979,13 +1174,18 @@ public class Application {
 		}
 	}
 	
-	
+	/**
+	 * Az allomasnak par alapveto tulajdonsagat kozli a felhasznaloval.
+	 */
 	private static class CmdExploreStation extends CommandBase{
 
 		public CmdExploreStation() {
 			super("explore station");
 		}
 
+		/**
+		 * @param params[2] Az allomas azonositoja amirol informaciot kerunk.
+		 */
 		@Override
 		public void execute(String[] params) {
 			
@@ -1006,25 +1206,44 @@ public class Application {
 		}
 	}
 	
+	/**
+	 * Az explore line-hoz hasonloan kiirja vonalankent a palyat.
+	 * Addig irogatja a vonalakat, amig az osszes sint fel nem irja ily modon.
+	 */
 	private static class CmdExploreAllrail extends CommandBase{
 
 		public CmdExploreAllrail() {
 			super("explore allrail");
 		}
 		
-		
+		private Map<String, Railway> toBeMapped = null;
 
 		public void report(String stringForRail) {
-			// TODO Auto-generated method stub
-			
+			toBeMapped.remove(stringForRail);
 		}
 
+		/**
+		 * @param params Nem hasznalt.
+		 */
 		@Override
 		public void execute(String[] params) {
+			toBeMapped = new HashMap<String, Railway>();
+			toBeMapped.putAll(rails);
+			toBeMapped.putAll(buildingSpots);
+			
+			while (!toBeMapped.isEmpty()) {
+				String key = toBeMapped.keySet().iterator().next();
+				String[] newParams = {"", "", key};
+				new CmdExploreLine().executeWithReport(this, newParams);
+				targetOS.println("");
+			}
 			
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private static class CmdToggleSwitch extends CommandBase{
 
 		public CmdToggleSwitch() {
@@ -1580,6 +1799,40 @@ private static class CmdDestroyTunnel extends CommandBase{
 		@Override
 		public void execute(String[] params) {
 			
+			if (params.length < 3) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			Locomotive loco = locos.get(params[2]);
+			if (loco == null) {
+				targetOS.println("Sikertelen. Nem letezik adott azonositoju mozdony.");
+				return;
+			}
+			if (timers.containsKey(loco)) {
+				targetOS.println("Sikertelen. Mar letezik egy idozito erre a vonatra.");
+				return;
+			}
+			
+			Timer t = new Timer();
+			t.schedule(new MyTask(loco, params[2], t), (60 / loco.Speed) * 1000);
+			timers.put(loco, new Timer());
+			targetOS.println("Sikerult! Mostantol az " + params[2] + " mozdony emberi beavatkozas nelkul is magatol menni fog.");
+		}
+	}
+	
+	private static class MyTask extends TimerTask {
+		Timer myTimer;
+		private Locomotive loco;
+		String key;
+		
+		MyTask(Locomotive loco, String key, Timer t) {this.loco = loco; this.key = key; myTimer = t;}
+		
+		@Override
+		public void run() {
+			targetOS.println("A "+ key +" vonat mozgatasa "+ getStringForRail(loco.CurrentRailwaySegment) +" sinrol "+ 
+					getStringForRail(loco.CurrentRailwaySegment.next(loco.PreviousRailwaySegment)) +" sinre.");
+			loco.move();
+			myTimer.schedule(new MyTask(loco, key, myTimer), (60 / loco.Speed) * 1000);
 		}
 	}
 	
@@ -1591,7 +1844,23 @@ private static class CmdDestroyTunnel extends CommandBase{
 
 		@Override
 		public void execute(String[] params) {
-			
+			if (params.length < 3) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			Locomotive loco = locos.get(params[2]);
+			if (loco == null) {
+				targetOS.println("Sikertelen. Nem letezik adott azonositoju mozdony.");
+				return;
+			}
+			Timer t = timers.remove(loco);
+			if (t == null) {
+				targetOS.println("Sikertelen. Mar letezik egy idozito erre a vonatra.");
+				return;
+			} else {
+				targetOS.println("Sikerult! A mozdony mostantol csak az itt kiadott step hatasara fog lepni.");
+				t.cancel();
+			}
 		}
 	}
 	
@@ -1659,11 +1928,24 @@ private static class CmdDestroyTunnel extends CommandBase{
 			lastCart = null;
 			isFinished = true;
 			
+			for (Entry<Locomotive, Timer> entry: timers.entrySet()) {
+				entry.getValue().cancel();
+			}
+			timers = new HashMap<Locomotive, Timer>();
+			
 			targetOS.println("A takaritas megtortent.");
 		}
 	}
 	
-	
+	private static class CmdExit extends CommandBase{
 
+		public CmdExit() {
+			super("exit");
+		}
 
+		@Override
+		public void execute(String[] params) {
+			isRunning = false;
+		}
+	}
 }
