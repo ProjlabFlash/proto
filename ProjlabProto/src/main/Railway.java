@@ -138,6 +138,10 @@ public class Railway extends MetaData{
 		
 	}
 	
+	/**
+	 * Visszaadja az osszes szomszedjat. Csak a felhasznalonak valo megjelenites miatt!
+	 * @return A lista ami tartalmazza az osszes sint.
+	 */
 	public List<Railway> getNeighbours () {
 		List<Railway> result = new ArrayList<Railway>();
 		result.addAll(ThisNeighbour);
@@ -145,6 +149,11 @@ public class Railway extends MetaData{
 		return result;
 	}
 	
+	/**
+	 * Kitorol egy szomszedos sint.
+	 * @param tbDeleted A sin amit torolni akarunk.
+	 * @return Sikeres volt-e(csak a felhasznaloi visszajelzes miatt).
+	 */
 	public boolean deleteNeighbour (Railway tbDeleted) {
 		boolean result = ThisNeighbour.remove(tbDeleted);
 		if (result == false) ThatNeighbour.remove(tbDeleted);
