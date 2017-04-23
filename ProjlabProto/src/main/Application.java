@@ -17,6 +17,8 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import graphics.GameFrame;
+
 
 public class Application {
 
@@ -138,6 +140,14 @@ public class Application {
 		commands.add(new CmdClearTable());
 		commands.add(new CmdExit());
 	
+		/*
+		 * Egy egyelore semmmire se jo grafikus felulet letrehozasa, majd ki kell torolni ezt a reszt
+		 */
+		GameFrame gameFrame = new GameFrame();
+		gameFrame.setVisible(true);
+		
+		
+		
 		/**
 		 * A hurok megnezi, hogy letezik-e az elso szoban megadott parancs, ha nem akkor osszefuzi azt a masodik szoval
 		 * es ujra megnezi, mert akadnak ket szavas parameterek. Ezek miatt ket parameter elso szava nem egyezhet meg, ha az egyik egy szavas.
