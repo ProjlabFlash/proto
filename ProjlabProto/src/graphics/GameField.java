@@ -15,4 +15,5 @@ public class GameField extends JPanel {
 	
 		this.setBackground(Color.LIGHT_GRAY);
 	}
+	
 }
