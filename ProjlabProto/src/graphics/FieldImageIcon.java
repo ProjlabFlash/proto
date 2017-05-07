@@ -1,9 +1,7 @@
 package graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.awt.Image;
-
 import javax.swing.*;
 import main.*;
 
@@ -12,8 +10,8 @@ public class FieldImageIcon extends ImageIcon{
 	
 	protected static Image NullImage;
 	protected static Image TunnelImage;
-	private static ArrayList<Image> SelectedPair =new ArrayList<Image>();
-	private static ArrayList<Image> UnselectedPair =new ArrayList<Image>();
+	private static ArrayList<Image> SelectedPair = new ArrayList<Image>();
+	private static ArrayList<Image> UnselectedPair = new ArrayList<Image>();
 
 	protected Image CurrentImage;
 	protected Image DefaultImage;
@@ -40,6 +38,7 @@ public class FieldImageIcon extends ImageIcon{
 		if(isSelected)
 		{
 			if(!SelectedPair.contains(CurrentImage))
+				if(FieldObject != null)
 					CurrentImage = SelectedPair.get(UnselectedPair.indexOf(CurrentImage));
 		}
 		if (!isSelected)
@@ -57,10 +56,12 @@ public class FieldImageIcon extends ImageIcon{
 	{
 		this.setImage(SwitchImages.get(thisPosition));
 	}
-	public Railway getFieldObject() {
+	public Railway getFieldObject() 
+	{
 		return FieldObject;
 	}
-	public void defaultImage() {
+	public void defaultImage() 
+	{
 		this.setImage(DefaultImage);		
 	}
 	
