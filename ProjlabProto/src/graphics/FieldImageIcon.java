@@ -8,19 +8,24 @@ import javax.swing.*;
 import main.*;
 
 public class FieldImageIcon extends ImageIcon{
-	private Railway FieldObject;
-	private static Image NullImage;
-	private static Image TunnelImage;
-	private Image CurrentImage;
+	protected Railway FieldObject;
+	
+	protected static Image NullImage;
+	protected static Image TunnelImage;
+	private static ArrayList<Image> SelectedPair =new ArrayList<Image>();
+	private static ArrayList<Image> UnselectedPair =new ArrayList<Image>();
+
+	protected Image CurrentImage;
+	protected Image DefaultImage;
 	private HashMap<Railway, Image> SwitchImages;
-	private ArrayList<Image> ReplacementImages;
+
 	
 	public FieldImageIcon(){
-		ReplacementImages = new ArrayList<Image>();
+		//2do wtf happened several times
 		SwitchImages = new HashMap<Railway, Image>();
 	}
 	public FieldImageIcon(Image i){
-		ReplacementImages = new ArrayList<Image>();
+		//2do wtf happened several times
 		SwitchImages = new HashMap<Railway, Image>();
 		CurrentImage = i;
 		this.setImage(i);
@@ -29,26 +34,19 @@ public class FieldImageIcon extends ImageIcon{
 	{
 		return FieldObject;
 	}
-	public void setVisible(boolean isVisible)
-	{
-		if(isVisible)
-			this.setImage(ReplacementImages.get(0));
-		if(!isVisible)
-			this.setImage(NullImage);
-	}
+	
 	public void setSelected(boolean isSelected)
 	{
 		if(isSelected)
 		{
-			if(ReplacementImages.indexOf(CurrentImage) % 2 != 0)
-				if(ReplacementImages.indexOf(CurrentImage) != 0)
-					this.setImage(ReplacementImages.get(ReplacementImages.indexOf(CurrentImage)+1));
+			if(!SelectedPair.contains(CurrentImage))
+					CurrentImage = SelectedPair.get(UnselectedPair.indexOf(CurrentImage));
 		}
-		if(!isSelected)
+		if (!isSelected)
 		{
-			if(ReplacementImages.indexOf(CurrentImage) % 2 == 0)
-				if(ReplacementImages.indexOf(CurrentImage) != 0)
-					this.setImage(ReplacementImages.get(ReplacementImages.indexOf(CurrentImage)-1));
+
+			if(SelectedPair.contains(CurrentImage))
+					CurrentImage = UnselectedPair.get(SelectedPair.indexOf(CurrentImage));
 		}
 	}
 	public void build()
