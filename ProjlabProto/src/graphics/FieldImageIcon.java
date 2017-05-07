@@ -57,4 +57,7 @@ public class FieldImageIcon extends ImageIcon{
 	{
 		this.setImage(SwitchImages.get(thisPosition));
 	}
+	public Railway getFieldObject() {
+		return FieldObject;
+	}
 }
