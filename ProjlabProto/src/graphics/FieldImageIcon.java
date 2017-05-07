@@ -60,4 +60,8 @@ public class FieldImageIcon extends ImageIcon{
 	public Railway getFieldObject() {
 		return FieldObject;
 	}
+	public void defaultImage() {
+		this.setImage(DefaultImage);		
+	}
+	
 }
