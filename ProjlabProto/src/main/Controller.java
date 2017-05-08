@@ -94,20 +94,10 @@ public class Controller {
 	private static boolean isRunning = true;
 	
 	/**
-	 * A program fo hurka. Az aktualis bemenetrol olvas, es soronkent osszeveti a parancsok listajaval.
-	 * Amelyiknel egyezest tlal, azt meghivja. Egy sorra, csak egy parancs hivodik.
-	 * 
-	 * @param args: Nem hasznalt
+	 * A parancsokat magaba foglalo lista.
 	 */
-	public static void main(String[] args) {
-		
-		targetOS = stdoutWriter = System.out;
-		targetIS = stdinReader = new BufferedReader(new InputStreamReader(System.in));
-		
-		/**
-		 * A parancsokat magaba foglalo lista.
-		 */
-		List<CommandBase> commands = new ArrayList<CommandBase> ();
+	private static List<CommandBase> commands = new ArrayList<CommandBase> ();
+	static {
 		commands.add(new CmdSwitchInput());
 		commands.add(new CmdSwitchOutput());
 		commands.add(new CmdAddRail());
@@ -139,14 +129,21 @@ public class Controller {
 		commands.add(new CmdExploreSwitch());
 		commands.add(new CmdClearTable());
 		commands.add(new CmdExit());
+	}
 	
-		/*
-		 * Egy egyelore semmmire se jo grafikus felulet letrehozasa, majd ki kell torolni ezt a reszt
-		 */
-		GameFrame gameFrame = new GameFrame();
-		gameFrame.setVisible(true);
+	/**
+	 * A program fo hurka. Az aktualis bemenetrol olvas, es soronkent osszeveti a parancsok listajaval.
+	 * Amelyiknel egyezest tlal, azt meghivja. Egy sorra, csak egy parancs hivodik.
+	 * 
+	 * @param args: Nem hasznalt
+	 */
+	
+	
+
+	public static void executeFromInput(String[] args) {
 		
-		
+		targetOS = stdoutWriter = System.out;
+		targetIS = stdinReader = new BufferedReader(new InputStreamReader(System.in));
 		
 		/**
 		 * A hurok megnezi, hogy letezik-e az elso szoban megadott parancs, ha nem akkor osszefuzi azt a masodik szoval
@@ -191,6 +188,31 @@ public class Controller {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * Egyetlen parancs végrehajtására szolgáló folyamat
+	 * @param cmd
+	 */
+	public void execute(String cmd) {
+		String[] params = cmd.split(" ");
+		
+		for (int i = 0; i < commands.size(); i++)
+			if (commands.get(i).cmdName.equals(params[0])) {
+				commands.get(i).execute(params);
+			}
+		
+		if (params.length == 1)
+			System.out.println("A parancs nem felismerheto!");
+		
+		String newcmd = params[0] + " " + params[1];
+		
+		for (int i = 0; i < commands.size(); i++)
+			if (commands.get(i).cmdName.equals(newcmd)) {
+				commands.get(i).execute(params);
+			}
+		
+		System.out.println("A parancs nem felismerheto!");
 	}
 
 	/**

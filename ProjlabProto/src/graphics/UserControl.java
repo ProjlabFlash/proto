@@ -1,6 +1,8 @@
 package graphics;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -30,6 +32,9 @@ public class UserControl extends JPanel {
 		DestroyTunnel_Button.setBounds(110, 0, 120, 30);
 		SwitchPerform_Button.setBounds(230, 0, 80, 30);
 		
+		//TODO másik kettő
+		BuildTunnel_Button.addActionListener(new buttonTunnelListener());
+		
 	}
 	
 	public void PerformBuildTunnel(BuildingSpot buildingSpot1, BuildingSpot buildingSpot2)
@@ -44,19 +49,27 @@ public class UserControl extends JPanel {
 	{
 		gf.removeTunnel();
 	}
+	
+	private class buttonTunnelListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	//TODO Átírni rendesen vagy úgy mint fent
 	public void actionPerformed(ActionEvent ae)
 	{
 		if(ae.getSource() == BuildTunnel_Button)
 		{
-			//2do
 		}
 		if(ae.getSource() == DestroyTunnel_Button)
 		{
-			//2do
 		}
 		if(ae.getSource() == SwitchPerform_Button)
 		{
-			//2do
 		}
 	}
 }	

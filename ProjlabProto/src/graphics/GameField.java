@@ -1,6 +1,7 @@
 package graphics;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JPanel;
@@ -58,6 +59,8 @@ public class GameField extends JPanel {
 			if (!SelectedItems[i].refObj.contains("sb"))
 				return;
 		//TODO építés megcsinálása
+		//buildingspots[0].build();
+		//buildingspots[1].build();
 	}
 	public void removeTunnel()
 	{
@@ -72,6 +75,19 @@ public class GameField extends JPanel {
 		//FieldImageIcon switchTo[] = getSelectedItems();
 		//switchTo[0].switchTo(switchTo[2].getFieldObject());
 	}
-	
-	//TODO pályaparser
+	/**
+	 * A teljes pálya kirajzolása
+	 * @param g
+	 */
+	public void paintField (Graphics g) {
+		
+		for (Tile tileRow[] : gameMatrix) {
+			for (Tile tile : tileRow) {
+				if (tile != null)
+					tile.paintTile(g);
+			}
+		}
+		
+		//TODO mozgó elemek kirajzolása
+	}
 }

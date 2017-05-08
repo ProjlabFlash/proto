@@ -69,7 +69,7 @@ public class Cart extends MovingObject {
 		}
 		if(c.equals(Color.FELSZALLTAK))
 		{
-			Application.sendMessage("Az mcn kocsira felszalltak az utasok!", this);
+			Controller.sendMessage("Az mcn kocsira felszalltak az utasok!", this);
 			return true;
 		}
 		if(c.equals(this.color))
@@ -77,7 +77,7 @@ public class Cart extends MovingObject {
 			if(Passengers)
 			{
 				this.leaveTheTrain(station);
-				Application.sendMessage("Az mcn kocsibol leszalltak az utasok!", this);
+				Controller.sendMessage("Az mcn kocsibol leszalltak az utasok!", this);
 				if(Pulls != null) 
 				{
 					Pulls.colorCheck(station);
