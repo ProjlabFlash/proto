@@ -10,6 +10,9 @@ import javax.swing.*;
 import main.*;
 
 public class FieldImageIcon extends ImageIcon{
+
+	private static final long serialVersionUID = -5672822214797671703L;
+	
 	protected Railway FieldObject;
 	protected String filename;
 	protected static Image TunnelImage;
@@ -24,11 +27,24 @@ public class FieldImageIcon extends ImageIcon{
 		//2do wtf happened several times
 		SwitchImages = new HashMap<String, Image>();
 	}
-	public FieldImageIcon(String file) throws IOException
+	
+	private File getAbsolutePath(String relativePath) {
+		File file = new File(System.getProperty("user.dir"));
+		file = new File(file, "images");
+		String[] pathParts = relativePath.split("\\\\");
+		for (int i = 0; i < pathParts.length; i++)
+			file = new File(file, pathParts[i]);
+		return file;
+	}
+	public FieldImageIcon(String filepath) throws IOException
 	{
-		Image i = ImageIO.read(new File(file));
+		File file = this.getAbsolutePath(filepath);
+		filepath = file.getAbsolutePath();
+		
+		Image i = ImageIO.read(file);
 		this.setImage(i);
-		String fileparts[] = file.split(".");
+		String fileparts[] = filepath.split(".");
+		if (fileparts.length == 0) return;
 		filename = fileparts[0];
 		DefaultImage = i;
 		UnselectedPair.add(i);
@@ -42,18 +58,22 @@ public class FieldImageIcon extends ImageIcon{
 			
 		}		
 	}
-	public FieldImageIcon(String file, String names[], String path[]) throws IOException{
-		this(file);
+	public FieldImageIcon(String filepath, String names[], String path[]) throws IOException{
+		this(filepath);
 		int n = names.length;
 		try
 		{
 		for(int i = 0; i <n; i++)
 		{
-			Image insert = ImageIO.read(new File(path[i]));
+			
+			File file = this.getAbsolutePath(path[i]);
+			String filename = file.getAbsolutePath();
+			
+			Image insert = ImageIO.read(file);
 			UnselectedPair.add(insert);
-			String fileparts[] = path[i].split(".");
-			filename = fileparts[0];
-			Image selected = ImageIO.read(new File(filename + "_active.png"));
+			String fileparts[] = filename.split(".");
+			if (fileparts.length == 0) continue;
+			Image selected = ImageIO.read(new File(fileparts[0] + "_active.png"));
 			SelectedPair.add(selected);	
 			SwitchImages.put(names[i], insert);
 		}

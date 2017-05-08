@@ -12,6 +12,8 @@ import main.Railway;
 
 public class UserControl extends JPanel {
 	
+	private static final long serialVersionUID = 5224795428898415728L;
+	
 	private JButton BuildTunnel_Button;
 	private JButton DestroyTunnel_Button;
 	private JButton SwitchPerform_Button;
@@ -76,12 +78,9 @@ public class UserControl extends JPanel {
 	}
 	
 	@Override
-	public Dimension getMinimumSize() {
-		return new Dimension(300,30);
-	}
-	
+	public Dimension getMinimumSize() { return new Dimension(300,30);}
 	@Override
-	public Dimension getPreferredSize() {
-		return new Dimension(500,30);
-	}
+	public Dimension getPreferredSize() { return new Dimension(700,30);}
+	@Override
+	public Dimension getMaximumSize() { return new Dimension(50000,30);}
 }	

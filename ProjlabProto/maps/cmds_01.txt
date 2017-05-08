@@ -1,0 +1,104 @@
+clearTable
+add rail
+add rail ss1
+add rail ss2
+add rail ss3
+add rail ss4
+add rail ss5
+add rail ss6
+add rail ss7
+add rail
+add rail ss9
+add rail ss10
+add rail ss11
+add rail ss12
+add rail ss13
+add rail
+add rail ss15
+add rail ss16
+add rail ss17
+add rail ss18
+add rail ss19
+add rail ss20
+add rail ss21
+add rail
+add rail
+add rail ss24
+add rail ss25
+add rail
+add rail
+add rail ss28
+add rail ss29
+add rail ss30
+add rail ss31
+add rail ss32
+add rail ss33
+add rail ss34
+add rail ss35
+add rail ss36
+add rail
+add rail ss38
+add rail ss39
+add rail
+add rail
+add rail ss42
+add rail ss43
+add rail
+add rail
+add rail ss46
+add rail
+add rail ss48
+add rail ss49
+add rail ss50
+add rail ss51
+add rail ss52
+add rail ss53
+add rail ss54
+add rail
+add rail ss56
+add rail ss57
+add rail ss58
+add rail ss59
+add rail ss60
+add rail ss61
+add rail ss62
+add rail ss63
+add rail ss64
+add rail ss65
+add rail ss66
+add rail ss67
+add rail ss68
+add rail ss69
+add rail ss70
+add rail ss71
+add rail ss72
+add rail ss73
+add rail
+add rail ss75
+add rail ss76
+add rail ss77
+add rail ss78
+add rail ss79
+add rail ss80
+add rail ss81
+add rail ss82
+add rail ss83
+add rail ss84
+add rail ss85
+add rail
+add rail
+add rail ss88
+add rail ss89
+add rail
+add rail ss91
+add rail
+add rail ss93
+add rail ss94
+add rail
+add rail
+add rail ss97
+add rail
+add rail ss99
+add rail ss100
+add switch ss35
+exit

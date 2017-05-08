@@ -1,8 +1,13 @@
 package graphics;
 
 import java.awt.Container;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
@@ -19,20 +24,49 @@ public class GameFrame extends JFrame {
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		contentPane.add(userControl);
 		contentPane.add(canvas);
-		field = new GameField();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		File imgFile = new File (System.getProperty("user.dir"));
+		imgFile = new File (imgFile, "images");
+		imgFile = new File (imgFile, "Background");
+		imgFile = new File (imgFile, "background.png");
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(imgFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		field = new GameField(img);
 	}
 	
 	public UserControl userControl;
 	public GameField field;
 	public GameCanvas canvas;
 	public Controller controller;
-
+	private static List<LevelDescriber> levels = new ArrayList<LevelDescriber>();
 	
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) {
 
-		GameFrame frame = new GameFrame();
+		frame = new GameFrame();
 
 		frame.pack();
 		frame.setVisible(true);
+		
+		levels.add(new LevelDescriber(1, "coords_01.txt", "cmds_01.txt"));
+		frame.loadLevel(1);
 	}
+
+	private void loadLevel(int i) {
+		
+		LevelDescriber ld = levels.get(i - 1);
+		Controller.executeFromInput(ld.cmdsFile);
+		field.clearField();
+		try {
+			field.mapParser(ld.coordsFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

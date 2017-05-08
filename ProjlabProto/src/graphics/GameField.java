@@ -2,20 +2,24 @@ package graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
+import java.awt.Image;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 import javax.swing.JPanel;
 
 public class GameField extends JPanel {
 
+	private static final long serialVersionUID = 2437682713821930938L;
 	private Tile SelectedItems[];
 	private Tile gameMatrix[][];
-	public GameField() {
+	private Image backgroundImage;
+	private Tile builtTunnelTiles[];
+	
+	public GameField(Image backgroundImage) {
 		
 		
 		this.setLayout(null);
@@ -24,10 +28,18 @@ public class GameField extends JPanel {
 		this.setBackground(Color.LIGHT_GRAY);
 		
 		SelectedItems = new Tile[2];
+		builtTunnelTiles = new Tile[2];
+		gameMatrix = new Tile[35][35];
+	
+		if (backgroundImage == null)
+			System.out.println("A háttérkép nem található!");
+		
+		this.backgroundImage = backgroundImage;
 	}
 	
 	public void select(int xCoord, int yCoord)
 	{
+		System.out.println(xCoord + "  " + yCoord);
 		
 		Tile selected = gameMatrix[xCoord / 20][yCoord / 20];
 		
@@ -44,11 +56,11 @@ public class GameField extends JPanel {
 		}
 		else if((SelectedItems[0] != null && SelectedItems[1] != null) || selected == null)
 		{
-			SelectedItems[0].setSelected(false);
-			SelectedItems[1].setSelected(false);
+			if (SelectedItems[0] != null) SelectedItems[0].setSelected(false);
+			if (SelectedItems[1] != null) SelectedItems[1].setSelected(false);
 			SelectedItems[0] = selected;
 			SelectedItems[1] = null;
-			SelectedItems[0].setSelected(true);
+			if (SelectedItems[0] != null) SelectedItems[0].setSelected(true);
 		}
 	}
 	/**
@@ -61,19 +73,29 @@ public class GameField extends JPanel {
 	public void buildTunnel()
 	{
 		for (int i = 0; i < 2; i++)
-			if (!SelectedItems[i].refObj.contains("sb"))
+			if (SelectedItems[i] == null || !SelectedItems[i].refObj.contains("sb"))
 				return;
 		
 		GameFrame.frame.controller.execute("build tunnel " + SelectedItems[0].refObj + " " + SelectedItems[1].refObj);
 		SelectedItems[0].build();
 		SelectedItems[1].build();
+		
+		builtTunnelTiles[0] = SelectedItems[0];
+		builtTunnelTiles[1] = SelectedItems[1];
 	}
 	public void removeTunnel()
 	{
+		if (builtTunnelTiles[0] == null)
+			return;
+		
 		GameFrame.frame.controller.execute("destroy tunnel");
-		SelectedItems[0].defaultImage();
-		SelectedItems[1].defaultImage();
+		builtTunnelTiles[0].defaultImage();
+		builtTunnelTiles[1].defaultImage();
+		
+		builtTunnelTiles[0] = null;
+		builtTunnelTiles[1] = null;
 	}
+	
 	public void switchTo()
 	{
 		//TODO vegbemegy-e a valtas
@@ -85,6 +107,8 @@ public class GameField extends JPanel {
 	 * @param g
 	 */
 	public void paintField (Graphics g) {
+
+		g.drawImage(backgroundImage, 0, 0, null);
 		
 		for (Tile tileRow[] : gameMatrix) {
 			for (Tile tile : tileRow) {
@@ -95,14 +119,22 @@ public class GameField extends JPanel {
 		
 		//TODO mozgó elemek kirajzolása
 	}
-	public void mapParser(String file) throws IOException
+	
+	public void clearField() {
+		SelectedItems = new Tile[2];
+		builtTunnelTiles = new Tile[2];
+		gameMatrix = new Tile[35][35];
+	}
+	
+	public void mapParser(File file) throws IOException
 	{
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			String line = "";
+		
+		String line = "";
+		try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+			
 			while((line = br.readLine()) != null)
 			{
-				String columns[] = line.split(",");
+				String columns[] = line.split(" ");
 				int x = Integer.parseInt(columns[1]);
 				int y = Integer.parseInt(columns[2]);
 				if (columns.length == 4)
@@ -124,14 +156,8 @@ public class GameField extends JPanel {
 				}
 			}
 			
-			
-			
-			
-			
-			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(line);
 		}
 		
 	}

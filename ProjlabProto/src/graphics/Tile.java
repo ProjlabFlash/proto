@@ -1,7 +1,6 @@
 package graphics;
 
 import java.awt.Graphics;
-import java.awt.Image;
 
 public class Tile {
 
@@ -18,8 +17,7 @@ public class Tile {
 	}
 	
 	public void paintTile(Graphics g) {
-		Image img = null; //TODO kép betöltése.
-		g.drawImage(img, xCoord * 16, yCoord * 16, 16, 16, null);
+		image.paintIcon(GameFrame.frame.canvas, g, xCoord * 20, yCoord * 20);
 	}
 	
 	public void setSelected(boolean b) {

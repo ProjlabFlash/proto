@@ -17,16 +17,14 @@ public class GameCanvas extends JPanel{
 		addMouseListener(new gamecanvasMouseListener());
 	}
 
-	public Dimension getPreferredSize() {
-		return new Dimension(250,200);
-	}
+	public Dimension getPreferredSize() { return new Dimension(700,700);}
 	
-	public Dimension getMinimumSize() {
-		return new Dimension(200,200);
-	}
+	public Dimension getMinimumSize() { return new Dimension(700,700);}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		System.out.println(GameFrame.frame);
+		GameFrame.frame.field.paintField(g);
 	}
 	private class gamecanvasMouseListener implements MouseListener
 	{

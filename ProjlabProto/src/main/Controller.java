@@ -142,11 +142,27 @@ public class Controller {
 	
 	
 
-	public static void executeFromInput(String[] args) {
+	public static void executeFromInput(File file) {
 		
 		targetOS = stdoutWriter = System.out;
-		targetIS = stdinReader = new BufferedReader(new InputStreamReader(System.in));
+		//targetIS = stdinReader = new BufferedReader(new InputStreamReader(System.in));
 		
+		try {
+
+			if (fileReader != null)
+				fileReader.close();
+			if (!file.isFile()) throw new FileNotFoundException();
+			
+			fileReader = new FileInputStream(file);
+			targetIS = new BufferedReader(new InputStreamReader(fileReader, "UTF-8"));
+
+		}  catch (FileNotFoundException e) {
+			targetOS.println("A megadott fajl nem talalhato");
+			targetOS.println(file.getAbsolutePath());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		/**
 		 * A hurok megnezi, hogy letezik-e az elso szoban megadott parancs, ha nem akkor osszefuzi azt a masodik szoval
 		 * es ujra megnezi, mert akadnak ket szavas parameterek. Ezek miatt ket parameter elso szava nem egyezhet meg, ha az egyik egy szavas.
