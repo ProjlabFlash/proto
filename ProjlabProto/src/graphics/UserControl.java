@@ -34,6 +34,8 @@ public class UserControl extends JPanel {
 		
 		//TODO másik kettő
 		BuildTunnel_Button.addActionListener(new buttonTunnelListener());
+		DestroyTunnel_Button.addActionListener(new buttonTunnelDestroyListener());
+		SwitchPerform_Button.addActionListener(new buttonSwitchListener());
 		
 	}
 	
@@ -54,22 +56,22 @@ public class UserControl extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			GameFrame.frame.field.buildTunnel();
 		}
 		
 	}
-	//TODO Átírni rendesen vagy úgy mint fent
-	public void actionPerformed(ActionEvent ae)
-	{
-		if(ae.getSource() == BuildTunnel_Button)
-		{
-		}
-		if(ae.getSource() == DestroyTunnel_Button)
-		{
-		}
-		if(ae.getSource() == SwitchPerform_Button)
-		{
-		}
+	private class buttonTunnelDestroyListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			GameFrame.frame.field.removeTunnel();
+		}		
+	}
+	private class buttonSwitchListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			GameFrame.frame.field.switchTo();
+		}		
 	}
 }	
