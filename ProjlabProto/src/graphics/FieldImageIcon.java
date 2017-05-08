@@ -15,16 +15,16 @@ public class FieldImageIcon extends ImageIcon{
 
 	protected Image CurrentImage;
 	protected Image DefaultImage;
-	private HashMap<Railway, Image> SwitchImages;
+	private HashMap<String, Image> SwitchImages;
 
 	
 	public FieldImageIcon(){
 		//2do wtf happened several times
-		SwitchImages = new HashMap<Railway, Image>();
+		SwitchImages = new HashMap<String, Image>();
 	}
 	public FieldImageIcon(Image i){
 		//2do wtf happened several times
-		SwitchImages = new HashMap<Railway, Image>();
+		SwitchImages = new HashMap<String, Image>();
 		CurrentImage = i;
 		this.setImage(i);
 	}
