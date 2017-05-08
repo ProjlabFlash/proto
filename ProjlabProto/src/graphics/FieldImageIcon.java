@@ -11,12 +11,10 @@ import main.*;
 
 public class FieldImageIcon extends ImageIcon{
 	protected Railway FieldObject;
-	
-	protected static Image NullImage;
+	protected String filename;
 	protected static Image TunnelImage;
 	private static ArrayList<Image> SelectedPair = new ArrayList<Image>();
 	private static ArrayList<Image> UnselectedPair = new ArrayList<Image>();
-
 	protected Image CurrentImage;
 	protected Image DefaultImage;
 	private HashMap<String, Image> SwitchImages;
@@ -30,25 +28,54 @@ public class FieldImageIcon extends ImageIcon{
 	{
 		Image i = ImageIO.read(new File(file));
 		this.setImage(i);
+		String fileparts[] = file.split(".");
+		filename = fileparts[0];
+		DefaultImage = i;
+		UnselectedPair.add(i);
+		try
+		{
+			Image selected = ImageIO.read(new File(file + "_active.png"));
+			SelectedPair.add(selected);
+		}
+		catch(IOException e)
+		{
+			
+		}		
 	}
-	public FieldImageIcon(Image i){
-		//2do wtf happened several times
-		SwitchImages = new HashMap<String, Image>();
-		CurrentImage = i;
-		this.setImage(i);
+	public FieldImageIcon(String file, String names[], String path[]) throws IOException{
+		this(file);
+		int n = names.length;
+		try
+		{
+		for(int i = 0; i <n; i++)
+		{
+			Image insert = ImageIO.read(new File(path[i]));
+			UnselectedPair.add(insert);
+			String fileparts[] = path[i].split(".");
+			filename = fileparts[0];
+			Image selected = ImageIO.read(new File(filename + "_active.png"));
+			SelectedPair.add(selected);	
+			SwitchImages.put(names[i], insert);
+		}
+		
+		}
+		catch(IOException e)
+		{
+			
+		}
 	}
 	public Railway getObject()
 	{
 		return FieldObject;
 	}
 	
-	public void setSelected(boolean isSelected)
+	public void setSelected(boolean isSelected) throws IndexOutOfBoundsException
 	{
 		if(isSelected)
 		{
 			if(!SelectedPair.contains(CurrentImage))
-				if(FieldObject != null)
-					CurrentImage = SelectedPair.get(UnselectedPair.indexOf(CurrentImage));
+					if(FieldObject != null)
+						CurrentImage = SelectedPair.get(UnselectedPair.indexOf(CurrentImage));
 		}
 		if (!isSelected)
 		{
@@ -73,5 +100,8 @@ public class FieldImageIcon extends ImageIcon{
 	{
 		this.setImage(DefaultImage);		
 	}
-	
+	public void setFieldObject(Railway r)
+	{
+		FieldObject = r;
+	}
 }
