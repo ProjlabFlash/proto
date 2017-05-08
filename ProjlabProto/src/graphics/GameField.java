@@ -58,16 +58,16 @@ public class GameField extends JPanel {
 		for (int i = 0; i < 2; i++)
 			if (!SelectedItems[i].refObj.contains("sb"))
 				return;
-		//TODO építés megcsinálása
-		//buildingspots[0].build();
-		//buildingspots[1].build();
+		
+		GameFrame.frame.controller.execute("build tunnel " + SelectedItems[0].refObj + " " + SelectedItems[1].refObj);
+		SelectedItems[0].build();
+		SelectedItems[1].build();
 	}
 	public void removeTunnel()
 	{
-		//TODO van-e kesz tunnel
-		//FieldImageIcon restores[] = getSelectedItems();
-		//restores[0].defaultImage();
-		//restores[1].defaultImage();
+		GameFrame.frame.controller.execute("destroy tunnel");
+		SelectedItems[0].defaultImage();
+		SelectedItems[1].defaultImage();
 	}
 	public void switchTo()
 	{

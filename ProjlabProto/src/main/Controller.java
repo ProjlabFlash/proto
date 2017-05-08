@@ -131,6 +131,8 @@ public class Controller {
 		commands.add(new CmdExit());
 	}
 	
+	private static Object syncObj = new Object();
+	
 	/**
 	 * A program fo hurka. Az aktualis bemenetrol olvas, es soronkent osszeveti a parancsok listajaval.
 	 * Amelyiknel egyezest tlal, azt meghivja. Egy sorra, csak egy parancs hivodik.
@@ -166,7 +168,9 @@ public class Controller {
 				
 				for (int i = 0; i < commands.size(); i++)
 					if (commands.get(i).cmdName.equals(params[0])) {
-						commands.get(i).execute(params);
+						synchronized (syncObj) {
+							commands.get(i).execute(params);
+						}
 						continue mainloop;
 					}
 				
@@ -179,7 +183,9 @@ public class Controller {
 				
 				for (int i = 0; i < commands.size(); i++)
 					if (commands.get(i).cmdName.equals(newcmd)) {
-						commands.get(i).execute(params);
+						synchronized (syncObj) {
+							commands.get(i).execute(params);
+						}
 						continue mainloop;
 					}
 				
@@ -1950,7 +1956,9 @@ public class Controller {
 		public void run() {
 			targetOS.println("A "+ key +" vonat mozgatasa "+ getStringForRail(loco.CurrentRailwaySegment) +" sinrol "+ 
 					getStringForRail(loco.CurrentRailwaySegment.next(loco.PreviousRailwaySegment)) +" sinre.");
-			loco.move();
+			synchronized (syncObj) {
+				loco.move();
+			}
 			myTimer.schedule(new MyTask(loco, key, myTimer), (60 / loco.Speed) * 1000);
 		}
 	}

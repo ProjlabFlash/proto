@@ -23,10 +23,7 @@ public class GameCanvas extends JPanel{
 	}
 
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g);       
-
-	    	// Draw Text
-		g.drawString("This is my custom Panel!",10,20); 
+		super.paintComponent(g);
 	}
 
 }

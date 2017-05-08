@@ -25,4 +25,12 @@ public class Tile {
 	public void setSelected(boolean b) {
 		image.setSelected(true);
 	}
+	
+	public void build() {
+		image.build();
+	}
+
+	public void defaultImage() {
+		image.defaultImage();
+	}
 }
