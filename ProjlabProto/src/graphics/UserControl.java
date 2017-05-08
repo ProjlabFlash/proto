@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,7 +33,6 @@ public class UserControl extends JPanel {
 		DestroyTunnel_Button.setBounds(110, 0, 120, 30);
 		SwitchPerform_Button.setBounds(230, 0, 80, 30);
 		
-		//TODO másik kettő
 		BuildTunnel_Button.addActionListener(new buttonTunnelListener());
 		DestroyTunnel_Button.addActionListener(new buttonTunnelDestroyListener());
 		SwitchPerform_Button.addActionListener(new buttonSwitchListener());
@@ -73,5 +73,15 @@ public class UserControl extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			GameFrame.frame.field.switchTo();
 		}		
+	}
+	
+	@Override
+	public Dimension getMinimumSize() {
+		return new Dimension(300,30);
+	}
+	
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(500,30);
 	}
 }	
