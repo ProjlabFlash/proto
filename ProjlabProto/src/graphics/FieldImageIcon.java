@@ -2,6 +2,10 @@ package graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import main.*;
 
@@ -21,6 +25,11 @@ public class FieldImageIcon extends ImageIcon{
 	public FieldImageIcon(){
 		//2do wtf happened several times
 		SwitchImages = new HashMap<String, Image>();
+	}
+	public FieldImageIcon(String file) throws IOException
+	{
+		Image i = ImageIO.read(new File(file));
+		this.setImage(i);
 	}
 	public FieldImageIcon(Image i){
 		//2do wtf happened several times

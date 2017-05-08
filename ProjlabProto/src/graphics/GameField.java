@@ -3,6 +3,11 @@ package graphics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.JPanel;
 
@@ -89,5 +94,30 @@ public class GameField extends JPanel {
 		}
 		
 		//TODO mozgó elemek kirajzolása
+	}
+	public void mapParser(String file) throws IOException
+	{
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = "";
+			while((line = br.readLine()) != null)
+			{
+				String columns[] = line.split(",");
+				int x = Integer.parseInt(columns[1]);
+				int y = Integer.parseInt(columns[2]);
+				Tile newTile = new Tile(columns[0],new FieldImageIcon(columns[3]),x,y);
+				gameMatrix[x][y] = newTile;
+			}
+			
+			
+			
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
