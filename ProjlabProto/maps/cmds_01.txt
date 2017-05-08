@@ -1,4 +1,3 @@
-clearTable
 add rail
 add rail ss1
 add rail ss2
@@ -100,5 +99,260 @@ add rail ss97
 add rail
 add rail ss99
 add rail ss100
-add switch ss35
+add rail
+add rail
+add rail
+add rail ss104
+add rail ss105
+add rail ss106
+add rail ss107
+add rail ss108
+add rail ss109
+add rail ss110
+add rail ss111
+add rail ss112
+add rail ss113
+add rail ss114
+add rail ss115
+add rail ss116
+add rail ss117
+add rail ss118
+add rail ss119
+add rail ss120
+add rail
+add rail
+add rail ss123
+add rail ss124
+add rail ss125
+add rail ss126
+add rail ss127
+add rail ss128
+add rail ss129
+add rail ss130
+add rail ss131
+add rail ss132
+add rail ss133
+add rail ss134
+add rail ss135
+add rail ss136
+add rail ss137
+add rail ss138
+add rail ss139
+add rail
+add rail ss141
+add rail ss142
+add rail ss143
+add rail
+add rail ss145
+add rail
+add rail ss147
+add rail ss148
+add rail ss149
+add rail ss150
+add rail
+add rail ss152
+add rail ss153
+add rail ss154
+add rail ss155
+add rail
+add rail ss157
+add rail ss158
+add rail ss159
+add rail ss160
+add rail
+add rail ss162
+add rail ss163
+add rail ss164
+add rail ss165
+add rail ss166
+add rail ss167
+add rail ss168
+add rail ss169
+add rail ss170
+add rail ss171
+add rail ss172
+add rail ss173
+add rail
+add rail ss175
+add rail ss176
+add rail ss177
+add rail ss178
+add rail ss179
+add rail ss180
+add rail ss181
+add rail ss182
+add rail ss183
+add rail ss184
+add rail ss185
+add rail ss186
+add rail ss187
+add rail ss188
+add rail ss189
+add rail ss190
+add rail ss191
+add rail ss192
+add rail
+add rail ss194
+add rail
+add rail ss196
+add rail ss197
+add rail ss198
+add rail ss199
+add rail
+add rail ss201
+add rail ss202
+add rail ss203
+add rail ss204
+add rail ss205
+add rail ss206
+add rail ss207
+add rail
+add rail ss209
+add rail ss210
+add rail ss211
+add rail ss212
+add rail ss213
+add rail ss214
+add rail ss215
+add rail ss216
+add rail
+add rail ss218
+add rail ss219
+add rail ss220
+add rail ss221
+add rail ss222
+add rail
+add rail ss224
+add rail
+add rail
+add rail
+add rail ss228
+add rail ss229
+add rail ss230
+add rail
+add rail ss232
+add rail ss233
+add rail ss234
+add rail ss235
+add rail
+add rail ss237
+add rail ss238
+add rail
+add rail
+add rail ss241
+add rail
+add rail
+add rail ss244
+add rail ss245
+add rail ss246
+add rail ss247
+add rail ss248
+add rail ss249
+add rail ss250
+add rail
+add rail
+add rail ss253
+add rail
+add rail ss255
+add rail
+add rail
+add rail ss258
+add rail ss259
+add rail ss260
+add rail ss261
+add rail ss262
+add rail
+add rail ss264
+add rail ss265
+add rail ss266
+add rail ss267
+add rail ss268
+add rail
+add rail ss270
+add rail ss271
+add rail ss272
+add rail ss273
+add rail ss274
+add rail ss275
+add rail ss276
+add rail ss277
+add rail ss278
+add rail ss279
+add rail ss280
+add rail ss281
+add rail
+add rail ss283
+add rail ss284
+add rail ss285
+add rail ss286
+add rail ss287
+add rail ss288
+add rail ss289
+add rail ss290
+add rail ss291
+add rail ss292
+add rail ss293
+add rail ss294
+add rail ss295
+add rail ss296
+add rail ss297
+add rail ss298
+add rail ss299
+add rail ss300
+add rail ss301
+add rail ss302
+add rail ss303
+add rail ss304
+add rail ss305
+add rail ss306
+add rail ss307
+add rail ss308
+add rail ss309
+add crossing
+connect rail ss122 sc1 1
+connect rail ss152 sc1 1
+connect rail ss144 sc1 2
+connect rail ss147 sc1 2
+add crossing
+connect rail ss151 sc2 1
+connect rail ss175 sc2 1
+connect rail ss156 sc2 2
+connect rail ss157 sc2 2
+add crossing
+connect rail ss174 sc3 1
+connect rail ss201 sc3 1
+connect rail ss193 sc3 2
+connect rail ss194 sc3 2
+add crossing
+connect rail ss200 sc4 1
+connect rail ss218 sc4 1
+connect rail ss208 sc4 2
+connect rail ss209 sc4 2
+add buildingspot
+connect rail sb1 ss74
+connect rail sb1 ss9
+add buildingspot
+connect rail sb2 ss37
+connect rail sb2 ss38
+add buildingspot
+connect rail sb3 ss121
+connect rail sb3 ss122
+add buildingspot
+connect rail sb4 ss140
+connect rail sb4 ss141
+add buildingspot
+connect rail sb5 ss161
+connect rail sb5 ss162
+add buildingspot
+connect rail sb6 ss195
+connect rail sb6 ss196
+add buildingspot
+connect rail sb7 ss263
+connect rail sb7 ss264
+add buildingspot
+connect rail sb8 ss254
+connect rail sb8 ss255
+add buildingspot
+connect rail sb9 ss282
+connect rail sb9 ss283
 exit

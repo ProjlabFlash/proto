@@ -16,8 +16,8 @@ public class FieldImageIcon extends ImageIcon{
 	protected Railway FieldObject;
 	protected String filename;
 	protected static Image TunnelImage;
-	private static ArrayList<Image> SelectedPair = new ArrayList<Image>();
-	private static ArrayList<Image> UnselectedPair = new ArrayList<Image>();
+	private ArrayList<Image> SelectedPair = new ArrayList<Image>();
+	private ArrayList<Image> UnselectedPair = new ArrayList<Image>();
 	protected Image CurrentImage;
 	protected Image DefaultImage;
 	private boolean selected;
@@ -27,6 +27,7 @@ public class FieldImageIcon extends ImageIcon{
 	public FieldImageIcon(){
 		//2do wtf happened several times
 		SwitchImages = new HashMap<String, Image>();
+		
 	}
 	
 	private File getAbsolutePath(String relativePath) {
@@ -44,15 +45,15 @@ public class FieldImageIcon extends ImageIcon{
 		
 		Image i = ImageIO.read(file);
 		this.setImage(i);
-		String fileparts[] = filepath.split(".");
+		String fileparts[] = filepath.split("\\.");
 		if (fileparts.length == 0) return;
 		filename = fileparts[0];
-		DefaultImage = i;
+		CurrentImage = DefaultImage = i;
 		UnselectedPair.add(i);
 		selected = false;
 		try
 		{
-			Image selected = ImageIO.read(new File(file + "_active.png"));
+			Image selected = ImageIO.read(new File(fileparts[0] + "_active.png"));
 			SelectedPair.add(selected);
 		}
 		catch(IOException e)
@@ -73,7 +74,7 @@ public class FieldImageIcon extends ImageIcon{
 			
 			Image insert = ImageIO.read(file);
 			UnselectedPair.add(insert);
-			String fileparts[] = filename.split(".");
+			String fileparts[] = filename.split("\\.");
 			if (fileparts.length == 0) continue;
 			Image selected = ImageIO.read(new File(fileparts[0] + "_active.png"));
 			SelectedPair.add(selected);	
