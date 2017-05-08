@@ -105,8 +105,23 @@ public class GameField extends JPanel {
 				String columns[] = line.split(",");
 				int x = Integer.parseInt(columns[1]);
 				int y = Integer.parseInt(columns[2]);
+				if (columns.length == 4)
+				{
 				Tile newTile = new Tile(columns[0],new FieldImageIcon(columns[3]),x,y);
 				gameMatrix[x][y] = newTile;
+				}
+				if(columns.length > 4)
+				{
+					String paths[] = new String[(columns.length-4) /2];
+					String names[] = new String[(columns.length-4) /2];
+					for(int i = 4, j = 0; i < columns.length; i= i+2, j++)
+					{
+						names[j] =columns[i];
+						paths[j] = columns[i+1];
+					}
+					Tile newTile = new Tile(columns[0],new FieldImageIcon(columns[3],names,paths),x,y);
+					gameMatrix[x][y] = newTile;
+				}
 			}
 			
 			
