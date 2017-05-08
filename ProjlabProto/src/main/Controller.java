@@ -20,7 +20,7 @@ import java.util.TimerTask;
 import graphics.GameFrame;
 
 
-public class Application {
+public class Controller {
 
 	/**
 	 * Csomagolo a konzolos ki-/ es bemenet szamara.
