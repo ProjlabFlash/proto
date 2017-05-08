@@ -28,7 +28,7 @@ public class GameCanvas extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 	}
-	private class gamecanvasMouseListener	implements MouseListener
+	private class gamecanvasMouseListener implements MouseListener
 	{
 		@Override
 		public void mouseClicked(MouseEvent arg) {
@@ -37,25 +37,22 @@ public class GameCanvas extends JPanel{
 
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+			GameFrame.frame.field.select(arg0.getX(), arg0.getY());
 			
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 		
