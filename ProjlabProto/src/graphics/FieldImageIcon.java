@@ -20,6 +20,7 @@ public class FieldImageIcon extends ImageIcon{
 	private static ArrayList<Image> UnselectedPair = new ArrayList<Image>();
 	protected Image CurrentImage;
 	protected Image DefaultImage;
+	private boolean selected;
 	private HashMap<String, Image> SwitchImages;
 
 	
@@ -48,6 +49,7 @@ public class FieldImageIcon extends ImageIcon{
 		filename = fileparts[0];
 		DefaultImage = i;
 		UnselectedPair.add(i);
+		selected = false;
 		try
 		{
 			Image selected = ImageIO.read(new File(file + "_active.png"));
@@ -93,15 +95,28 @@ public class FieldImageIcon extends ImageIcon{
 	{
 		if(isSelected)
 		{
-			if(!SelectedPair.contains(CurrentImage))
-					if(FieldObject != null)
-						CurrentImage = SelectedPair.get(UnselectedPair.indexOf(CurrentImage));
+			if(!selected)
+			{
+				if(UnselectedPair.indexOf(CurrentImage) != -1)
+				{
+					CurrentImage = SelectedPair.get(UnselectedPair.indexOf(CurrentImage));
+					this.setImage(CurrentImage);
+					selected = true;
+				}	
+			}
 		}
 		if (!isSelected)
 		{
 
-			if(SelectedPair.contains(CurrentImage))
+			if(selected)
+			{
+				if(SelectedPair.indexOf(CurrentImage) != -1)
+				{
 					CurrentImage = UnselectedPair.get(SelectedPair.indexOf(CurrentImage));
+					this.setImage(CurrentImage);
+					selected=false;
+				}	
+			}
 		}
 	}
 	public void build()
