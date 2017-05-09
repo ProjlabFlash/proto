@@ -119,7 +119,9 @@ public class FieldImageIcon extends ImageIcon{
 	}
 	public void switchTo(String thisPosition)
 	{
-		this.setImage(SwitchImages.get(thisPosition));
+		CurrentImage= SwitchImages.get(thisPosition);
+		this.setImage(CurrentImage);
+		
 	}
 	public Railway getFieldObject() 
 	{
@@ -127,6 +129,7 @@ public class FieldImageIcon extends ImageIcon{
 	}
 	public void defaultImage() 
 	{
+		CurrentImage = DefaultImage;
 		this.setImage(DefaultImage);		
 	}
 	public void setFieldObject(Railway r)
