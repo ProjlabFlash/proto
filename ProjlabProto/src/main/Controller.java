@@ -286,6 +286,12 @@ public class Controller {
 		targetOS.println(msg);
 	}
 	
+	public static void switchWithObserver(String msg, CommandObserver o) {
+		synchronized (syncObj) {
+			new CmdToggleSwitch().executeWithReport(msg.split(" "), o);
+		}
+	}
+	
 	/**
 	 * Ha adott egy sin, es abbol meg akarjuk hatarozni a hozza tartozo kulcsot(altalaba a felhasznaloval valo kozles celjabol),
 	 * akkor ez a fuggveny használhato. Atvizsgalja az osszes sínelemet tartalmazo Map-et, es visszaadja az elso elofordulat.
@@ -343,6 +349,11 @@ public class Controller {
 		
 		public abstract void execute(String[] params);
 		
+	}
+	
+	public abstract class CommandObserver {
+		public boolean result;
+		public abstract boolean notify(boolean result);
 	}
 	
 	/**
@@ -1332,6 +1343,38 @@ public class Controller {
 			if (switchTo != null && railList.contains(switchTo)) {
 				
 				sw.switchTo(switchTo);
+				targetOS.println("Sikerult!");
+			} else {
+				targetOS.println("Sikertelen. A valto nem allithato a kert helyzetbe, mert nincs ilyen helyzet.");
+				return;
+			}
+		}
+		
+		public void executeWithReport(String[] params, CommandObserver observer) {
+			
+			observer.result = false;
+			
+			if (params.length < 4) {
+				targetOS.println("Nincs eleg parameter!");
+				return;
+			}
+			
+			Switch sw = switches.get(params[2]);
+			if (sw == null) {
+				targetOS.println("Sikertelen. A megadott valto nem letezik.");
+				return;
+			}
+			
+			List<Railway> railList = sw.getThatNeighbour();
+			
+			Railway switchTo = rails.get(params[3]);
+			if (switchTo == null) switchTo = switches.get(params[3]);
+			if (switchTo == null) switchTo = crosses.get(params[3]);
+			if (switchTo == null) switchTo = buildingSpots.get(params[3]);
+			
+			if (switchTo != null && railList.contains(switchTo)) {
+				
+				observer.notify(sw.switchTo(switchTo));
 				targetOS.println("Sikerult!");
 			} else {
 				targetOS.println("Sikertelen. A valto nem allithato a kert helyzetbe, mert nincs ilyen helyzet.");
