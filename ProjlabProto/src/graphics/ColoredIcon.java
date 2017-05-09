@@ -31,10 +31,26 @@ public class ColoredIcon extends FieldImageIcon {
 		FilledPair.add(CurrentImage);
 		UnfilledPair.add(unfilled);
 		filled = false;
-		
+		x = xCoord;
+		y = yCoord;
 		
 	}
-	
+	public int getX()
+	{
+		return x;
+	}
+	public int getY()
+	{
+		return y;
+	}
+	public void setX(int newX)
+	{
+		x= newX;
+	}
+	public void setY(int newY)
+	{
+		y = newY;
+	}
 	public void setFilled(boolean isFilled)
 	{
 		if(isFilled)
