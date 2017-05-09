@@ -445,7 +445,7 @@ connect rail ss158 sc7 1
 connect rail ss138 sc7 2
 connect rail sc7 2 sc8 2
 connect rail ss173 sc8 2
-connect rail ss126 sc8 1
+connect rail ss136 sc8 1
 connect rail ss172 sc8 1
 add crossing
 connect rail ss169 sc9 1
@@ -453,7 +453,7 @@ connect rail ss230 sc9 1
 connect rail ss162 sc9 2
 connect rail ss163 sc9 2
 add crossing
-connect rail ss160 sc10 1
+connect rail ss180 sc10 1
 connect rail ss181 sc10 1
 connect rail ss168 sc10 2
 connect rail ss231 sc10 2
