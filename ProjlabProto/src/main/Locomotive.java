@@ -35,8 +35,10 @@ public class Locomotive extends MovingObject {
 	 */
 	public void ArrivedAtStation(Station station) {
 		Controller.sendMessage("Elertuk a san allomast.", station);
-		if(Pulls.colorCheck(station) == true) {
-			//Application.win();
+		if(Pulls != null && Pulls.colorCheck(station) == true) {
+			Controller.win(this);
+		} else if (Pulls != null){
+			Controller.dewin(this);
 		}
 		
 	}

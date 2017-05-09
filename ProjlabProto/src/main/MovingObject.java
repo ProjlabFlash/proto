@@ -27,7 +27,10 @@ public abstract class MovingObject extends MetaData {
 	 */
 	public void step(Railway toHere) {
 		
-		if (toHere == null) return;
+		if (toHere == null) {
+			Controller.lose();
+			return;
+		}
 		
 		CurrentRailwaySegment.setOnMe(null);
 		toHere.setOnMe(this);
@@ -42,7 +45,7 @@ public abstract class MovingObject extends MetaData {
 	 */
 	public void crash() {
 		Controller.sendMessage("Miert nincs 2 sinpar egy vonalon...? utkozes tortent.");
-		//Application.lose();
+		Controller.lose();
 	}
 	public abstract void ArrivedAtStation(Station station);
 }

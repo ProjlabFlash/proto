@@ -63,16 +63,16 @@ public class Cart extends MovingObject {
 		{
 			if(Pulls != null) 
 			{
-				Pulls.colorCheck(station);
+				return Pulls.colorCheck(station);
 			}
-			return false;
+			return true;
 		}
 		if(c.equals(Color.FELSZALLTAK))
 		{
 			Controller.sendMessage("Az mcn kocsira felszalltak az utasok!", this, Passengers);
-			return true;
+			return false;
 		}
-		if(c.equals(this.color))
+		if(c.equals(this.color) || !Passengers)
 		{
 			if(Passengers)
 			{
@@ -80,17 +80,16 @@ public class Cart extends MovingObject {
 				Controller.sendMessage("Az mcn kocsibol leszalltak az utasok!", this, Passengers);
 				if(Pulls != null) 
 				{
-					Pulls.colorCheck(station);
+					return Pulls.colorCheck(station);
 				}
-				return true;
 			}
 			else
 			{
 				if(Pulls != null) 
 				{
-					Pulls.colorCheck(station);
+					return Pulls.colorCheck(station);
 				}
-				return false;
+				return true;
 			}
 		}
 		return false;

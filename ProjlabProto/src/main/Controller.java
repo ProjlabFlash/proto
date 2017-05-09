@@ -2193,4 +2193,35 @@ public class Controller {
 			isRunning = false;
 		}
 	}
+
+	
+	public static abstract class gameStateObserver {
+		public abstract void win();
+		public abstract void lose();
+		
+	}
+	
+	private static gameStateObserver observer;
+	private static List<Locomotive> tBD = new ArrayList<Locomotive>();
+	
+	public static void attachGameStateObserver(gameStateObserver o) {
+		observer = o;
+	}
+	
+	public static void win(Locomotive loc) {
+		if (tBD.contains(loc))
+			tBD.remove(loc);
+		if (tBD.size() == 0)
+			observer.win();
+	}
+	
+	public static void dewin(Locomotive loc) {
+		if (!tBD.contains(loc))
+			tBD.add(loc);
+	}
+	
+	public static void lose() {
+		new Controller().execute("clearTable");
+		observer.lose();
+	}
 }
