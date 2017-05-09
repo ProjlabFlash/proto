@@ -1,6 +1,11 @@
 package graphics;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
 import main.MovingObject;
 import main.Railway;
 import main.Station;
@@ -10,11 +15,24 @@ public class ColoredIcon extends FieldImageIcon {
 	private boolean filled;
 	private static ArrayList<Image> FilledPair = new ArrayList<Image>();
 	private static ArrayList<Image> UnfilledPair = new ArrayList<Image>();
+	private int x;
+	private int y;
 	
-	public ColoredIcon()
+	public ColoredIcon(int xCoord, int yCoord, String imagepath) throws IOException
 	{
-			// 2Do Everything
+		String[] crop = imagepath.split("\\.");
+		if(crop.length == 0) return;
+		filename = crop[0];
+		FieldObject = null;
+		DefaultImage = ImageIO.read(new File(imagepath));
+		this.setImage(DefaultImage);
+		CurrentImage = DefaultImage;		
+		Image unfilled = ImageIO.read(new File(filename.replace("full", "empty")));
+		FilledPair.add(CurrentImage);
+		UnfilledPair.add(unfilled);
 		filled = false;
+		
+		
 	}
 	
 	public void setFilled(boolean isFilled)
