@@ -6,21 +6,42 @@ import main.Railway;
 import main.Station;
 public class ColoredIcon extends FieldImageIcon {
 	private MovingObject Vehicle;
-	private Station Station;
 	private Image EmptyIcon;
+	private boolean filled;
 	private static ArrayList<Image> FilledPair = new ArrayList<Image>();
 	private static ArrayList<Image> UnfilledPair = new ArrayList<Image>();
+	
+	public ColoredIcon()
+	{
+			// 2Do Everything
+		filled = false;
+	}
+	
 	public void setFilled(boolean isFilled)
 	{
 		if(isFilled)
 		{
-			if(!FilledPair.contains(CurrentImage))
+			if(!filled)
+			{
+				if(UnfilledPair.indexOf(CurrentImage) != -1)
+				{
 				CurrentImage = FilledPair.get(UnfilledPair.indexOf(CurrentImage));
+				this.setImage(CurrentImage);
+				filled = true;
+				}
+			}
 		}
 		if(!isFilled)
 		{
-			if(FilledPair.contains(CurrentImage))
+			if(filled)
+			{
+				if(FilledPair.indexOf(CurrentImage) != -1)
+				{
 				CurrentImage = UnfilledPair.get(FilledPair.indexOf(CurrentImage));
+				this.setImage(CurrentImage);
+				filled = false;
+				}
+			}
 		}
 	}
 	public void stepToHere(Railway toHere)
