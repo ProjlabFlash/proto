@@ -486,7 +486,7 @@ add station ss28 red
 add station ss152 green
 add station ss307 yellow
 add station ss97 orange
-toggle station ss5 true
+toggle station sa5 true
 add station ss238 orange
 add station ss341 red
 toggle station sa7 true
