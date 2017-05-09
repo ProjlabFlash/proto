@@ -129,6 +129,8 @@ public class Controller {
 		commands.add(new CmdExit());
 	}
 	
+	private static Map<String, MovingObjectObserver> observers = new HashMap<String, MovingObjectObserver>();
+	
 	private static Object syncObj = new Object();
 	
 	/**
@@ -273,7 +275,7 @@ public class Controller {
 	 * @param msg A kuldeni kivant uzenet.
 	 * @param station A kocsi aminek a kulcsat akarjuk kozolni a felhasznaloval.
 	 */
-	public static void sendMessage(String msg, Cart cart) {
+	public static void sendMessage(String msg, Cart cart, boolean hasPassengersNow) {
 		
 		Set<Entry<String, Cart> > cartSet = carts.entrySet();
 		String key = null;
@@ -282,6 +284,9 @@ public class Controller {
 		
 		msg = msg.replace("mcn", key);
 		targetOS.println(msg);
+		
+		MovingObjectObserver moo = observers.get(key);
+		if (moo != null) moo.updatePassengers(hasPassengersNow);
 	}
 	
 	public static void switchWithObserver(String msg, CommandObserver o) {
@@ -1965,10 +1970,6 @@ public class Controller {
 		}
 	}
 	
-	public static abstract class LocoObserver {
-		public abstract void update(int x, int y);
-	}
-	
 	/**
 	 * Elindit egy idozitot ami aztan a vonat sebessegetol fuggoen fogja leptetni azt. Egy vonaton csak egy idozito lehet.
 	 */
@@ -2026,6 +2027,18 @@ public class Controller {
 					getStringForRail(loco.CurrentRailwaySegment.next(loco.PreviousRailwaySegment)) +" sinre.");
 			synchronized (syncObj) {
 				loco.move();
+				MovingObjectObserver moo = observers.get(key);
+				if (moo != null) moo.updatePos(getStringForRail(loco.CurrentRailwaySegment));
+				
+				MovingObject mo = loco.Pulls;
+				String moKey = null;
+				while (mo != null) {
+					for (Entry<String, Cart> entry: carts.entrySet())
+						if (entry.getValue() == mo)  moKey = entry.getKey();
+					
+					moo = observers.get(moKey);
+					if (moo != null) moo.updatePos(getStringForRail(mo.CurrentRailwaySegment));
+				}
 			}
 			myTimer.schedule(new MyTask(loco, key, myTimer), (60 / loco.Speed) * 1000);
 		}
@@ -2142,6 +2155,7 @@ public class Controller {
 			lastCart = null;
 			isFinished = true;
 			
+			observers = new HashMap<String, MovingObjectObserver>();
 			for (Entry<Locomotive, Timer> entry: timers.entrySet()) {
 				entry.getValue().cancel();
 			}
