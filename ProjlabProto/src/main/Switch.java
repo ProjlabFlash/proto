@@ -27,10 +27,13 @@ public class Switch extends Railway {
 	 * Valt a parameterul kapott sinre.
 	 * @param nextStanding A kapott sin.
 	 */
-	public void switchTo(Railway nextStanding) {
+	public boolean switchTo(Railway nextStanding) {
 				
-		if (ThisNeighbour.contains(nextStanding) || ThatNeighbour.contains(nextStanding))
+		if ((ThisNeighbour.contains(nextStanding) || ThatNeighbour.contains(nextStanding)) && OnMe == null) {
 			CurrentStanding = nextStanding;
+			return true;
+		}
+		return false;
 	}
 	
 	public Railway next(Railway previousRailway) {

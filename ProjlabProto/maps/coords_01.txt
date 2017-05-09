@@ -321,3 +321,4 @@ sb6 24 18 BuildingSpot\BuildingSpot_V.png
 sb7 15 28 BuildingSpot\BuildingSpot_H.png
 sb8 15 32 BuildingSpot\BuildingSpot_H.png
 sb9 29 29 BuildingSpot\BuildingSpot_V.png
+sv1 12 2 Railway\Switch\Switch_R_2.png ss15 Railway\Switch\Switch_R_2.png ss75 Railway\Switch\Switch_R_3.png ss8 Railway\Switch\Switch_R_1.png

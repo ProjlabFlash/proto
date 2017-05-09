@@ -21,7 +21,7 @@ public class FieldImageIcon extends ImageIcon{
 	protected Image CurrentImage;
 	protected Image DefaultImage;
 	private boolean selected;
-	private HashMap<String, Image> SwitchImages;
+	private HashMap<String, Image> SwitchImages = new HashMap<String, Image>();
 
 	
 	public FieldImageIcon(){

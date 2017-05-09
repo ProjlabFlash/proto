@@ -355,4 +355,8 @@ connect rail sb8 ss255
 add buildingspot
 connect rail sb9 ss282
 connect rail sb9 ss283
+add switch ss14
+connect rail ss15 sv1 2
+connect rail ss75 sv1 2
+connect rail ss8 sv1 2
 exit
