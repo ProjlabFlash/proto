@@ -359,4 +359,63 @@ add switch ss14
 connect rail ss15 sv1 2
 connect rail ss75 sv1 2
 connect rail ss8 sv1 2
+add switch ss24
+connect rail ss22 sv2 2
+connect rail ss23 sv2 2
+connect rail ss88 sv2 2
+add switch ss26
+connect rail ss28 sv3 2
+connect rail ss27 sv3 2
+connect rail ss99 sv3 2
+add switch ss42
+connect rail ss40 sv4 2
+connect rail ss41 sv4 2
+connect rail ss98 sv4 2
+add switch ss44
+connect rail ss46 sv5 2
+connect rail ss45 sv5 2
+connect rail ss92 sv5 2
+add switch ss47
+connect rail ss56 sv6 2
+connect rail ss48 sv6 2
+connect rail ss86 sv6 2
+add switch ss91
+connect rail ss90 sv7 2
+connect rail ss87 sv7 2
+connect rail ss93 sv7 2
+add switch ss101
+connect rail ss97 sv8 2
+connect rail ss95 sv8 2
+connect rail ss96 sv8 2
+add switch ss104
+connect rail ss102 sv9 2
+connect rail ss145 sv9 2
+add switch ss123
+connect rail ss103 sv10 2
+connect rail ss146 sv10 2
+add switch ss217
+connect rail ss226 sv11 2
+connect rail ss224 sv11 2
+add switch ss223
+connect rail ss227 sv12 2
+connect rail ss225 sv12 2
+add switch ss231
+connect rail ss232 sv13 2
+connect rail ss237 sv13 2
+add switch ss310
+connect rail ss243 sv14 2
+connect rail ss236 sv14 2
+connect rail ss241 sv14 2
+add switch ss244
+connect rail ss243 sv15 2
+connect rail ss239 sv15 2
+connect rail ss240 sv15 2
+add switch ss251
+connect rail ss253 sv16 2
+connect rail ss252 sv16 2
+connect rail ss258 sv16 2
+add switch ss256
+connect rail ss270 sv17 2
+connect rail ss257 sv17 2
+connect rail ss269 sv17 2
 exit

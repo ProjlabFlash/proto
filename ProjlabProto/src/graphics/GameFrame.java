@@ -48,12 +48,12 @@ public class GameFrame extends JFrame {
 	public static void main(String args[]) {
 
 		frame = new GameFrame();
-
-		frame.pack();
-		frame.setVisible(true);
 		
 		levels.add(new LevelDescriber(1, "coords_01.txt", "cmds_01.txt"));
 		frame.loadLevel(1);
+		
+		frame.pack();
+		frame.setVisible(true);
 	}
 
 	private void loadLevel(int i) {

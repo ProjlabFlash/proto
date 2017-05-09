@@ -322,3 +322,19 @@ sb7 15 28 BuildingSpot\BuildingSpot_H.png
 sb8 15 32 BuildingSpot\BuildingSpot_H.png
 sb9 29 29 BuildingSpot\BuildingSpot_V.png
 sv1 12 2 Railway\Switch\Switch_R_2.png ss15 Railway\Switch\Switch_R_2.png ss75 Railway\Switch\Switch_R_3.png ss8 Railway\Switch\Switch_R_1.png
+sv2 21 2 Railway\Switch\Switch_L_2.png ss22 Railway\Switch\Switch_L_2.png ss23 Railway\Switch\Switch_L_3.png ss88 Railway\Switch\Switch_L_1.png
+sv3 25 2 Railway\Switch\Switch_R_2.png ss28 Railway\Switch\Switch_R_2.png ss27 Railway\Switch\Switch_R_1.png ss99 Railway\Switch\Switch_R_3.png
+sv4 25 9 Railway\Switch\Switch_R_2.png ss40 Railway\Switch\Switch_R_2.png ss41 Railway\Switch\Switch_R_3.png ss98 Railway\Switch\Switch_R_1.png
+sv5 21 9 Railway\Switch\Switch_L_2.png ss46 Railway\Switch\Switch_L_2.png ss45 Railway\Switch\Switch_L_1.png ss92 Railway\Switch\Switch_L_3.png
+sv6 18 9 Railway\Switch\Switch_L_2.png ss56 Railway\Switch\Switch_L_2.png ss48 Railway\Switch\Switch_L_1.png ss86 Railway\Switch\Switch_L_3.png
+sv7 21 6 Railway\Switch\Switch_U_2.png ss90 Railway\Switch\Switch_U_2.png ss87 Railway\Switch\Switch_U_1.png ss93 Railway\Switch\Switch_U_3.png
+sv8 25 6 Railway\Switch\Switch_D_2.png ss97 Railway\Switch\Switch_D_2.png ss95 Railway\Switch\Switch_D_3.png ss96 Railway\Switch\Switch_D_1.png
+sv9 1 11 Railway\Switch\Switch_L_2.png ss102 Railway\Switch\Switch_L_2.png ss145 Railway\Switch\Switch_L_1.png
+sv10 1 14 Railway\Switch\Switch_L_2.png ss103 Railway\Switch\Switch_L_2.png ss146 Railway\Switch\Switch_L_1.png
+sv11 33 11 Railway\Switch\Switch_R_2.png ss226 Railway\Switch\Switch_R_2.png ss224 Railway\Switch\Switch_R_3.png
+sv12 33 14 Railway\Switch\Switch_R_2.png ss227 Railway\Switch\Switch_R_2.png ss225 Railway\Switch\Switch_R_1.png
+sv13 1 30 Railway\Switch\Switch_U_2.png ss232 Railway\Switch\Switch_U_2.png ss237 Railway\Switch\Switch_U_3.png
+sv14 5 28 Railway\Switch\Switch_D_2.png ss243 Railway\Switch\Switch_D_2.png ss236 Railway\Switch\Switch_D_3.png ss241 Railway\Switch\Switch_D_1.png
+sv15 5 30 Railway\Switch\Switch_U_2.png ss243 Railway\Switch\Switch_U_2.png ss239 Railway\Switch\Switch_U_1.png ss240 Railway\Switch\Switch_U_3.png
+sv16 12 32 Railway\Switch\Switch_R_2.png ss253 Railway\Switch\Switch_R_2.png ss252 Railway\Switch\Switch_R_3.png ss258 Railway\Switch\Switch_R_1.png
+sv17 18 32 Railway\Switch\Switch_R_2.png ss270 Railway\Switch\Switch_R_2.png ss257 Railway\Switch\Switch_R_3.png ss269 Railway\Switch\Switch_R_1.png
