@@ -24,11 +24,7 @@ public class FieldImageIcon extends ImageIcon{
 	private HashMap<String, Image> SwitchImages = new HashMap<String, Image>();
 
 	
-	public FieldImageIcon(){
-		//2do wtf happened several times
-		SwitchImages = new HashMap<String, Image>();
-		
-	}
+	
 	
 	private File getAbsolutePath(String relativePath) {
 		File file = new File(System.getProperty("user.dir"));
