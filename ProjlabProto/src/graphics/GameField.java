@@ -38,6 +38,8 @@ public class GameField extends JPanel {
 			System.out.println("A háttérkép nem található!");
 		
 		this.backgroundImage = backgroundImage;
+		
+		//TODO ezt: tunnelIcon = ImageIO.read( filepath )
 	}
 	
 	public void select(int xCoord, int yCoord)
@@ -157,6 +159,8 @@ public class GameField extends JPanel {
 			
 			while((line = br.readLine()) != null)
 			{
+				if (line.equals("---stations---")) break;
+				
 				String columns[] = line.split(" ");
 				int x = Integer.parseInt(columns[1]);
 				int y = Integer.parseInt(columns[2]);
@@ -177,6 +181,15 @@ public class GameField extends JPanel {
 					Tile newTile = new Tile(columns[0],new FieldImageIcon(columns[3],names,paths),x,y);
 					gameMatrix[x][y] = newTile;
 				}
+			}
+			
+			while ((line = br.readLine()) != null) {
+				
+				String columns[] = line.split(" ");
+				int x = Integer.parseInt(columns[1]);
+				int y = Integer.parseInt(columns[2]);
+				Tile newTile = new Tile(columns[0],new FieldImageIcon(columns[3]),x,y);
+				gameMatrix[x][y] = newTile;
 			}
 			
 		} catch (FileNotFoundException e) {

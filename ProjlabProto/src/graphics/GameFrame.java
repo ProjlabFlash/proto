@@ -37,6 +37,7 @@ public class GameFrame extends JFrame {
 			e.printStackTrace();
 		}
 		field = new GameField(img);
+		controller = new Controller();
 	}
 	
 	public UserControl userControl;
