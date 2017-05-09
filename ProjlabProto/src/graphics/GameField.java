@@ -8,6 +8,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -23,8 +29,13 @@ public class GameField extends JPanel {
 	private Image backgroundImage;
 	private Tile builtTunnelTiles[];
 	private ImageIcon tunnelIcon;
+	private List<ColoredIcon> moIcons;
 	
-	public GameField(Image backgroundImage, ImageIcon tunnelIcon) {
+	private Map<String, List<String>> trains;
+	private int cartCounter = 0;
+	private int trainCounter = 0;
+	
+	public GameField(Image backgroundImage, Image tunnelImg) {
 		
 		
 		this.setLayout(null);
@@ -40,7 +51,9 @@ public class GameField extends JPanel {
 			System.out.println("A háttérkép nem található!");
 		
 		this.backgroundImage = backgroundImage;
-		this.tunnelIcon = tunnelIcon;
+		this.tunnelIcon = new ImageIcon();
+		this.tunnelIcon.setImage(tunnelImg);
+		this.trains = new HashMap<String, List<String>>();
 	}
 	
 	public void select(int xCoord, int yCoord)
@@ -184,18 +197,74 @@ public class GameField extends JPanel {
 				}
 			}
 			
+			if (line != null)
+				while((line = br.readLine()) != null) {
+					
+					if (line.equals("---trains---")) break;
+					
+					String columns[] = line.split(" ");
+					int x = Integer.parseInt(columns[1]);
+					int y = Integer.parseInt(columns[2]);
+					Tile newTile = new Tile(columns[0],new FieldImageIcon(columns[3]),x,y);
+					gameMatrix[x][y] = newTile;
+				}
+			
+			if (line != null)
 			while ((line = br.readLine()) != null) {
+
+				List<String> carts = new ArrayList<String>();
+				while (!line.contains("locomotive")) {
+					carts.add(line);
+				}
 				
-				String columns[] = line.split(" ");
-				int x = Integer.parseInt(columns[1]);
-				int y = Integer.parseInt(columns[2]);
-				Tile newTile = new Tile(columns[0],new FieldImageIcon(columns[3]),x,y);
-				gameMatrix[x][y] = newTile;
+				carts.add(line);
+				String[] columns = line.split(" ");
+				long milis = Long.parseLong(columns[columns.length - 1]);
+				String key = columns[0];
+				
+				synchronized (trains) { trains.put(key, carts);}
+				Timer t = new Timer();
+				t.schedule(new TrainStarter(key), milis);
 			}
 			
 		} catch (FileNotFoundException e) {
 			System.out.println(line);
 		}
 		
+	}
+	
+	private class TrainStarter extends TimerTask {
+		
+		String key;
+		
+		TrainStarter(String key) {this.key = key;}
+		
+		@Override
+		public void run() {
+			synchronized (trains) {
+				List<String> commands = trains.remove(key);
+				if (commands == null) {
+					System.err.println("Train parsing error!");
+					return;
+				}
+				
+				GameFrame.frame.controller.execute("prepare train");
+				for (String command: commands) {
+					String[] columns = command.split(" ");
+					
+					if (!columns[0].equals("locomotive")) {
+						GameFrame.frame.controller.execute("add cart " + command);
+						//String key = "mc" + (++cartCounter);
+						moIcons.add(new ColoredIcon(-1, -1, columns[columns.length - 1]));
+					} else {
+						GameFrame.frame.controller.execute("add loco " + columns[1] + " " + columns[2] + " " + columns[3]);
+						//String key = "ml" + (++trainCounter);
+						moIcons.add(new ColoredIcon(-1, -1, columns[columns.length - 1]));
+					}
+				}
+				
+				GameFrame.frame.controller.execute("start timer " + "ml" + (++trainCounter));
+			}
+		}
 	}
 }

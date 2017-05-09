@@ -380,5 +380,35 @@ ss379 27 6 Railway\Railway_V.png
 ss380 27 7 Railway\Railway_V.png
 ss381 27 8 Railway\Railway_V.png
 ss382 27 9 Railway\Railway_V.png
+sb1 18 4 BuildingSpot\BuildingSpot_V.png
+sb2 20 14 BuildingSpot\BuildingSpot_V.png
+sb3 1 32 BuildingSpot\BuildingSpot_V.png
+sv1 5 1 Railway\Switch\Switch_L_2.png ss5 Railway\Switch\Switch_L_2.png ss13 Railway\Switch\Switch_L_3.png ss14 Railway\Switch\Switch_L_1.png
+sv2 13 1 Railway\Switch\Switch_R_2.png ss72 Railway\Switch\Switch_R_2.png ss64 Railway\Switch\Switch_R_1.png ss65 Railway\Switch\Switch_R_3.png
+sv3 4 17 Railway\Switch\Switch_D_2.png ss133 Railway\Switch\Switch_D_2.png ss128 Railway\Switch\Switch_D_3.png ss130 Railway\Switch\Switch_D_1.png
+sv4 10 21 Railway\Switch\Switch_R_2.png ss301 Railway\Switch\Switch_R_2.png ss175 Railway\Switch\Switch_R_3.png ss302 Railway\Switch\Switch_R_1.png
+sv5 28 30 Railway\Switch\Switch_D_2.png ss202 Railway\Switch\Switch_D_2.png ss250 Railway\Switch\Switch_D_3.png ss251 Railway\Switch\Switch_D_1.png
+sc1 18 1 Railway\CrossRailway.png
+sc2 13 9 Railway\CrossRailway.png
+sc3 4 14 Railway\CrossRailway.png
+sc4 4 15 Railway\CrossRailway.png
+sc5 4 19 Railway\CrossRailway.png
+sc6 6 19 Railway\CrossRailway.png
+sc7 6 21 Railway\CrossRailway.png
+sc8 7 21 Railway\CrossRailway.png
+sc9 7 26 Railway\CrossRailway.png
+sc10 13 25 Railway\CrossRailway.png
+sc11 28 32 Railway\CrossRailway.png
+ss12 26 24 Railway\CrossRailway.png
+sc13 24 19 Railway\CrossRailway.png
+sv6 24 18 Railway\Switch\Switch_U_2.png ss348 Railway\Switch\Switch_U_2.png ss321 Railway\Switch\Switch_U_1.png ss347 Railway\Switch\Switch_U_3.png
+sc14 27 10 Railway\CrossRailway.png
 ---stations---
-sa1 4 5 Station\Station_V_blue.png
+sa1 8 2 Station\Station_H_blue.png
+sa2 1 11 Station\Station_V_red.png
+sa3 2 26 Station\Station_V_green.png
+sa4 12 18 Station\Station_H_yellow.png
+sa5 15 15 Station\SimultanStation\SimultanStation_H_orange.png
+sa6 20 23 Station\Station_H_orange.png
+sa7 28 14 Station\SimultanStation\SimultanStation_V_red.png
+sa8 26 4 Station\Station_V_purple.png

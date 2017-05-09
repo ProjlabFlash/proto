@@ -380,4 +380,115 @@ add rail ss378
 add rail ss379
 add rail ss380
 add rail ss381
+add buildingspot
+connect rail sb1 ss56
+connect rail sb1 ss57
+add buildingspot
+connect rail sb2 ss327
+connect rail sb2 ss328
+add buildingspot
+connect rail sb3 ss155
+connect rail sb3 ss156
+add switch ss6
+connect rail ss5 sv1 2
+connect rail ss13 sv1 2
+connect rail ss14 sv1 2
+add switch ss12
+connect rail ss72 sv2 2
+connect rail ss64 sv2 2
+connect rail ss65 sv2 2
+add switch ss129
+connect rail ss133 sv3 2
+connect rail ss128 sv3 2
+connect rail ss130 sv3 2
+add switch ss174
+connect rail ss301 sv4 2
+connect rail ss175 sv4 2
+connect rail ss302 sv4 2
+add switch ss274
+connect rail ss202 sv5 2
+connect rail ss250 sv5 2
+connect rail ss251 sv5 2
+add crossing
+connect rail ss75 sc1 1
+connect rail ss76 sc1 1
+connect rail ss58 sc1 2
+connect rail ss59 sc1 2
+add crossing
+connect rail ss71 sc2 1
+connect rail ss121 sc2 1
+connect rail ss47 sc2 2
+connect rail ss48 sc2 2
+add crossing
+add crossing
+connect rail ss34 sc3 1
+connect rail ss109 sc3 1
+connect rail ss35 sc3 2
+connect rail sc3 2 sc4 2
+connect rail ss129 sc4 2
+connect rail ss122 sc4 1
+connect rail ss108 sc4 1
+add crossing
+connect rail ss133 sc5 1
+connect rail ss140 sc5 1
+connect rail ss141 sc5 2
+connect rail ss134 sc5 2
+add crossing
+connect rail ss134 sc6 1
+connect rail ss135 sc6 1
+connect rail ss132 sc6 2
+connect rail ss137 sc6 2
+add crossing
+add crossing
+connect rail ss137 sc7 1
+connect rail ss158 sc7 1
+connect rail ss138 sc7 2
+connect rail sc7 2 sc8 2
+connect rail ss173 sc8 2
+connect rail ss126 sc8 1
+connect rail ss172 sc8 1
+add crossing
+connect rail ss169 sc9 1
+connect rail ss230 sc9 1
+connect rail ss162 sc9 2
+connect rail ss163 sc9 2
+add crossing
+connect rail ss160 sc10 1
+connect rail ss181 sc10 1
+connect rail ss168 sc10 2
+connect rail ss231 sc10 2
+add crossing
+connect rail ss201 sc11 1
+connect rail ss273 sc11 1
+connect rail ss203 sc11 2
+connect rail ss202 sc11 2
+add crossing
+connect rail ss243 sc12 1
+connect rail ss280 sc12 1
+connect rail ss281 sc12 2
+connect rail ss244 sc12 2
+add crossing
+add switch sc13
+connect rail ss348 sv6 2
+connect rail ss321 sv6 2
+connect rail ss347 sv6 2
+connect rail ss320 sc13 1
+connect rail ss286 sc13 1
+connect rail ss287 sc13 2
+connect rail sv6 1 sc13 2
+add crossing
+connect rail ss337 sc14 1
+connect rail ss350 sc14 1
+connect rail ss382 sc14 2
+connect rail ss338 sc14 2
+add station ss8 blue
+add station ss28 red
+add station ss152 green
+add station ss307 yellow
+add station ss97 orange
+toggle station ss5 true
+add station ss238 orange
+add station ss341 red
+toggle station sa7 true
+add station ss377 purple
 exit

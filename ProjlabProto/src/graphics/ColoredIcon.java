@@ -6,28 +6,37 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import main.MovingObject;
-import main.Railway;
-import main.Station;
 public class ColoredIcon extends FieldImageIcon {
-	private MovingObject Vehicle;
-	private Image EmptyIcon;
+	private static final long serialVersionUID = -7817118272861870690L;
+	
 	private boolean filled;
 	private static ArrayList<Image> FilledPair = new ArrayList<Image>();
 	private static ArrayList<Image> UnfilledPair = new ArrayList<Image>();
 	private int x;
 	private int y;
 	
-	public ColoredIcon(int xCoord, int yCoord, String imagepath) throws IOException
+	public ColoredIcon(int xCoord, int yCoord, String imagepath)
 	{
 		String[] crop = imagepath.split("\\.");
 		if(crop.length == 0) return;
 		filename = crop[0];
 		FieldObject = null;
-		DefaultImage = ImageIO.read(new File(imagepath));
+		
+		try {
+			DefaultImage = ImageIO.read(new File(imagepath));
+		} catch (IOException e) {
+			System.err.println("Sikertelen kép parsolás: Vonatelem");
+		}
+		
 		this.setImage(DefaultImage);
-		CurrentImage = DefaultImage;		
-		Image unfilled = ImageIO.read(new File(filename.replace("full", "empty")));
+		CurrentImage = DefaultImage;	
+		
+		Image unfilled = null;
+		try {
+			unfilled = ImageIO.read(new File(filename.replace("full", "empty")));
+		} catch (IOException e) {
+		}
+		
 		FilledPair.add(CurrentImage);
 		UnfilledPair.add(unfilled);
 		filled = false;
@@ -78,7 +87,7 @@ public class ColoredIcon extends FieldImageIcon {
 			}
 		}
 	}
-	public void stepToHere(Railway toHere)
+	public void stepToHere(String toHere)
 	{
 		// 2 do nemtom hogy lesz a map megoldva
 	}

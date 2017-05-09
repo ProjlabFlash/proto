@@ -9,13 +9,14 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import main.Controller;
 
 public class GameFrame extends JFrame {
 
+	private static final long serialVersionUID = -9134923568351885820L;
+	
 	public static GameFrame frame;
 
 	private GameFrame() {
@@ -29,14 +30,16 @@ public class GameFrame extends JFrame {
 		
 		File imgFile = new File (System.getProperty("user.dir"));
 		imgFile = new File (imgFile, "images");
-		File tunnelImgFile = new File (imgFile, "");
+		File tunnelImgFile = new File (imgFile, "BuildingSpot");
+		tunnelImgFile = new File(tunnelImgFile, "Tunnel.png");
 		imgFile = new File (imgFile, "Background");
 		imgFile = new File (imgFile, "background.png");
+		
 		BufferedImage img = null;
-		ImageIcon tunnelIcon = null;
+		BufferedImage tunnelIcon = null;
 		try {
 			img = ImageIO.read(imgFile);
-			//tunnelIcon = 
+			tunnelIcon = ImageIO.read(tunnelImgFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -54,7 +57,7 @@ public class GameFrame extends JFrame {
 
 		frame = new GameFrame();
 		
-		levels.add(new LevelDescriber(1, "coords_01.txt", "cmds_01.txt"));
+		levels.add(new LevelDescriber(1, "coords_02.txt", "cmds_02.txt"));
 		frame.loadLevel(1);
 		
 		frame.pack();
