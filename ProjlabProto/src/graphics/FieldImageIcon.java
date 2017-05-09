@@ -1,4 +1,4 @@
-package graphics;
+		package graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.Image;
@@ -53,8 +53,8 @@ public class FieldImageIcon extends ImageIcon{
 		selected = false;
 		try
 		{
-			Image selected = ImageIO.read(new File(fileparts[0] + "_active.png"));
-			SelectedPair.add(selected);
+			Image selectedimage = ImageIO.read(new File(fileparts[0] + "_active.png"));
+			SelectedPair.add(selectedimage);
 		}
 		catch(IOException e)
 		{
@@ -76,8 +76,8 @@ public class FieldImageIcon extends ImageIcon{
 			UnselectedPair.add(insert);
 			String fileparts[] = filename.split("\\.");
 			if (fileparts.length == 0) continue;
-			Image selected = ImageIO.read(new File(fileparts[0] + "_active.png"));
-			SelectedPair.add(selected);	
+			Image selectedimage = ImageIO.read(new File(fileparts[0] + "_active.png"));
+			SelectedPair.add(selectedimage);	
 			SwitchImages.put(names[i], insert);
 		}
 		
