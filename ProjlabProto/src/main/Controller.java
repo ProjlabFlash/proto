@@ -219,6 +219,7 @@ public class Controller {
 	public void execute(String cmd) {
 		String[] params = cmd.split(" ");
 		
+		synchronized (syncObj) {
 		for (int i = 0; i < commands.size(); i++)
 			if (commands.get(i).cmdName.equals(params[0])) {
 				commands.get(i).execute(params);
@@ -238,6 +239,7 @@ public class Controller {
 		
 		System.out.println("A parancs nem felismerheto!");
 		System.out.println(cmd);
+		}
 	}
 
 	/**
