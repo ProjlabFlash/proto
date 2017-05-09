@@ -50,7 +50,7 @@ public class GameFrame extends JFrame {
 
 		frame = new GameFrame();
 		
-		levels.add(new LevelDescriber(1, "coords_01.txt", "cmds_01.txt"));
+		levels.add(new LevelDescriber(1, "coords_02.txt", "cmds_02.txt"));
 		frame.loadLevel(1);
 		
 		frame.pack();

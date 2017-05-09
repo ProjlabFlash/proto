@@ -2,8 +2,6 @@ package graphics;
 
 import java.awt.Graphics;
 
-import main.Railway;
-
 public class Tile {
 
 	final public int xCoord;
