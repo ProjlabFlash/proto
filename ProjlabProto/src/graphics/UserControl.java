@@ -59,6 +59,7 @@ public class UserControl extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			GameFrame.frame.field.buildTunnel();
+			GameFrame.frame.repaint();
 		}
 		
 	}
@@ -67,6 +68,7 @@ public class UserControl extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			GameFrame.frame.field.removeTunnel();
+			GameFrame.frame.repaint();
 		}		
 	}
 	private class buttonSwitchListener implements ActionListener{
@@ -74,6 +76,7 @@ public class UserControl extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			GameFrame.frame.field.switchTo();
+			GameFrame.frame.repaint();
 		}		
 	}
 	
