@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import main.Controller;
@@ -21,8 +22,9 @@ public class GameField extends JPanel {
 	private Tile gameMatrix[][];
 	private Image backgroundImage;
 	private Tile builtTunnelTiles[];
+	private ImageIcon tunnelIcon;
 	
-	public GameField(Image backgroundImage) {
+	public GameField(Image backgroundImage, ImageIcon tunnelIcon) {
 		
 		
 		this.setLayout(null);
@@ -38,8 +40,7 @@ public class GameField extends JPanel {
 			System.out.println("A háttérkép nem található!");
 		
 		this.backgroundImage = backgroundImage;
-		
-		//TODO ezt: tunnelIcon = ImageIO.read( filepath )
+		this.tunnelIcon = tunnelIcon;
 	}
 	
 	public void select(int xCoord, int yCoord)

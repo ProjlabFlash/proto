@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import main.Controller;
@@ -28,15 +29,18 @@ public class GameFrame extends JFrame {
 		
 		File imgFile = new File (System.getProperty("user.dir"));
 		imgFile = new File (imgFile, "images");
+		File tunnelImgFile = new File (imgFile, "");
 		imgFile = new File (imgFile, "Background");
 		imgFile = new File (imgFile, "background.png");
 		BufferedImage img = null;
+		ImageIcon tunnelIcon = null;
 		try {
 			img = ImageIO.read(imgFile);
+			//tunnelIcon = 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		field = new GameField(img);
+		field = new GameField(img, tunnelIcon);
 		controller = new Controller();
 	}
 	
@@ -50,7 +54,7 @@ public class GameFrame extends JFrame {
 
 		frame = new GameFrame();
 		
-		levels.add(new LevelDescriber(1, "coords_02.txt", "cmds_02.txt"));
+		levels.add(new LevelDescriber(1, "coords_01.txt", "cmds_01.txt"));
 		frame.loadLevel(1);
 		
 		frame.pack();

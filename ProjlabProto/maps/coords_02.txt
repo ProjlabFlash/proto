@@ -131,7 +131,7 @@ ss130 5 17 Railway\Railway_H.png
 ss131 6 17 Railway\Railway_D_L.png
 ss132 6 18 Railway\Railway_V.png
 ss133 4 18 Railway\Railway_V.png
-ss134 5 17 Railway\Railway_H.png
+ss134 5 19 Railway\Railway_H.png
 ss135 7 19 Railway\Railway_D_L.png
 ss136 7 20 Railway\Railway_V.png
 ss137 6 20 Railway\Railway_V.png
@@ -169,7 +169,7 @@ ss168 13 26 Railway\Railway_U_L.png
 ss169 7 25 Railway\Railway_V.png
 ss170 7 24 Railway\Railway_V.png
 ss171 7 23 Railway\Railway_V.png
-ss172 7 23 Railway\Railway_V.png
+ss172 7 22 Railway\Railway_V.png
 ss173 8 21 Railway\Railway_H.png
 ss174 9 21 Railway\Railway_H.png
 ss175 10 22 Railway\Railway_V.png
@@ -380,3 +380,5 @@ ss379 27 6 Railway\Railway_V.png
 ss380 27 7 Railway\Railway_V.png
 ss381 27 8 Railway\Railway_V.png
 ss382 27 9 Railway\Railway_V.png
+---stations---
+sa1 4 5 Station\Station_V_blue.png

@@ -17,8 +17,6 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import graphics.GameFrame;
-
 
 public class Controller {
 
@@ -357,6 +355,11 @@ public class Controller {
 		public CommandObserver() {
 			
 		}
+	}
+	
+	public static abstract class MovingObjectObserver {
+		public abstract void updatePos(String railKey);
+		public abstract void updatePassengers(Boolean value);
 	}
 	
 	/**
@@ -1960,6 +1963,10 @@ public class Controller {
 			}
 			
 		}
+	}
+	
+	public static abstract class LocoObserver {
+		public abstract void update(int x, int y);
 	}
 	
 	/**

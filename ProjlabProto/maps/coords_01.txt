@@ -339,4 +339,13 @@ sv15 5 30 Railway\Switch\Switch_U_2.png ss243 Railway\Switch\Switch_U_2.png ss23
 sv16 12 32 Railway\Switch\Switch_R_2.png ss253 Railway\Switch\Switch_R_2.png ss252 Railway\Switch\Switch_R_3.png ss258 Railway\Switch\Switch_R_1.png
 sv17 18 32 Railway\Switch\Switch_R_2.png ss270 Railway\Switch\Switch_R_2.png ss257 Railway\Switch\Switch_R_3.png ss269 Railway\Switch\Switch_R_1.png
 ---stations---
-sa1 6 1 Station\Station_H_blue.png
+sa1 15 3 Station\Station_H_blue.png
+sa2 11 4 Station\Station_V_teal.png
+sa3 6 6 Station\SimultanStation\SimultanStation_V_yellow.png
+sa4 14 8 Station\Station_H_green.png
+sa5 4 12 Station\Station_H_yellow.png
+sa6 17 20 Station\Station_V_red.png
+sa7 23 15 Station\SimultanStation\SimultanStation_V_orange.png
+sa8 27 16 Station\Station_V_orange.png
+sa9 23 27 Station\Station_H_purple.png
+sa10 23 31 Station\Station_H_grey.png

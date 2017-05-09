@@ -418,4 +418,16 @@ add switch ss256
 connect rail ss270 sv17 2
 connect rail ss257 sv17 2
 connect rail ss269 sv17 2
+add station ss17 blue
+add station ss76 teal
+add station ss70 yellow
+toggle station sa3 true
+add station ss59 green
+add station ss106 yellow
+add station ss181 red
+add station ss198 orange
+toggle station sa7 true
+add station ss207 orange
+add station ss291 purple
+add station ss273 grey
 exit
