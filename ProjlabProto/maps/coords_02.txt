@@ -412,3 +412,7 @@ sa5 15 15 Station\SimultanStation\SimultanStation_H_orange.png
 sa6 20 23 Station\Station_H_orange.png
 sa7 28 14 Station\SimultanStation\SimultanStation_V_red.png
 sa8 26 4 Station\Station_V_purple.png
+---trains---
+ss3 ss2 green true Cart_green_full.png
+ss4 ss3 blue true Cart_blue_full.png
+locomotive ss5 ss4 150 1000 Locomotive.png

@@ -54,6 +54,7 @@ public class GameField extends JPanel {
 		this.tunnelIcon = new ImageIcon();
 		this.tunnelIcon.setImage(tunnelImg);
 		this.trains = new HashMap<String, List<String>>();
+		this.moIcons = new ArrayList<ColoredIcon>() ;
 	}
 	
 	public void select(int xCoord, int yCoord)
@@ -96,8 +97,6 @@ public class GameField extends JPanel {
 				return;
 		
 		GameFrame.frame.controller.execute("build tunnel " + SelectedItems[0].refObj + " " + SelectedItems[1].refObj);
-		SelectedItems[0].build();
-		SelectedItems[1].build();
 		
 		builtTunnelTiles[0] = SelectedItems[0];
 		builtTunnelTiles[1] = SelectedItems[1];
@@ -108,8 +107,6 @@ public class GameField extends JPanel {
 			return;
 		
 		GameFrame.frame.controller.execute("destroy tunnel");
-		builtTunnelTiles[0].defaultImage();
-		builtTunnelTiles[1].defaultImage();
 		
 		builtTunnelTiles[0] = null;
 		builtTunnelTiles[1] = null;
@@ -156,7 +153,25 @@ public class GameField extends JPanel {
 			}
 		}
 		
-		//TODO mozgó elemek kirajzolása
+		for (ColoredIcon ci: moIcons) {
+			if (ci.getX() >= 0 && ci.getY() >= 0)
+				ci.paintIcon(GameFrame.frame.canvas, g, ci.getX() * 20, ci.getY() * 20);
+		}
+		
+		if (builtTunnelTiles[0] != null) {
+			tunnelIcon.paintIcon(GameFrame.frame.canvas, g, builtTunnelTiles[0].xCoord * 20, builtTunnelTiles[0].yCoord * 20);
+		}
+		if (builtTunnelTiles[1] != null) {
+			tunnelIcon.paintIcon(GameFrame.frame.canvas, g, builtTunnelTiles[1].xCoord * 20, builtTunnelTiles[1].yCoord * 20);
+		}
+	}
+	
+	public Tile getTileFromKey(String key) {
+		for (int i = 0; i < 35; i++) 
+			for (int j = 0; j < 35; j++)
+				if (gameMatrix[i][j] != null && gameMatrix[i][j].refObj.equals(key))
+					return gameMatrix[i][j];
+		return null;
 	}
 	
 	public void clearField() {
@@ -209,17 +224,17 @@ public class GameField extends JPanel {
 					gameMatrix[x][y] = newTile;
 				}
 			
-			if (line != null)
-			while ((line = br.readLine()) != null) {
+			while (line != null) {
 
 				List<String> carts = new ArrayList<String>();
-				while (!line.contains("locomotive")) {
+				while ((line = br.readLine()) != null && !line.contains("locomotive")) {
 					carts.add(line);
 				}
 				
+				if (line == null) break;
 				carts.add(line);
 				String[] columns = line.split(" ");
-				long milis = Long.parseLong(columns[columns.length - 1]);
+				long milis = Long.parseLong(columns[columns.length - 2]);
 				String key = columns[0];
 				
 				synchronized (trains) { trains.put(key, carts);}
@@ -252,19 +267,25 @@ public class GameField extends JPanel {
 				for (String command: commands) {
 					String[] columns = command.split(" ");
 					
+					File imageFile = new File (System.getProperty("user.dir"));
+					imageFile = new File (imageFile, "images");
+					imageFile = new File (imageFile, "MovingObject");
+					imageFile = new File (imageFile, columns[columns.length - 1]);
+					
 					if (!columns[0].equals("locomotive")) {
 						GameFrame.frame.controller.execute("add cart " + command);
-						//String key = "mc" + (++cartCounter);
-						moIcons.add(new ColoredIcon(-1, -1, columns[columns.length - 1]));
+						String key = "mc" + (++cartCounter);
+						moIcons.add(new ColoredIcon(-1, -1, imageFile.getAbsolutePath(), key));
 					} else {
 						GameFrame.frame.controller.execute("add loco " + columns[1] + " " + columns[2] + " " + columns[3]);
-						//String key = "ml" + (++trainCounter);
-						moIcons.add(new ColoredIcon(-1, -1, columns[columns.length - 1]));
+						String key = "ml" + (++trainCounter);
+						moIcons.add(new ColoredIcon(-1, -1, imageFile.getAbsolutePath(), key));
 					}
 				}
 				
-				GameFrame.frame.controller.execute("start timer " + "ml" + (++trainCounter));
+				GameFrame.frame.controller.execute("timer start " + "ml" + (trainCounter));
 			}
+			GameFrame.frame.canvas.repaint();
 		}
 	}
 }

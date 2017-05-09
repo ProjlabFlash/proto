@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import main.Controller.MovingObjectObserver;
+
 public class ColoredIcon extends FieldImageIcon {
 	private static final long serialVersionUID = -7817118272861870690L;
 	
@@ -14,8 +16,9 @@ public class ColoredIcon extends FieldImageIcon {
 	private static ArrayList<Image> UnfilledPair = new ArrayList<Image>();
 	private int x;
 	private int y;
+	private MoObserver moo;
 	
-	public ColoredIcon(int xCoord, int yCoord, String imagepath)
+	public ColoredIcon(int xCoord, int yCoord, String imagepath, String key)
 	{
 		String[] crop = imagepath.split("\\.");
 		if(crop.length == 0) return;
@@ -43,6 +46,8 @@ public class ColoredIcon extends FieldImageIcon {
 		x = xCoord;
 		y = yCoord;
 		
+		moo = new MoObserver(this);
+		GameFrame.frame.controller.registerObserver(key, moo);
 	}
 	public int getX()
 	{
@@ -51,14 +56,6 @@ public class ColoredIcon extends FieldImageIcon {
 	public int getY()
 	{
 		return y;
-	}
-	public void setX(int newX)
-	{
-		x= newX;
-	}
-	public void setY(int newY)
-	{
-		y = newY;
 	}
 	public void setFilled(boolean isFilled)
 	{
@@ -87,8 +84,35 @@ public class ColoredIcon extends FieldImageIcon {
 			}
 		}
 	}
+	
+	private class MoObserver extends MovingObjectObserver {
+
+		ColoredIcon ci;
+		
+		private MoObserver(ColoredIcon ci) { this.ci = ci;}
+		
+		@Override
+		public void updatePos(String railKey) {
+			Tile tile = GameFrame.frame.field.getTileFromKey(railKey);
+			if (tile == null) {
+				x = -1;
+				y = -1;
+			} else {
+				x = tile.xCoord;
+				y = tile.yCoord;
+				GameFrame.frame.canvas.repaint();
+			}
+			
+		}
+
+		@Override
+		public void updatePassengers(Boolean value) {
+			ci.setFilled(value);
+		}
+		
+	}
 	public void stepToHere(String toHere)
 	{
-		// 2 do nemtom hogy lesz a map megoldva
+		//TODO nemtom hogy lesz a map megoldva
 	}
 }

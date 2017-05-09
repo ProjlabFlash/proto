@@ -222,6 +222,7 @@ public class Controller {
 		for (int i = 0; i < commands.size(); i++)
 			if (commands.get(i).cmdName.equals(params[0])) {
 				commands.get(i).execute(params);
+				return;
 			}
 		
 		if (params.length == 1)
@@ -232,9 +233,11 @@ public class Controller {
 		for (int i = 0; i < commands.size(); i++)
 			if (commands.get(i).cmdName.equals(newcmd)) {
 				commands.get(i).execute(params);
+				return;
 			}
 		
 		System.out.println("A parancs nem felismerheto!");
+		System.out.println(cmd);
 	}
 
 	/**
@@ -334,6 +337,11 @@ public class Controller {
 				}
 		
 		return result;
+	}
+	
+	public void registerObserver (String key, MovingObjectObserver moo) {
+		observers.put(key, moo);
+		
 	}
 	
 	/**
@@ -2038,9 +2046,10 @@ public class Controller {
 					
 					moo = observers.get(moKey);
 					if (moo != null) moo.updatePos(getStringForRail(mo.CurrentRailwaySegment));
+					mo = mo.Pulls;
 				}
 			}
-			myTimer.schedule(new MyTask(loco, key, myTimer), (60 / loco.Speed) * 1000);
+			myTimer.schedule(new MyTask(loco, key, myTimer), (long)(((double)60 / loco.Speed) * 1000));
 		}
 	}
 	
