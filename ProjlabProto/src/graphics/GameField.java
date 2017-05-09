@@ -11,6 +11,9 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import main.Controller;
+import main.Controller.CommandObserver;
+
 public class GameField extends JPanel {
 
 	private static final long serialVersionUID = 2437682713821930938L;
@@ -98,9 +101,29 @@ public class GameField extends JPanel {
 	
 	public void switchTo()
 	{
-		//TODO vegbemegy-e a valtas
-		//FieldImageIcon switchTo[] = getSelectedItems();
-		//switchTo[0].switchTo(switchTo[2].getFieldObject());
+		if (SelectedItems[0] == null || SelectedItems[1] == null) return;
+		SwitchObserver so = new SwitchObserver();
+		if (SelectedItems[0].refObj.contains("sv")) {
+			Controller.switchWithObserver("toggle switch " + SelectedItems[0].refObj + " " + SelectedItems[1].refObj, so);
+			if (so.result = true) {
+				SelectedItems[0].switchTo(SelectedItems[1].refObj);
+			}
+		} else if (SelectedItems[1].refObj.contains("sv")) {
+			Controller.switchWithObserver("toggle switch " + SelectedItems[1].refObj + " " + SelectedItems[0].refObj, so);
+			if (so.result = true) {
+				SelectedItems[1].switchTo(SelectedItems[0].refObj);
+			}
+		}
+	}
+	
+	private class SwitchObserver extends CommandObserver {
+
+		@Override
+		public void notify(boolean result) {
+			System.out.println(result);
+			this.result = result;
+		}
+		
 	}
 	/**
 	 * A teljes pálya kirajzolása

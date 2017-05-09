@@ -351,9 +351,12 @@ public class Controller {
 		
 	}
 	
-	public abstract class CommandObserver {
+	public static abstract class CommandObserver {
 		public boolean result;
-		public abstract boolean notify(boolean result);
+		public abstract void notify(boolean result);
+		public CommandObserver() {
+			
+		}
 	}
 	
 	/**

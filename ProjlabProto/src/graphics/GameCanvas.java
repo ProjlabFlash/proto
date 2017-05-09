@@ -45,7 +45,7 @@ public class GameCanvas extends JPanel{
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
-			GameFrame.frame.field.select(arg0.getX(), arg0.getY());
+			//GameFrame.frame.field.select(arg0.getX(), arg0.getY());
 			
 		}
 

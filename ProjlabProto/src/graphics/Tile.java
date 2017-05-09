@@ -2,6 +2,8 @@ package graphics;
 
 import java.awt.Graphics;
 
+import main.Railway;
+
 public class Tile {
 
 	final public int xCoord;
@@ -21,7 +23,12 @@ public class Tile {
 	}
 	
 	public void setSelected(boolean b) {
-		image.setSelected(true);
+		image.setSelected(b);
+	}
+	
+	public void switchTo(String thisPosition)
+	{
+		image.switchTo(thisPosition);
 	}
 	
 	public void build() {

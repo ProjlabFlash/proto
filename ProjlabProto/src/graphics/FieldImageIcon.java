@@ -124,7 +124,7 @@ public class FieldImageIcon extends ImageIcon{
 	{
 		this.setImage(TunnelImage);
 	}
-	public void switchTo(Railway thisPosition)
+	public void switchTo(String thisPosition)
 	{
 		this.setImage(SwitchImages.get(thisPosition));
 	}
