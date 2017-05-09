@@ -253,7 +253,7 @@ public class GameField extends JPanel {
 		String key;
 		
 		TrainStarter(String key) {this.key = key;}
-		
+		//Teszt
 		@Override
 		public void run() {
 			synchronized (trains) {
