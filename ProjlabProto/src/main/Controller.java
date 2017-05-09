@@ -1305,7 +1305,6 @@ public class Controller {
 				new CmdExploreLine().executeWithReport(this, newParams);
 				targetOS.println("");
 			}
-			
 		}
 	}
 	
