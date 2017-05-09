@@ -28,10 +28,6 @@ public class Tile {
 	{
 		image.switchTo(thisPosition);
 	}
-	
-	public void build() {
-		image.build();
-	}
 
 	public void defaultImage() {
 		image.defaultImage();

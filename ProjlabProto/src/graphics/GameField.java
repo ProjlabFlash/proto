@@ -266,7 +266,7 @@ public class GameField extends JPanel {
 				GameFrame.frame.controller.execute("prepare train");
 				for (String command: commands) {
 					String[] columns = command.split(" ");
-					
+					boolean first = true;
 					File imageFile = new File (System.getProperty("user.dir"));
 					imageFile = new File (imageFile, "images");
 					imageFile = new File (imageFile, "MovingObject");
@@ -275,11 +275,12 @@ public class GameField extends JPanel {
 					if (!columns[0].equals("locomotive")) {
 						GameFrame.frame.controller.execute("add cart " + command);
 						String key = "mc" + (++cartCounter);
-						moIcons.add(new ColoredIcon(-1, -1, imageFile.getAbsolutePath(), key));
+						moIcons.add(new ColoredIcon(-1, -1, imageFile.getAbsolutePath(), key, first));
+						first = false;
 					} else {
 						GameFrame.frame.controller.execute("add loco " + columns[1] + " " + columns[2] + " " + columns[3]);
 						String key = "ml" + (++trainCounter);
-						moIcons.add(new ColoredIcon(-1, -1, imageFile.getAbsolutePath(), key));
+						moIcons.add(new ColoredIcon(-1, -1, imageFile.getAbsolutePath(), key, first));
 					}
 				}
 				

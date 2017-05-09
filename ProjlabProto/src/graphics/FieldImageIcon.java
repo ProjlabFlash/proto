@@ -117,10 +117,6 @@ public class FieldImageIcon extends ImageIcon{
 			}
 		}
 	}
-	public void build()
-	{
-		this.setImage(TunnelImage);
-	}
 	public void switchTo(String thisPosition)
 	{
 		this.setImage(SwitchImages.get(thisPosition));

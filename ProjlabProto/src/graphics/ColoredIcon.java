@@ -16,10 +16,16 @@ public class ColoredIcon extends FieldImageIcon {
 	private static ArrayList<Image> UnfilledPair = new ArrayList<Image>();
 	private int x;
 	private int y;
+	private String key;
+	private boolean repaintOnDrawing;
 	private MoObserver moo;
 	
-	public ColoredIcon(int xCoord, int yCoord, String imagepath, String key)
+	public ColoredIcon(int xCoord, int yCoord, String imagepath, String key, boolean repaintOnDrawing)
 	{
+		
+		this.key = key;
+		this.repaintOnDrawing = repaintOnDrawing;
+		
 		String[] crop = imagepath.split("\\.");
 		if(crop.length == 0) return;
 		filename = crop[0];
@@ -100,7 +106,8 @@ public class ColoredIcon extends FieldImageIcon {
 			} else {
 				x = tile.xCoord;
 				y = tile.yCoord;
-				GameFrame.frame.canvas.repaint();
+				if (repaintOnDrawing)
+					GameFrame.frame.canvas.repaint();
 			}
 			
 		}

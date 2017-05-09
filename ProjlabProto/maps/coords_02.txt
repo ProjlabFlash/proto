@@ -415,4 +415,4 @@ sa8 26 4 Station\Station_V_purple.png
 ---trains---
 ss3 ss2 green true Cart_green_full.png
 ss4 ss3 blue true Cart_blue_full.png
-locomotive ss5 ss4 150 1000 Locomotive.png
+locomotive ss5 ss4 600 1000 Locomotive.png

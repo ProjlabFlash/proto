@@ -18,6 +18,7 @@ public class GameFrame extends JFrame {
 	private static final long serialVersionUID = -9134923568351885820L;
 	
 	public static GameFrame frame;
+	private boolean repaintNeeded = false;
 
 	private GameFrame() {
 		this.userControl = new UserControl();

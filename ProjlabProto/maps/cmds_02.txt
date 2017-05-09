@@ -468,7 +468,7 @@ connect rail ss280 sc12 1
 connect rail ss281 sc12 2
 connect rail ss244 sc12 2
 add crossing
-add switch sc13
+add switch
 connect rail ss348 sv6 2
 connect rail ss321 sv6 2
 connect rail ss347 sv6 2
