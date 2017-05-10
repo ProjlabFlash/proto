@@ -29,9 +29,6 @@ public class ColoredIcon extends FieldImageIcon {
 		
 		this.key = key;
 		this.repaintOnDrawing = repaintOnDrawing;
-		/*
-		 *  getting the filename till the 
-		 */
 		if(imagepath == null) return;
 		filename = imagepath;
 		FieldObject = null;	
@@ -43,7 +40,10 @@ public class ColoredIcon extends FieldImageIcon {
 		
 		this.setImage(DefaultImage);
 		CurrentImage = DefaultImage;	
-		
+		/*
+		 * Initializing unfilled pair
+		 * And Filled pair 
+		 */
 		Image unfilled = null;
 		try {
 			unfilled = ImageIO.read(new File(filename.replace("full", "empty")));
@@ -59,20 +59,33 @@ public class ColoredIcon extends FieldImageIcon {
 		moo = new MoObserver(this);
 		GameFrame.frame.controller.registerObserver(key, moo);
 	}
+	/*
+	 * Getter for X coord 
+	 */
 	public int getX()
 	{
 		return x;
 	}
+	/*
+	 * Getter for Y coord 
+	 */
 	public int getY()
 	{
 		return y;
 	}
+	/*
+	 * sets the image filled if the parameter is true
+	 * sets the image unfilled if the parameter is false 
+	 */
 	public void setFilled(boolean isFilled)
 	{
 		if(isFilled)
 		{
 			if(!filled)
 			{
+				/*
+				 * Checking the list
+				 */
 				if(UnfilledPair.indexOf(CurrentImage) != -1)
 				{
 				CurrentImage = FilledPair.get(UnfilledPair.indexOf(CurrentImage));
@@ -85,6 +98,9 @@ public class ColoredIcon extends FieldImageIcon {
 		{
 			if(filled)
 			{
+				/*
+				 * Checking the list
+				 */
 				if(FilledPair.indexOf(CurrentImage) != -1)
 				{
 				CurrentImage = UnfilledPair.get(FilledPair.indexOf(CurrentImage));
@@ -94,13 +110,17 @@ public class ColoredIcon extends FieldImageIcon {
 			}
 		}
 	}
-	
+	/*
+	 * private class for handling mouseevents
+	 */
 	private class MoObserver extends MovingObjectObserver {
 
 		ColoredIcon ci;
 		
 		private MoObserver(ColoredIcon ci) { this.ci = ci;}
-		
+		/*
+		 * Updates the position of the image
+		 */
 		@Override
 		public void updatePos(String railKey) {
 			Tile tile = GameFrame.frame.field.getTileFromKey(railKey);
@@ -115,15 +135,13 @@ public class ColoredIcon extends FieldImageIcon {
 			}
 			
 		}
-
+		/*
+		 * updates the image according to the passangers
+		 */
 		@Override
 		public void updatePassengers(Boolean value) {
 			ci.setFilled(value);
 		}
 		
-	}
-	public void stepToHere(String toHere)
-	{
-		//TODO nemtom hogy lesz a map megoldva
 	}
 }
