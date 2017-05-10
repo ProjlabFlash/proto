@@ -178,6 +178,12 @@ public class GameField extends JPanel {
 		SelectedItems = new Tile[2];
 		builtTunnelTiles = new Tile[2];
 		gameMatrix = new Tile[35][35];
+		builtTunnelTiles = new Tile[2];
+		moIcons = new ArrayList<ColoredIcon>();
+		
+		trains = new HashMap<String, List<String>>();
+		cartCounter = 0;
+		trainCounter = 0;
 	}
 	
 	public void mapParser(File file) throws IOException

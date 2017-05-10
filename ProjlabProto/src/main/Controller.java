@@ -163,6 +163,7 @@ public class Controller {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		isRunning = true;
 		/**
 		 * A hurok megnezi, hogy letezik-e az elso szoban megadott parancs, ha nem akkor osszefuzi azt a masodik szoval
 		 * es ujra megnezi, mert akadnak ket szavas parameterek. Ezek miatt ket parameter elso szava nem egyezhet meg, ha az egyik egy szavas.
@@ -2203,17 +2204,17 @@ public class Controller {
 	}
 
 	
-	public static abstract class gameStateObserver {
+	public static abstract class GameStateObserver {
 		public abstract void win();
 		public abstract void lose();
 		
 	}
 	
-	private static gameStateObserver observer;
+	private static GameStateObserver observer;
 	private static List<Locomotive> tBD = new ArrayList<Locomotive>();
 	private static int gameState = 0;
 	
-	public static void attachGameStateObserver(gameStateObserver o) {
+	public static void attachGameStateObserver(GameStateObserver o) {
 		observer = o;
 	}
 	

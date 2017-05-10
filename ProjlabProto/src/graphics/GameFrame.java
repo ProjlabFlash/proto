@@ -12,13 +12,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 import main.Controller;
+import main.Controller.GameStateObserver;
 
 public class GameFrame extends JFrame {
 
 	private static final long serialVersionUID = -9134923568351885820L;
 	
 	public static GameFrame frame;
-	private boolean repaintNeeded = false;
 
 	private GameFrame() {
 		this.userControl = new UserControl();
@@ -46,6 +46,7 @@ public class GameFrame extends JFrame {
 		}
 		field = new GameField(img, tunnelIcon);
 		controller = new Controller();
+		Controller.attachGameStateObserver(bso);
 	}
 	
 	public UserControl userControl;
@@ -53,12 +54,14 @@ public class GameFrame extends JFrame {
 	public GameCanvas canvas;
 	public Controller controller;
 	private static List<LevelDescriber> levels = new ArrayList<LevelDescriber>();
+	private int currentLevel = 1;
 	
 	public static void main(String args[]) {
 
 		frame = new GameFrame();
 		
 		levels.add(new LevelDescriber(1, "coords_02.txt", "cmds_02.txt"));
+		levels.add(new LevelDescriber(2, "coords_01.txt", "cmds_01.txt"));
 		frame.loadLevel(1);
 		
 		frame.pack();
@@ -67,7 +70,7 @@ public class GameFrame extends JFrame {
 
 	private void loadLevel(int i) {
 		
-		LevelDescriber ld = levels.get(i - 1);
+		LevelDescriber ld = levels.get((i - 1) % levels.size());
 		Controller.executeFromInput(ld.cmdsFile);
 		field.clearField();
 		try {
@@ -77,5 +80,20 @@ public class GameFrame extends JFrame {
 		}
 	}
 	
+	GSObserver bso = new GSObserver();
+	
+	private class GSObserver extends GameStateObserver {
+
+		@Override
+		public void win() {
+			frame.loadLevel(++currentLevel);
+		}
+
+		@Override
+		public void lose() {
+			frame.loadLevel(currentLevel);
+		}
+		
+	}
 	
 }

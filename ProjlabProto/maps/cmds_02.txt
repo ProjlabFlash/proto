@@ -1,3 +1,4 @@
+clearTable
 add rail
 add rail ss1
 add rail ss2
