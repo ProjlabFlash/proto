@@ -17,9 +17,13 @@ import main.Controller.GameStateObserver;
 public class GameFrame extends JFrame {
 
 	private static final long serialVersionUID = -9134923568351885820L;
-	
+	/**
+	 * public frame 
+	 */
 	public static GameFrame frame;
-
+	/**
+	 * ctor: initializing the frame
+	 */
 	private GameFrame() {
 		this.userControl = new UserControl();
 		this.canvas = new GameCanvas();
@@ -55,7 +59,10 @@ public class GameFrame extends JFrame {
 	public Controller controller;
 	private static List<LevelDescriber> levels = new ArrayList<LevelDescriber>();
 	private int currentLevel = 1;
-	
+	/**
+	 * programs entry point
+	 * @param args
+	 */
 	public static void main(String args[]) {
 
 		frame = new GameFrame();
@@ -67,7 +74,10 @@ public class GameFrame extends JFrame {
 		frame.pack();
 		frame.setVisible(true);
 	}
-
+	/**
+	 * loads the level's gamefield and the sets it up along with the model
+	 * @param i
+	 */
 	private void loadLevel(int i) {
 		
 		LevelDescriber ld = levels.get((i - 1) % levels.size());
@@ -81,7 +91,11 @@ public class GameFrame extends JFrame {
 	}
 	
 	GSObserver bso = new GSObserver();
-	
+	/**
+	 * observer for the start of the game
+	 * @author mmlaj
+	 *
+	 */
 	private class GSObserver extends GameStateObserver {
 
 		@Override
