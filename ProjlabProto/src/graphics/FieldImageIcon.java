@@ -148,7 +148,7 @@ public class FieldImageIcon extends ImageIcon{
 	public void switchTo(String thisPosition)
 	{
 		CurrentImage= SwitchImages.get(thisPosition);
-		this.setImage(CurrentImage);
+		if (CurrentImage != null) this.setImage(CurrentImage);
 		
 	}
 	/*

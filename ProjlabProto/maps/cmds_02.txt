@@ -15,8 +15,8 @@ add rail
 add rail
 add rail ss14
 add rail ss15
-add rail ss16
-add rail ss17
+add rail
+add rail
 add rail ss18
 add rail ss19
 add rail ss20
@@ -398,16 +398,16 @@ add switch ss12
 connect rail ss72 sv2 2
 connect rail ss64 sv2 2
 connect rail ss65 sv2 2
-add switch ss129
+add switch ss130
 connect rail ss133 sv3 2
 connect rail ss128 sv3 2
-connect rail ss130 sv3 2
+connect rail ss129 sv3 2
 add switch ss174
 connect rail ss301 sv4 2
 connect rail ss175 sv4 2
 connect rail ss302 sv4 2
-add switch ss274
-connect rail ss202 sv5 2
+add switch ss202
+connect rail ss274 sv5 2
 connect rail ss250 sv5 2
 connect rail ss251 sv5 2
 add crossing
@@ -492,4 +492,15 @@ add station ss238 orange
 add station ss341 red
 toggle station sa7 true
 add station ss377 purple
+add rail ss1
+add rail ss383
+add rail ss384
+add rail ss385
+add rail ss157
+add rail ss387
+add rail ss388
+add rail ss389
+add buildingspot
+connect rail sb4 ss18
+connect rail sb4 ss16
 exit

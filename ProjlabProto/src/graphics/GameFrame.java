@@ -78,6 +78,7 @@ public class GameFrame extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		frame.repaint();
 	}
 	
 	GSObserver bso = new GSObserver();

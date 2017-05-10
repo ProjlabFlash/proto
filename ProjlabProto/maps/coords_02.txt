@@ -14,9 +14,8 @@ ss13 5 0 Railway\Railway_V.png
 ss14 5 2 Railway\Railway_V.png
 ss15 5 3 Railway\Railway_V.png
 ss16 5 4 Railway\Railway_V.png
-ss17 5 5 Railway\Railway_V.png
 ss18 5 6 Railway\Railway_V.png
-ss18 5 7 Railway\Railway_V.png
+ss19 5 7 Railway\Railway_V.png
 ss20 5 8 Railway\Railway_U_L.png
 ss21 4 8 Railway\Railway_H.png
 ss22 3 8 Railway\Railway_H.png
@@ -383,11 +382,12 @@ ss382 27 9 Railway\Railway_V.png
 sb1 18 4 BuildingSpot\BuildingSpot_V.png
 sb2 20 14 BuildingSpot\BuildingSpot_V.png
 sb3 1 32 BuildingSpot\BuildingSpot_V.png
+sb4 5 5 BuildingSpot\BuildingSpot_V.png
 sv1 5 1 Railway\Switch\Switch_L_2.png ss5 Railway\Switch\Switch_L_2.png ss13 Railway\Switch\Switch_L_3.png ss14 Railway\Switch\Switch_L_1.png
 sv2 13 1 Railway\Switch\Switch_R_2.png ss72 Railway\Switch\Switch_R_2.png ss64 Railway\Switch\Switch_R_1.png ss65 Railway\Switch\Switch_R_3.png
-sv3 4 17 Railway\Switch\Switch_D_2.png ss133 Railway\Switch\Switch_D_2.png ss128 Railway\Switch\Switch_D_3.png ss130 Railway\Switch\Switch_D_1.png
-sv4 10 21 Railway\Switch\Switch_R_2.png ss301 Railway\Switch\Switch_R_2.png ss175 Railway\Switch\Switch_R_3.png ss302 Railway\Switch\Switch_R_1.png
-sv5 28 30 Railway\Switch\Switch_D_2.png ss202 Railway\Switch\Switch_D_2.png ss250 Railway\Switch\Switch_D_3.png ss251 Railway\Switch\Switch_D_1.png
+sv3 4 17 Railway\Switch\Switch_L_1.png ss133 Railway\Switch\Switch_L_1.png ss128 Railway\Switch\Switch_L_2.png ss129 Railway\Switch\Switch_L_3.png
+sv4 10 21 Railway\Switch\Switch_L_2.png ss301 Railway\Switch\Switch_L_2.png ss302 Railway\Switch\Switch_L_3.png ss175 Railway\Switch\Switch_L_1.png
+sv5 28 30 Railway\Switch\Switch_U_2.png ss274 Railway\Switch\Switch_U_2.png ss250 Railway\Switch\Switch_U_1.png ss251 Railway\Switch\Switch_U_3.png
 sc1 18 1 Railway\CrossRailway.png
 sc2 13 9 Railway\CrossRailway.png
 sc3 4 14 Railway\CrossRailway.png
@@ -413,6 +413,9 @@ sa6 20 23 Station\Station_H_orange.png
 sa7 28 14 Station\SimultanStation\SimultanStation_V_red.png
 sa8 26 4 Station\Station_V_purple.png
 ---trains---
-ss3 ss2 green true Cart_green_full.png
-ss4 ss3 blue true Cart_blue_full.png
-locomotive ss5 ss4 600 1000 Locomotive.png
+ss386 null blue true Cart_blue_full.png
+ss385 ss386 red true Cart_red_full.png
+ss384 ss385 blue true Cart_blue_full.png
+locomotive ml1 ss383 ss384 300 1000 Locomotive.png
+ss388 ss389 orange true Cart_orange_full.png
+locomotive ml2 ss387 ss388 400 3000 Locomotive.png

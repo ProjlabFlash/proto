@@ -372,8 +372,8 @@ add switch ss42
 connect rail ss40 sv4 2
 connect rail ss41 sv4 2
 connect rail ss98 sv4 2
-add switch ss44
-connect rail ss46 sv5 2
+add switch ss46
+connect rail ss44 sv5 2
 connect rail ss45 sv5 2
 connect rail ss92 sv5 2
 add switch ss47
@@ -431,4 +431,8 @@ toggle station sa7 true
 add station ss207 orange
 add station ss291 purple
 add station ss273 grey
+add rail ss228
+add rail ss311
+add rail ss312
+add rail ss313
 exit

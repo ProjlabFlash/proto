@@ -66,6 +66,7 @@ public class GameField extends JPanel {
 		System.out.println(xCoord + "  " + yCoord);
 		
 		Tile selected = gameMatrix[xCoord / 20][yCoord / 20];
+		if (selected != null) System.err.println(selected.refObj);
 		
 		if (SelectedItems[0] == null && selected != null)
 		{
@@ -260,7 +261,7 @@ public class GameField extends JPanel {
 				carts.add(line);
 				String[] columns = line.split(" ");
 				long milis = Long.parseLong(columns[columns.length - 2]);
-				String key = columns[0];
+				String key = columns[1];
 				
 				synchronized (trains) { trains.put(key, carts);}
 				Timer t = new Timer();
@@ -305,7 +306,7 @@ public class GameField extends JPanel {
 						moIcons.add(new ColoredIcon(-1, -1, imageFile.getAbsolutePath(), key, first));
 						first = false;
 					} else {
-						GameFrame.frame.controller.execute("add loco " + columns[1] + " " + columns[2] + " " + columns[3]);
+						GameFrame.frame.controller.execute("add loco " + columns[2] + " " + columns[3] + " " + columns[4]);
 						String key = "ml" + (++trainCounter);
 						moIcons.add(new ColoredIcon(-1, -1, imageFile.getAbsolutePath(), key, first));
 					}

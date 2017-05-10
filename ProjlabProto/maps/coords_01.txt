@@ -325,7 +325,7 @@ sv1 12 2 Railway\Switch\Switch_R_2.png ss15 Railway\Switch\Switch_R_2.png ss75 R
 sv2 21 2 Railway\Switch\Switch_L_2.png ss22 Railway\Switch\Switch_L_2.png ss23 Railway\Switch\Switch_L_3.png ss88 Railway\Switch\Switch_L_1.png
 sv3 25 2 Railway\Switch\Switch_R_2.png ss28 Railway\Switch\Switch_R_2.png ss27 Railway\Switch\Switch_R_1.png ss99 Railway\Switch\Switch_R_3.png
 sv4 25 9 Railway\Switch\Switch_R_2.png ss40 Railway\Switch\Switch_R_2.png ss41 Railway\Switch\Switch_R_3.png ss98 Railway\Switch\Switch_R_1.png
-sv5 21 9 Railway\Switch\Switch_L_2.png ss46 Railway\Switch\Switch_L_2.png ss45 Railway\Switch\Switch_L_1.png ss92 Railway\Switch\Switch_L_3.png
+sv5 21 9 Railway\Switch\Switch_R_2.png ss44 Railway\Switch\Switch_R_2.png ss45 Railway\Switch\Switch_R_3.png ss92 Railway\Switch\Switch_R_1.png
 sv6 18 9 Railway\Switch\Switch_L_2.png ss56 Railway\Switch\Switch_L_2.png ss48 Railway\Switch\Switch_L_1.png ss86 Railway\Switch\Switch_L_3.png
 sv7 21 6 Railway\Switch\Switch_U_2.png ss90 Railway\Switch\Switch_U_2.png ss87 Railway\Switch\Switch_U_1.png ss93 Railway\Switch\Switch_U_3.png
 sv8 25 6 Railway\Switch\Switch_D_2.png ss97 Railway\Switch\Switch_D_2.png ss95 Railway\Switch\Switch_D_3.png ss96 Railway\Switch\Switch_D_1.png
@@ -349,3 +349,11 @@ sa7 23 15 Station\SimultanStation\SimultanStation_V_orange.png
 sa8 27 16 Station\Station_V_orange.png
 sa9 23 27 Station\Station_H_purple.png
 sa10 23 31 Station\Station_H_grey.png
+---trains---
+ss314 null red true Cart_red_full.png
+ss313 ss314 yellow true Cart_yellow_full.png
+ss312 ss313 blue true Cart_blue_full.png
+locomotive ml3 ss311 ss312 250 5000 Locomotive.png
+ss2 ss1 teal true Cart_teal_full.png
+ss3 ss2 orange true Cart_orange_full.png
+locomotive ml1 ss4 ss3 200 10 Locomotive.png

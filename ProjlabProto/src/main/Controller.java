@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -140,11 +141,15 @@ public class Controller {
 	 * @param args: Nem hasznalt
 	 */
 	
-	
+	private static class SilentOut extends OutputStream{
+		public void write(int b) {
+        }
+	}
 
 	public static void executeFromInput(File file) {
 		
 		targetOS = stdoutWriter = System.out;
+		System.setOut(new PrintStream(new SilentOut()));
 		//targetIS = stdinReader = new BufferedReader(new InputStreamReader(System.in));
 		
 		try {
@@ -2039,8 +2044,8 @@ public class Controller {
 				return;
 			}
 			
-			targetOS.println("A "+ key +" vonat mozgatasa "+ getStringForRail(loco.CurrentRailwaySegment) +" sinrol "+ 
-					getStringForRail(loco.CurrentRailwaySegment.next(loco.PreviousRailwaySegment)) +" sinre.");
+			//targetOS.println("A "+ key +" vonat mozgatasa "+ getStringForRail(loco.CurrentRailwaySegment) +" sinrol "+ 
+			//		getStringForRail(loco.CurrentRailwaySegment.next(loco.PreviousRailwaySegment)) +" sinre.");
 			
 			synchronized (syncObj) {
 				loco.move();
