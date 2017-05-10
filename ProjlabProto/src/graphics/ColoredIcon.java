@@ -19,7 +19,7 @@ public class ColoredIcon extends FieldImageIcon {
 	private String key;
 	private boolean repaintOnDrawing;
 	private MoObserver moo;
-	/*
+	/**
 	 * Ctor
 	 * initializes all nessesary attributes
 	 * 
@@ -40,7 +40,7 @@ public class ColoredIcon extends FieldImageIcon {
 		
 		this.setImage(DefaultImage);
 		CurrentImage = DefaultImage;	
-		/*
+		/**
 		 * Initializing unfilled pair
 		 * And Filled pair 
 		 */
@@ -59,21 +59,21 @@ public class ColoredIcon extends FieldImageIcon {
 		moo = new MoObserver(this);
 		GameFrame.frame.controller.registerObserver(key, moo);
 	}
-	/*
+	/**
 	 * Getter for X coord 
 	 */
 	public int getX()
 	{
 		return x;
 	}
-	/*
+	/**
 	 * Getter for Y coord 
 	 */
 	public int getY()
 	{
 		return y;
 	}
-	/*
+	/**
 	 * sets the image filled if the parameter is true
 	 * sets the image unfilled if the parameter is false 
 	 */
@@ -98,7 +98,7 @@ public class ColoredIcon extends FieldImageIcon {
 		{
 			if(filled)
 			{
-				/*
+				/**
 				 * Checking the list
 				 */
 				if(FilledPair.indexOf(CurrentImage) != -1)
@@ -110,7 +110,7 @@ public class ColoredIcon extends FieldImageIcon {
 			}
 		}
 	}
-	/*
+	/**
 	 * private class for handling mouseevents
 	 */
 	private class MoObserver extends MovingObjectObserver {
@@ -118,7 +118,7 @@ public class ColoredIcon extends FieldImageIcon {
 		ColoredIcon ci;
 		
 		private MoObserver(ColoredIcon ci) { this.ci = ci;}
-		/*
+		/**
 		 * Updates the position of the image
 		 */
 		@Override
@@ -135,7 +135,7 @@ public class ColoredIcon extends FieldImageIcon {
 			}
 			
 		}
-		/*
+		/**
 		 * updates the image according to the passangers
 		 */
 		@Override

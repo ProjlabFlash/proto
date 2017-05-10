@@ -26,7 +26,7 @@ public class FieldImageIcon extends ImageIcon{
 	
 	public FieldImageIcon(){	
 	}
-	/*
+	/**
 	 * returns the files absolute path 
 	 * paramter: realative path of the file
 	 */
@@ -38,7 +38,7 @@ public class FieldImageIcon extends ImageIcon{
 			file = new File(file, pathParts[i]);
 		return file;
 	}
-	/*
+	/**
 	 * ctor for FieldimageIcon
 	 * gets the images path
 	 */
@@ -65,7 +65,7 @@ public class FieldImageIcon extends ImageIcon{
 			
 		}		
 	}
-	/*
+	/**
 	 * ctor or FieldImageIcon
 	 * gets additional params for the items names and it's files path
 	 */
@@ -95,14 +95,14 @@ public class FieldImageIcon extends ImageIcon{
 			
 		}
 	}
-	/*
+	/**
 	 * getter for FieldObject - represents the model element
 	 */
 	public Railway getObject()
 	{
 		return FieldObject;
 	}
-	/*
+	/**
 	 * selects the image 
 	 * if param = true :switches the image to the selected one
 	 * if param = false: switches the image to the unselected one
@@ -113,7 +113,7 @@ public class FieldImageIcon extends ImageIcon{
 		{
 			if(!selected)
 			{
-				/*
+				/**
 				 * Checking the list
 				 */
 				if(UnselectedPair.indexOf(CurrentImage) != -1)
@@ -129,7 +129,7 @@ public class FieldImageIcon extends ImageIcon{
 
 			if(selected)
 			{
-				/*
+				/**
 				 * Checking the list
 				 */
 				if(SelectedPair.indexOf(CurrentImage) != -1)
@@ -141,7 +141,7 @@ public class FieldImageIcon extends ImageIcon{
 			}
 		}
 	}
-	/*
+	/**
 	 * replaces the represented swithch's icon the the one 
 	 * that leades to the param
 	 */
@@ -151,14 +151,14 @@ public class FieldImageIcon extends ImageIcon{
 		this.setImage(CurrentImage);
 		
 	}
-	/*
+	/**
 	 * getter returns the represented object
 	 */
 	public Railway getFieldObject() 
 	{
 		return FieldObject;
 	}
-	/*
+	/**
 	 * sets the image to the default image
 	 */
 	public void defaultImage() 
@@ -166,7 +166,7 @@ public class FieldImageIcon extends ImageIcon{
 		CurrentImage = DefaultImage;
 		this.setImage(DefaultImage);		
 	}
-	/*
+	/**
 	 * setter for the represented Object
 	 */
 	public void setFieldObject(Railway r)
