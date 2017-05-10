@@ -58,7 +58,7 @@ public class GameField extends JPanel {
 		this.trains = new HashMap<String, List<String>>();
 		this.moIcons = new ArrayList<ColoredIcon>() ;
 	}
-	/*
+	/**
 	 * selects the Tile in the coordinates given as params
 	 */
 	public void select(int xCoord, int yCoord)
@@ -93,7 +93,7 @@ public class GameField extends JPanel {
 		FieldImageIcon fim = (FieldImageIcon) ae.getSource();
 		select(fim);		
 	}*/
-	/*
+	/**
 	 * builds a tunnel between the selected elements if allowed
 	 */
 	public void buildTunnel()
@@ -107,7 +107,7 @@ public class GameField extends JPanel {
 		builtTunnelTiles[0] = SelectedItems[0];
 		builtTunnelTiles[1] = SelectedItems[1];
 	}
-	/*
+	/**
 	 * removes an existing tunnel
 	 */
 	public void removeTunnel()
@@ -120,7 +120,7 @@ public class GameField extends JPanel {
 		builtTunnelTiles[0] = null;
 		builtTunnelTiles[1] = null;
 	}
-	/*
+	/**
 	 * sets the switch to the position selected by the user
 	 */
 	public void switchTo()
@@ -139,7 +139,7 @@ public class GameField extends JPanel {
 			}
 		}
 	}
-	/*
+	/**
 	 * observer for the switch
 	 */
 	private class SwitchObserver extends CommandObserver {
@@ -153,10 +153,7 @@ public class GameField extends JPanel {
 	}
 	/**
 	 * A teljes pálya kirajzolása
-	 * @param g
-	 */
-	/*
-	 * paints the whole gamefield
+	 * @param g A használt grafikus kontextus
 	 */
 	public void paintField (Graphics g) {
 
@@ -181,7 +178,7 @@ public class GameField extends JPanel {
 			tunnelIcon.paintIcon(GameFrame.frame.canvas, g, builtTunnelTiles[1].xCoord * 20, builtTunnelTiles[1].yCoord * 20);
 		}
 	}
-	/*
+	/**
 	 * returns the Tile from it's key string
 	 */
 	public Tile getTileFromKey(String key) {
@@ -191,7 +188,7 @@ public class GameField extends JPanel {
 					return gameMatrix[i][j];
 		return null;
 	}
-	/*
+	/**
 	 * clears the field
 	 */
 	public void clearField() {
@@ -205,7 +202,7 @@ public class GameField extends JPanel {
 		cartCounter = 0;
 		trainCounter = 0;
 	}
-	/*
+	/**
 	 * parses the map elemnts into field elements (images) in Tiels
 	 */
 	public void mapParser(File file) throws IOException
@@ -275,7 +272,7 @@ public class GameField extends JPanel {
 		}
 		
 	}
-	/*
+	/**
 	 * private class for starting trains
 	 */
 	private class TrainStarter extends TimerTask {
