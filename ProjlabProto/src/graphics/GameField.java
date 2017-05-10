@@ -34,7 +34,9 @@ public class GameField extends JPanel {
 	private Map<String, List<String>> trains;
 	private int cartCounter = 0;
 	private int trainCounter = 0;
-	
+	/*
+	 * ctor: initializes the gamfeiled
+	 */
 	public GameField(Image backgroundImage, Image tunnelImg) {
 		
 		
@@ -56,7 +58,9 @@ public class GameField extends JPanel {
 		this.trains = new HashMap<String, List<String>>();
 		this.moIcons = new ArrayList<ColoredIcon>() ;
 	}
-	
+	/*
+	 * selects the Tile in the coordinates given as params
+	 */
 	public void select(int xCoord, int yCoord)
 	{
 		System.out.println(xCoord + "  " + yCoord);
@@ -89,7 +93,9 @@ public class GameField extends JPanel {
 		FieldImageIcon fim = (FieldImageIcon) ae.getSource();
 		select(fim);		
 	}*/
-	
+	/*
+	 * builds a tunnel between the selected elements if allowed
+	 */
 	public void buildTunnel()
 	{
 		for (int i = 0; i < 2; i++)
@@ -101,6 +107,9 @@ public class GameField extends JPanel {
 		builtTunnelTiles[0] = SelectedItems[0];
 		builtTunnelTiles[1] = SelectedItems[1];
 	}
+	/*
+	 * removes an existing tunnel
+	 */
 	public void removeTunnel()
 	{
 		if (builtTunnelTiles[0] == null)
@@ -111,7 +120,9 @@ public class GameField extends JPanel {
 		builtTunnelTiles[0] = null;
 		builtTunnelTiles[1] = null;
 	}
-	
+	/*
+	 * sets the switch to the position selected by the user
+	 */
 	public void switchTo()
 	{
 		if (SelectedItems[0] == null || SelectedItems[1] == null) return;
@@ -128,7 +139,9 @@ public class GameField extends JPanel {
 			}
 		}
 	}
-	
+	/*
+	 * observer for the switch
+	 */
 	private class SwitchObserver extends CommandObserver {
 
 		@Override
@@ -141,6 +154,9 @@ public class GameField extends JPanel {
 	/**
 	 * A teljes pálya kirajzolása
 	 * @param g
+	 */
+	/*
+	 * paints the whole gamefield
 	 */
 	public void paintField (Graphics g) {
 
@@ -165,7 +181,9 @@ public class GameField extends JPanel {
 			tunnelIcon.paintIcon(GameFrame.frame.canvas, g, builtTunnelTiles[1].xCoord * 20, builtTunnelTiles[1].yCoord * 20);
 		}
 	}
-	
+	/*
+	 * returns the Tile from it's key string
+	 */
 	public Tile getTileFromKey(String key) {
 		for (int i = 0; i < 35; i++) 
 			for (int j = 0; j < 35; j++)
@@ -173,13 +191,17 @@ public class GameField extends JPanel {
 					return gameMatrix[i][j];
 		return null;
 	}
-	
+	/*
+	 * clears the field
+	 */
 	public void clearField() {
 		SelectedItems = new Tile[2];
 		builtTunnelTiles = new Tile[2];
 		gameMatrix = new Tile[35][35];
 	}
-	
+	/*
+	 * parses the map elemnts into field elements (images) in Tiels
+	 */
 	public void mapParser(File file) throws IOException
 	{
 		
@@ -247,7 +269,9 @@ public class GameField extends JPanel {
 		}
 		
 	}
-	
+	/*
+	 * private class for starting trains
+	 */
 	private class TrainStarter extends TimerTask {
 		
 		String key;

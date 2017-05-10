@@ -10,22 +10,33 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 public class GameCanvas extends JPanel{
-	
+	/*
+	 * ctor: initializes the object
+	 */
 	public GameCanvas() {
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setDoubleBuffered(true);
 		addMouseListener(new gamecanvasMouseListener());
 	}
-
+	/*
+	 * returns the preferred size
+	 */
 	public Dimension getPreferredSize() { return new Dimension(700,700);}
-	
+	/*
+	 * returns the minimum size
+	 */
 	public Dimension getMinimumSize() { return new Dimension(700,700);}
-
+	/*
+	 *  paints the field
+ 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		System.out.println(GameFrame.frame);
 		GameFrame.frame.field.paintField(g);
 	}
+	/*
+	 * private class for mouse events
+	 */
 	private class gamecanvasMouseListener implements MouseListener
 	{
 		@Override
