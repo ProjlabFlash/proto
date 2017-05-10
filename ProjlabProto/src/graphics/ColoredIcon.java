@@ -19,18 +19,22 @@ public class ColoredIcon extends FieldImageIcon {
 	private String key;
 	private boolean repaintOnDrawing;
 	private MoObserver moo;
-	
+	/*
+	 * Ctor
+	 * initializes all nessesary attributes
+	 * 
+	 */
 	public ColoredIcon(int xCoord, int yCoord, String imagepath, String key, boolean repaintOnDrawing)
 	{
 		
 		this.key = key;
 		this.repaintOnDrawing = repaintOnDrawing;
-		
-		String[] crop = imagepath.split("\\.");
-		if(crop.length == 0) return;
-		filename = crop[0];
-		FieldObject = null;
-		
+		/*
+		 *  getting the filename till the 
+		 */
+		if(imagepath == null) return;
+		filename = imagepath;
+		FieldObject = null;	
 		try {
 			DefaultImage = ImageIO.read(new File(imagepath));
 		} catch (IOException e) {
@@ -48,7 +52,7 @@ public class ColoredIcon extends FieldImageIcon {
 		
 		FilledPair.add(CurrentImage);
 		UnfilledPair.add(unfilled);
-		filled = false;
+		filled = true;
 		x = xCoord;
 		y = yCoord;
 		
