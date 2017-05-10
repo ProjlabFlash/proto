@@ -1,7 +1,11 @@
 package graphics;
 
 import java.io.File;
-
+/**
+ * class for describing the gamefield for one game
+ * @author mmlaj
+ *
+ */
 public class LevelDescriber {
 
 	public final int number;

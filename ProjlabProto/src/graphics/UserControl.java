@@ -17,8 +17,10 @@ public class UserControl extends JPanel {
 	private JButton BuildTunnel_Button;
 	private JButton DestroyTunnel_Button;
 	private JButton SwitchPerform_Button;
-	private GameField gf;
-	
+	/*
+	 * ctor: initializes the panel
+	 * sets the actionisteners to the buttons
+	 */
 	public UserControl() {
 		BuildTunnel_Button = new JButton("Build Tunnel");
 		DestroyTunnel_Button = new JButton("Destroy Tunnel");
@@ -40,20 +42,11 @@ public class UserControl extends JPanel {
 		SwitchPerform_Button.addActionListener(new buttonSwitchListener());
 		
 	}
-	
-	public void PerformBuildTunnel(BuildingSpot buildingSpot1, BuildingSpot buildingSpot2)
-	{
-		gf.buildTunnel();
-	}
-	public void PerformSwitchTo(Railway ToHere)
-	{
-		gf.switchTo();
-	}
-	public void PerformDestroyTunnel()
-	{
-		gf.removeTunnel();
-	}
-	
+	/**
+	 * private class for the tunnel building button event
+	 * @author mmlaj
+	 *
+	 */
 	private class buttonTunnelListener implements ActionListener {
 
 		@Override
@@ -63,6 +56,11 @@ public class UserControl extends JPanel {
 		}
 		
 	}
+	/**
+	 * private class for the tunnel destroying button event
+	 * @author mmlaj
+	 *
+	 */
 	private class buttonTunnelDestroyListener implements ActionListener{
 
 		@Override
@@ -71,6 +69,11 @@ public class UserControl extends JPanel {
 			GameFrame.frame.repaint();
 		}		
 	}
+	/**
+	 * private class for the switch button event
+	 * @author mmlaj
+	 *
+	 */
 	private class buttonSwitchListener implements ActionListener{
 
 		@Override
@@ -79,11 +82,19 @@ public class UserControl extends JPanel {
 			GameFrame.frame.repaint();
 		}		
 	}
-	
+	/**
+	 * returns the minimum size of the panel
+	 */
 	@Override
 	public Dimension getMinimumSize() { return new Dimension(300,30);}
+	/**
+	 * returns the preferred size of the panel
+	 */
 	@Override
 	public Dimension getPreferredSize() { return new Dimension(700,30);}
+	/**
+	 * returns the maximum size of the panel
+	 */
 	@Override
 	public Dimension getMaximumSize() { return new Dimension(50000,30);}
 }	
