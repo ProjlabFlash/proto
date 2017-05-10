@@ -65,11 +65,12 @@ public class Cart extends MovingObject {
 			{
 				return Pulls.colorCheck(station);
 			}
-			return true;
+			return c.equals(station.color);
 		}
 		if(c.equals(Color.FELSZALLTAK))
 		{
 			Controller.sendMessage("Az mcn kocsira felszalltak az utasok!", this, Passengers);
+			Pulls.colorCheck(station);
 			return false;
 		}
 		if(c.equals(this.color) || !Passengers)
@@ -82,6 +83,7 @@ public class Cart extends MovingObject {
 				{
 					return Pulls.colorCheck(station);
 				}
+				return true;
 			}
 			else
 			{

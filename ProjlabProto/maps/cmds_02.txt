@@ -387,8 +387,8 @@ add buildingspot
 connect rail sb2 ss327
 connect rail sb2 ss328
 add buildingspot
-connect rail sb3 ss155
 connect rail sb3 ss156
+connect rail sb3 ss155
 add switch ss6
 connect rail ss5 sv1 2
 connect rail ss13 sv1 2

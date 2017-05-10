@@ -2010,7 +2010,7 @@ public class Controller {
 			}
 			
 			Timer t = new Timer();
-			t.schedule(new MyTask(loco, params[2], t), (60 / loco.Speed) * 1000);
+			t.schedule(new MyTask(loco, params[2], t, gameState), (60 / loco.Speed) * 1000);
 			timers.put(loco, new Timer());
 			targetOS.println("Sikerult! Mostantol az " + params[2] + " mozdony emberi beavatkozas nelkul is magatol menni fog.");
 		}
@@ -2025,16 +2025,22 @@ public class Controller {
 		Timer myTimer;
 		private Locomotive loco;
 		String key;
+		int eofGame;
 		
-		MyTask(Locomotive loco, String key, Timer t) {this.loco = loco; this.key = key; myTimer = t;}
+		MyTask(Locomotive loco, String key, Timer t, int eofGame) {this.loco = loco; this.key = key; myTimer = t; this.eofGame = eofGame;}
 		
 		/**
 		 * A leptetes itt van megvalositva
 		 */
 		@Override
 		public void run() {
+			if (eofGame != gameState) {
+				return;
+			}
+			
 			targetOS.println("A "+ key +" vonat mozgatasa "+ getStringForRail(loco.CurrentRailwaySegment) +" sinrol "+ 
 					getStringForRail(loco.CurrentRailwaySegment.next(loco.PreviousRailwaySegment)) +" sinre.");
+			
 			synchronized (syncObj) {
 				loco.move();
 				MovingObjectObserver moo = observers.get(key);
@@ -2051,7 +2057,7 @@ public class Controller {
 					mo = mo.Pulls;
 				}
 			}
-			myTimer.schedule(new MyTask(loco, key, myTimer), (long)(((double)60 / loco.Speed) * 1000));
+			myTimer.schedule(new MyTask(loco, key, myTimer, eofGame), (long)(((double)60 / loco.Speed) * 1000));
 		}
 	}
 	
@@ -2172,6 +2178,8 @@ public class Controller {
 			}
 			timers = new HashMap<Locomotive, Timer>();
 			
+			gameState++;
+			
 			targetOS.println("A takaritas megtortent.");
 		}
 	}
@@ -2203,6 +2211,7 @@ public class Controller {
 	
 	private static gameStateObserver observer;
 	private static List<Locomotive> tBD = new ArrayList<Locomotive>();
+	private static int gameState = 0;
 	
 	public static void attachGameStateObserver(gameStateObserver o) {
 		observer = o;
@@ -2212,7 +2221,7 @@ public class Controller {
 		if (tBD.contains(loc))
 			tBD.remove(loc);
 		if (tBD.size() == 0)
-			observer.win();
+			if (observer != null) observer.win();
 	}
 	
 	public static void dewin(Locomotive loc) {
@@ -2222,6 +2231,6 @@ public class Controller {
 	
 	public static void lose() {
 		new Controller().execute("clearTable");
-		observer.lose();
+		if (observer != null) observer.lose();
 	}
 }
