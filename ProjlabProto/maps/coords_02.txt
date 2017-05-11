@@ -416,6 +416,6 @@ sa8 26 4 Station\Station_V_purple.png
 ss386 null blue true Cart_blue_full.png
 ss385 ss386 red true Cart_red_full.png
 ss384 ss385 blue true Cart_blue_full.png
-locomotive ml1 ss383 ss384 300 1000 Locomotive.png
+locomotive ml1 ss383 ss384 150 1000 Locomotive.png
 ss388 ss389 orange true Cart_orange_full.png
-locomotive ml2 ss387 ss388 400 3000 Locomotive.png
+locomotive ml2 ss387 ss388 150 3000 Locomotive.png
